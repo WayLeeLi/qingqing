@@ -1,0 +1,107 @@
+﻿@model Academy.Models.InquiryRecord
+
+@{
+    Layout = "~/Areas/Sysmgr/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts {
+    <script>
+        $(function () {
+            // binds form submission and fields to the validation engine
+            $.validationEngine.defaults.scroll = false;
+            $("#formcontent").validationEngine();
+
+        });
+    </script>
+    <!--CK 套件-->
+    <script type="text/javascript" src="~/Scripts/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="~/Scripts/ckfinder/ckfinder.js"></script>
+}
+
+<!--主要內容-->
+<article class="contentArea" id="content">
+    @using (Html.BeginForm("Edit", "Quote", FormMethod.Post, new { id = "formcontent", enctype = "multipart/form-data" }))
+    {
+        <h1>
+            產品資訊<span>/ 回覆</span><span class="tip">
+                <section class="tipBox">
+                    <span>&nbsp;</span>
+                    <ul>
+                        <li>填入您要編輯的資訊。 *為必填欄位。</li>
+                        <li>回覆內容時，會自動給用戶發送一封郵件。</li>
+                    </ul>
+                </section>
+            </span>
+        </h1>
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.FormType, new { Value = "ProductInfo" })
+
+        <!-- 客戶提交的原始資訊（只讀） -->
+        <section class="detailGroup">
+            <h3>客戶提交資訊</h3>
+            <ul>
+                <li><strong>姓名：</strong> @(string.IsNullOrEmpty(Model.UserName) ? "—" : Model.UserName)</li>
+                <li><strong>公司名稱：</strong> @(string.IsNullOrEmpty(Model.CompanyName) ? "—" : Model.CompanyName)</li>
+                <li><strong>電話：</strong> @(string.IsNullOrEmpty(Model.Phone) ? "—" : Model.Phone)</li>
+                <li><strong>傳真：</strong> @(string.IsNullOrEmpty(Model.Fax) ? "—" : Model.Fax)</li>
+                <li><strong>電子信箱：</strong> @(string.IsNullOrEmpty(Model.Email) ? "—" : Model.Email)</li>
+                <li><strong>公司地址：</strong> @(string.IsNullOrEmpty(Model.Address) ? "—" : Model.Address)</li>
+                <li><strong>服務項目類別：</strong> @(string.IsNullOrEmpty(Model.CategoryName) ? "—" : Model.CategoryName)</li>
+                <li><strong>產品名稱：</strong> @(string.IsNullOrEmpty(Model.ProductName) ? "—" : Model.ProductName)</li>
+                <li><strong>概略尺寸：</strong> @(string.IsNullOrEmpty(Model.Size) ? "—" : Model.Size)</li>
+                <li><strong>委託服務項目：</strong> @(string.IsNullOrEmpty(Model.Services) ? "—" : Model.Services)</li>
+                <li><strong>預期完成時程：</strong> @(string.IsNullOrEmpty(Model.Deadline) ? "—" : Model.Deadline)</li>
+                <li><strong>諮詢內容 / 需求說明：</strong> @(string.IsNullOrEmpty(Model.Content) ? "—" : Model.Content)</li>
+            </ul>
+        </section>
+
+        <section class="detailGroup">
+            <h3>回覆內容</h3>
+            <ul>
+                <li>
+                    <p class="title">回覆內容 : <mark class="mark">(*最多1000個中英文字元)</mark></p>
+                    <br>
+                    @Html.TextAreaFor(model => model.ReplyContent, new { @class = "validate[maxSize[1000]] text-input", @cols = "80", @rows = "10" })
+                </li>
+            </ul>
+        </section>
+
+        <!--功能操作-->
+        <section class="openArea">
+            <span class="open" title="開啟執行列">開啟執行列</span>
+        </section>
+        <section class="functionArea">
+            <span class="close" title="關閉執行列">關閉執行列</span>
+            <span class="close" title="關閉執行列" id="closeShort"></span>
+
+            <div>
+                <input name="按鈕" type="button" class="btnBack" value="x 回上一頁">
+                <input name="送出" type="submit" class="btnAdd" value="B 確定回覆">
+            </div>
+        </section>
+    }
+</article>
+
+<style>
+    .content-display {
+        font-size: 14px;
+        color: #ddd;
+        line-height: 1.6;
+        margin: 5px 0 15px 0;
+        padding: 0; /* 移除内边距 */
+        background: none; /* 移除背景 */
+        word-break: break-word;
+    }
+
+    .detailGroup ul li {
+        list-style: none;
+        margin-bottom: 15px;
+    }
+
+    .detailGroup .title {
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #6DB82A;
+    }
+</style>

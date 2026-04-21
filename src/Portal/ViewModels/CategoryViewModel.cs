@@ -24,6 +24,7 @@ namespace Academy.ViewModels
         public string Name { get; set; }
         public int Level { get; set; }
         public int SortOrder { get; set; }
+        public int Status {  get; set; }
         public DateTime CreateTime { get; set; }
         public List<CategoryTreeNode> Children { get; set; }
 

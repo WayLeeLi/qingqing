@@ -52,6 +52,9 @@
       <HintPath>C:\Users\Administrator\Desktop\asp.net\bin\LitJSON.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NPOI">
       <HintPath>..\packages\NPOI\NPOI.dll</HintPath>
     </Reference>
@@ -89,9 +92,6 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
       <Private>True</Private>
@@ -195,6 +195,9 @@
     <Compile Include="Areas\Sysmgr\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Sysmgr\Controllers\MainController.cs" />
     <Compile Include="Areas\Sysmgr\Controllers\AboutController.cs" />
+    <Compile Include="Areas\Sysmgr\Controllers\NoteBookController.cs" />
+    <Compile Include="Areas\Sysmgr\Controllers\QuickQuoteController.cs" />
+    <Compile Include="Areas\Sysmgr\Controllers\QuoteController.cs" />
     <Compile Include="Areas\Sysmgr\Controllers\ProductController.cs" />
     <Compile Include="Areas\Sysmgr\Controllers\SettingController.cs" />
     <Compile Include="Areas\Sysmgr\Controllers\BannerController.cs" />
@@ -211,17 +214,22 @@
       <DependentUpon>ValidateCode.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Controllers\QuoteController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\InfoController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\WebController.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdLink.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\DictSet.cs" />
+    <Compile Include="Models\InquiryRecord.cs" />
     <Compile Include="Models\MailSet.cs" />
     <Compile Include="Models\MemberMsg.cs" />
     <Compile Include="Models\Module.cs" />
@@ -242,6 +250,7 @@
     <Compile Include="Models\Member.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
+    <Compile Include="ViewModels\SidebarNewsItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Common\ValidateCode.aspx" />
@@ -256,6 +265,14 @@
     <Content Include="Content\styles.css" />
     <Content Include="Content\tmcata.css" />
     <Content Include="Content\usercss.css" />
+    <Content Include="css\about.css" />
+    <Content Include="css\contact.css" />
+    <Content Include="css\index.css" />
+    <Content Include="css\news-detail.css" />
+    <Content Include="css\news.css" />
+    <Content Include="css\product.css" />
+    <Content Include="css\quotation.css" />
+    <Content Include="css\service.css" />
     <Content Include="Global.asax" />
     <Content Include="ie8.htm" />
     <Content Include="Images\admin\default.png" />
@@ -292,10 +309,18 @@
     <Content Include="Images\web\mobilead_8134_9323453_12992.jpg" />
     <Content Include="Images\web\search.png" />
     <Content Include="Images\web\top.png" />
+    <Content Include="js\about.js" />
+    <Content Include="js\contact.js" />
     <Content Include="js\flexslider.css" />
+    <Content Include="js\index.js" />
     <Content Include="js\jquery-1.11.0.min.js" />
     <Content Include="js\jquery.flexslider.js" />
     <Content Include="js\m_20201001.js" />
+    <Content Include="js\news-detail.js" />
+    <Content Include="js\news.js" />
+    <Content Include="js\product.js" />
+    <Content Include="js\quotation.js" />
+    <Content Include="js\service.js" />
     <Content Include="Scripts\address.js" />
     <Content Include="Scripts\admin\aj-address.js" />
     <Content Include="Scripts\ckeditor\build-config.js" />
@@ -1159,9 +1184,21 @@
     <Content Include="Scripts\inside.js" />
     <Content Include="Scripts\jquery-2.1.0.min.js" />
     <Content Include="Scripts\jquery.e-calendar.js" />
+    <Content Include="Scripts\jquery.form.js" />
     <Content Include="Scripts\jquery.tinyMap.js" />
     <Content Include="Scripts\jssor.slider\dynamic-form-fields\dynamic-form-fields.js" />
     <Content Include="Scripts\jssor.slider\jssor.slider.min.js" />
+    <Content Include="Scripts\layer\extend\layer.ext.js" />
+    <Content Include="Scripts\layer\layer.js" />
+    <Content Include="Scripts\layer\mobile\layer.js" />
+    <Content Include="Scripts\layer\mobile\need\layer.css" />
+    <Content Include="Scripts\layer\skin\default\icon-ext.png" />
+    <Content Include="Scripts\layer\skin\default\icon.png" />
+    <Content Include="Scripts\layer\skin\default\loading-0.gif" />
+    <Content Include="Scripts\layer\skin\default\loading-1.gif" />
+    <Content Include="Scripts\layer\skin\default\loading-2.gif" />
+    <Content Include="Scripts\layer\skin\layer.css" />
+    <Content Include="Scripts\layer\skin\layer.ext.css" />
     <Content Include="Scripts\lightgallery\lg-autoplay.js" />
     <Content Include="Scripts\lightgallery\lg-fullscreen.js" />
     <Content Include="Scripts\lightgallery\lg-hash.js" />
@@ -1176,6 +1213,7 @@
     <Content Include="Scripts\mmenu\jquery.mmenu.widescreen.css" />
     <Content Include="Scripts\scrolltopcontrol.js" />
     <Content Include="Scripts\share.js" />
+    <Content Include="Scripts\smooth-scroll.js" />
     <Content Include="Scripts\tw.js" />
     <Content Include="Scripts\validation\jquery.validationEngine.js" />
     <Content Include="Scripts\validation\languages\jquery.validationEngine-zh_TW.js" />
@@ -1229,7 +1267,7 @@
     <Content Include="UploadHandler.ashx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Index-bk.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\News\Index.cshtml" />
@@ -1314,6 +1352,12 @@
     <Content Include="Areas\Sysmgr\Views\Category\Index.cshtml" />
     <Content Include="Areas\Sysmgr\Views\Category\Create.cshtml" />
     <Content Include="Areas\Sysmgr\Views\Category\Edit.cshtml" />
+    <Content Include="Areas\Sysmgr\Views\Quote\Index.cshtml" />
+    <Content Include="Areas\Sysmgr\Views\NoteBook\Edit.cshtml" />
+    <Content Include="Areas\Sysmgr\Views\NoteBook\Index.cshtml" />
+    <Content Include="Areas\Sysmgr\Views\QuickQuote\Edit.cshtml" />
+    <Content Include="Areas\Sysmgr\Views\QuickQuote\Index.cshtml" />
+    <Content Include="Areas\Sysmgr\Views\Quote\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\NCRS.pubxml" />
     <Content Include="Scripts\fonts\lg.eot" />
     <Content Include="Scripts\fonts\lg.ttf" />
@@ -1466,6 +1510,48 @@
     <Content Include="Views\Info\Detail.cshtml" />
     <Content Include="Views\Info\Index.cshtml" />
     <Content Include="Views\Member\ProductDetail.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Service\index.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Quote\Index.cshtml" />
+    <Content Include="Views\Service\Info.cshtml" />
+    <Content Include="Views-en\_ViewStart.cshtml" />
+    <Content Include="Views-en\About\Calendar.cshtml" />
+    <Content Include="Views-en\About\Chairman.cshtml" />
+    <Content Include="Views-en\About\Constitution.cshtml" />
+    <Content Include="Views-en\About\Contact.cshtml" />
+    <Content Include="Views-en\About\Download.cshtml" />
+    <Content Include="Views-en\About\Index.cshtml" />
+    <Content Include="Views-en\About\Info.cshtml" />
+    <Content Include="Views-en\About\Link.cshtml" />
+    <Content Include="Views-en\About\Member.cshtml" />
+    <Content Include="Views-en\Contact\Index.cshtml" />
+    <Content Include="Views-en\Home\Index-bk.cshtml" />
+    <Content Include="Views-en\Home\Index.cshtml" />
+    <Content Include="Views-en\Home\Result.cshtml" />
+    <Content Include="Views-en\Home\Search.cshtml" />
+    <Content Include="Views-en\Info\Detail.cshtml" />
+    <Content Include="Views-en\Info\Index.cshtml" />
+    <Content Include="Views-en\Member\Detail.cshtml" />
+    <Content Include="Views-en\Member\Index.cshtml" />
+    <Content Include="Views-en\Member\Join.cshtml" />
+    <Content Include="Views-en\Member\ProductDetail.cshtml" />
+    <Content Include="Views-en\News\Detail.cshtml" />
+    <Content Include="Views-en\News\Index.cshtml" />
+    <Content Include="Views-en\News\IndexActive.cshtml" />
+    <Content Include="Views-en\News\IndexIndustry.cshtml" />
+    <Content Include="Views-en\News\IndexNotice.cshtml" />
+    <Content Include="Views-en\News\IndexPhoto.cshtml" />
+    <Content Include="Views-en\News\IndexVideo.cshtml" />
+    <Content Include="Views-en\Product\Index.cshtml" />
+    <Content Include="Views-en\Quote\Index.cshtml" />
+    <Content Include="Views-en\Service\index.cshtml" />
+    <Content Include="Views-en\Service\Info.cshtml" />
+    <Content Include="Views-en\Shared\_Layout.cshtml" />
+    <Content Include="Views-en\Shared\Error.cshtml" />
+    <Content Include="Views-en\Web.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

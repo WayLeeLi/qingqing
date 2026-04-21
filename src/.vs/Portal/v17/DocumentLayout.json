@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "F:\\tbmcata-master\\tbmcata-master\\src\\",
+  "WorkspaceRootPath": "F:\\project\\qingqing\\src\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\tbmcata-master\\tbmcata-master\\src\\portal\\areas\\sysmgr\\controllers\\bannercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\areas\\sysmgr\\controllers\\bannercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\areas\\sysmgr\\controllers\\bannercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -20,9 +20,9 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "BannerController.cs",
-              "DocumentMoniker": "F:\\tbmcata-master\\tbmcata-master\\src\\Portal\\Areas\\Sysmgr\\Controllers\\BannerController.cs",
+              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Areas\\Sysmgr\\Controllers\\BannerController.cs",
               "RelativeDocumentMoniker": "Portal\\Areas\\Sysmgr\\Controllers\\BannerController.cs",
-              "ToolTip": "F:\\tbmcata-master\\tbmcata-master\\src\\Portal\\Areas\\Sysmgr\\Controllers\\BannerController.cs",
+              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Areas\\Sysmgr\\Controllers\\BannerController.cs",
               "RelativeToolTip": "Portal\\Areas\\Sysmgr\\Controllers\\BannerController.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

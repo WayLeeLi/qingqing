@@ -1,16 +1,17 @@
 ﻿using Academy.Controllers;
+using Academy.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using PagedList;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using System.Dynamic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using PagedList;
-using Academy.Models;
-using System.IO;
-using System.Data;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
-using System.Collections;
 
 namespace Academy.Controllers
 {
@@ -20,16 +21,48 @@ namespace Academy.Controllers
         // GET: /Home/
         public ActionResult Index()
         {
-            DateTime dtNow = DateTime.Now;
-            ViewBag.BannerList = db.Banners.Where(a => a.Status == 1).OrderBy(a => a.Sort).ThenByDescending(a => a.CDate).ToList();
-            ViewBag.ActiveList = db.Newss
-                .Where(a => db.NewsCatas.Any(b => b.Status == 1 && b.Code == "active" && b.ID == a.CataID))
-                .Where(a => a.Status == 1 || a.Status == 2 && (a.OnDate != null && a.OnDate < dtNow || a.OnDate == null) && (a.OffDate != null && a.OffDate > dtNow || a.OffDate == null))
-                .OrderByDescending(a => a.PubDate)
-                .Take(4);
-            ViewBag.MemberList = db.Members.Where(a => a.Status == 1 && a.ImagePath != null && a.ImagePath != "").OrderBy(a => a.Sort).ThenByDescending(a => a.CDate).ToList();
-            ViewBag.AdList = db.AdLinks.Where(a => a.Status == 1).OrderBy(a => a.Sort).ThenByDescending(a => a.CDate).ToList();
-            ViewBag.ProductList = db.Products.Where(a => a.Status == 1 && a.IsShowIndex == 1).OrderByDescending(a => a.CDate).Take(8).ToList();
+            // Banner 数据 - 立即执行 ToList()
+            ViewBag.BannerList = db.Banners
+                .Where(a => a.Status == 1)
+                .OrderBy(a => a.Sort)
+                .ToList();  // 添加 ToList()
+
+            var productList = new List<ExpandoObject>();
+            var query = (from n in db.Newss
+                         join c in db.Categories on n.CataID equals c.Id
+                         where n.Status == 1 && n.Menu == 4 && c.Status == 1
+                         orderby n.CDate descending
+                         select new { n.ID, n.Title, n.ImagePath, n.CDate, Category = c.Name })
+                         .Take(5)
+                         .ToList();
+
+            foreach (var item in query)
+            {
+                dynamic expando = new ExpandoObject();
+                expando.ID = item.ID;
+                expando.Title = item.Title;
+                expando.ImagePath = item.ImagePath;
+                expando.CDate = item.CDate;
+                expando.Category = item.Category;
+                productList.Add(expando);
+            }
+
+            ViewBag.ProductList = productList;
+
+            // ActiveList 数据 - 立即执行 ToList()
+            ViewBag.ServersList = db.Newss
+                .Where(a => a.Status == 1 && a.Menu == 3)
+                .OrderByDescending(a => a.CDate)
+                .Take(10)
+                .ToList();  // 添加 ToList()
+
+            // NewsList 数据 - 立即执行 ToList()
+            ViewBag.NewsList = db.Newss
+                .Where(a => a.Status == 1 && a.Menu == 5)
+                .OrderByDescending(a => a.CDate)
+                .Take(3)
+                .ToList();  // 添加 ToList()
+
             return View();
         }
 
@@ -107,6 +140,8 @@ namespace Academy.Controllers
             Message msg = new Message();
             msg.UserName = Request["UserName"];
             msg.Tel = Request["Tel"];
+            msg.CompanyName = Request["CompanyName"];
+            msg.CategoryName = Request["CategoryName"];
             msg.Mail = Request["Mail"];
             msg.Content = Request["Content"];
             msg.Status = 0;
@@ -166,7 +201,7 @@ namespace Academy.Controllers
             {
                 MailSet model = db.MailSets.FirstOrDefault();
                 //回覆發郵件
-                Common.MailHelper.SendEmail(member.EMail, msg.CompanyName + " 公司通過台灣生技醫療照護輔具協會網站提交了諮詢訊息，請及時回復", content);
+                Common.MailHelper.SendEmail(member.EMail, msg.CompanyName + " 公司通過智匯創新股份有限公司網站提交了諮詢訊息，請及時回復", content);
 
                 return Json(new { success = true, msg = "提交成功，我們會盡快給您回覆！" });
             }
