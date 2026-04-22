@@ -101,7 +101,7 @@ namespace Academy.Areas.Sysmgr.Controllers
                     db.SaveChanges();
 
                     //回覆發郵件
-                    Common.MailHelper.SendEmail(model.Mail, "智匯創新股份有限公司回覆了您的諮詢", model.ReplyContent);
+                    Common.MailHelper.SendEmail(model.Mail, "青青餐廳回覆了您的諮詢", model.ReplyContent);
 
                     if (Session["ret"] != null)
                     {

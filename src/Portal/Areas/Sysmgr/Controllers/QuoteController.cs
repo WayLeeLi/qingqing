@@ -80,7 +80,7 @@ namespace Academy.Areas.Sysmgr.Controllers
                     db.SaveChanges();
 
                     // 发送回复邮件
-                    Common.MailHelper.SendEmail(model.Email, "智匯創新股份有限公司回覆了您的諮詢", model.ReplyContent);
+                    Common.MailHelper.SendEmail(model.Email, "青青餐廳回覆了您的諮詢", model.ReplyContent);
 
                     if (Session["ret"] != null)
                         Response.Redirect(Session["ret"].ToString());
