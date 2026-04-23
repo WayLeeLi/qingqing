@@ -51,21 +51,28 @@
                     @Html.TextBoxFor(model => model.Title, new { @class = "validate[required,maxSize[100]] text-input long", maxlength = "101" })
                     @Html.HiddenFor(m => m.Menu)
                 </li>
-                @*<li>
-                        <p class="title">圖/編輯單位 :</p>
-                        @Html.TextBoxFor(model => model.Dept1, new { @class = "text-input", maxlength = "51" })
-                    </li>
+                @if (menu == "3")
+                {
                     <li>
-                        <p class="title">文/編輯單位 :</p>
-                        @Html.TextBoxFor(model => model.Dept2, new { @class = "text-input", maxlength = "51" })
-                    </li>*@
+                        <p class="title">标签 :</p>
+                        @Html.TextBoxFor(model => model.Lable, new { @class = "validate[required,maxSize[100]] text-input long", maxlength = "101" })
+                    </li>
+                }
                 @*<li>
-                        <p class="title">顯示於首頁<span class="mark"> *</span> : </p>
-                        @Html.RadioButtonFor(model => model.IsShowIndex, 1, new { @id = "IsShowIndexYes", @class = "validate[required] radio", @checked = "checked" })
-                        <span class="icon-on" for="IsShowIndexYes" title="是"></span>
-                        @Html.RadioButtonFor(model => model.IsShowIndex, 0, new { @id = "IsShowIndexNo", value = 0, @class = "validate[required] radio" })
-                        <span class="icon-off" for="IsShowIndexNo" title="否"></span>
-                    </li>*@
+            <p class="title">圖/編輯單位 :</p>
+            @Html.TextBoxFor(model => model.Dept1, new { @class = "text-input", maxlength = "51" })
+        </li>
+        <li>
+            <p class="title">文/編輯單位 :</p>
+            @Html.TextBoxFor(model => model.Dept2, new { @class = "text-input", maxlength = "51" })
+        </li>*@
+                @*<li>
+            <p class="title">顯示於首頁<span class="mark"> *</span> : </p>
+            @Html.RadioButtonFor(model => model.IsShowIndex, 1, new { @id = "IsShowIndexYes", @class = "validate[required] radio", @checked = "checked" })
+            <span class="icon-on" for="IsShowIndexYes" title="是"></span>
+            @Html.RadioButtonFor(model => model.IsShowIndex, 0, new { @id = "IsShowIndexNo", value = 0, @class = "validate[required] radio" })
+            <span class="icon-off" for="IsShowIndexNo" title="否"></span>
+        </li>*@
                 <li>
                     <p class="title">上線狀態<span class="mark"> *</span> : </p>
                     @Html.RadioButtonFor(model => model.Status, 1, new { @id = "StatusYes", @class = "validate[required] radio", @checked = "checked" })

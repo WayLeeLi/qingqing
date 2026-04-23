@@ -49,6 +49,13 @@
                     @Html.TextBoxFor(model => model.Title, new { @class = "validate[required,maxSize[100]] text-input long", maxlength = "101" })
                     @Html.HiddenFor(m => m.Menu)
                 </li>
+                @if (menu == "3")
+                {
+                    <li>
+                        <p class="title">标签 :</p>
+                        @Html.TextBoxFor(model => model.Lable, new { @class = "validate[required,maxSize[100]] text-input long", maxlength = "101" })
+                    </li>
+                }
                 <li>
                     <p class="title">上線狀態<span class="mark"> *</span> : </p>
                     @Html.RadioButtonFor(model => model.Status, 1, new { @id = "StatusYes", @class = "validate[required] radio", @checked = "checked" })

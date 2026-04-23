@@ -1,5 +1,6 @@
 ﻿using Academy.Controllers;
 using Academy.Models;
+using Academy.ViewModels;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using PagedList;
@@ -21,49 +22,74 @@ namespace Academy.Controllers
         // GET: /Home/
         public ActionResult Index()
         {
-            // Banner 数据 - 立即执行 ToList()
-            ViewBag.BannerList = db.Banners
-                .Where(a => a.Status == 1)
-                .OrderBy(a => a.Sort)
-                .ToList();  // 添加 ToList()
+            var model = new HomeViewModel();
 
-            var productList = new List<ExpandoObject>();
-            var query = (from n in db.Newss
-                         join c in db.Categories on n.CataID equals c.Id
-                         where n.Status == 1 && n.Menu == 4 && c.Status == 1
-                         orderby n.CDate descending
-                         select new { n.ID, n.Title, n.ImagePath, n.CDate, Category = c.Name })
-                         .Take(5)
-                         .ToList();
-
-            foreach (var item in query)
+            // 1. 關於青青
+            var about = db.DictSets.FirstOrDefault(d => d.Code == "AboutInfo");
+            if (about != null)
             {
-                dynamic expando = new ExpandoObject();
-                expando.ID = item.ID;
-                expando.Title = item.Title;
-                expando.ImagePath = item.ImagePath;
-                expando.CDate = item.CDate;
-                expando.Category = item.Category;
-                productList.Add(expando);
+                model.AboutInfo = new ContentItem
+                {
+                    Title = about.Name,
+                    Content = about.Value
+                };
             }
 
-            ViewBag.ProductList = productList;
+            // 2. 招牌菜 (Menu == 3) 关联 Category 获取分类名称
+            var dishesQuery = from n in db.Newss
+                              join c in db.Categories on n.CataID equals c.Id
+                              where n.Status == 1 && n.Menu == 3 && c.Status == 1
+                              orderby n.CDate descending
+                              select new ContentItem
+                              {
+                                  Id = n.ID,
+                                  Title = n.Title,
+                                  ImageUrl = n.ImagePath,
+                                  Summary = n.Note,
+                                  Lable = n.Lable,
+                                  Content = n.Content,
+                                  PublishDate = n.CDate.Value,
+                                  Category = c.Name   // 关联得到的分类名称
+                              };
+            model.SignatureDishes = dishesQuery.Take(10).ToList();
 
-            // ActiveList 数据 - 立即执行 ToList()
-            ViewBag.ServersList = db.Newss
-                .Where(a => a.Status == 1 && a.Menu == 3)
-                .OrderByDescending(a => a.CDate)
-                .Take(10)
-                .ToList();  // 添加 ToList()
+            // 3. 活動與公告 (Menu == 5) 关联 Category
+            var newsQuery = from n in db.Newss
+                            join c in db.Categories on n.CataID equals c.Id
+                            where n.Status == 1 && n.Menu == 5 && c.Status == 1
+                            orderby n.CDate descending
+                            select new ContentItem
+                            {
+                                Id = n.ID,
+                                Title = n.Title,
+                                ImageUrl = n.ImagePath,
+                                Summary = n.Note,
+                                Content = n.Content,
+                                PublishDate = n.CDate.Value,
+                                Category = c.Name,
+                                LinkUrl = Url.Action("Detail", "News", new { id = n.ID }) // 详情链接
+                            };
+            model.NewsList = newsQuery.Take(6).ToList();
 
-            // NewsList 数据 - 立即执行 ToList()
-            ViewBag.NewsList = db.Newss
-                .Where(a => a.Status == 1 && a.Menu == 5)
-                .OrderByDescending(a => a.CDate)
-                .Take(3)
-                .ToList();  // 添加 ToList()
+            // 4. 影音專區 (Menu == 6) 关联 Category
+            var videoQuery = from n in db.Newss
+                             join c in db.Categories on n.CataID equals c.Id
+                             where n.Status == 1 && n.Menu == 6 && c.Status == 1
+                             orderby n.CDate descending
+                             select new ContentItem
+                             {
+                                 Id = n.ID,
+                                 Title = n.Title,
+                                 ImageUrl = n.ImagePath,          // 封面图
+                                 Summary = n.Note,
+                                 Content = n.Content,            // 存储视频嵌入地址
+                                 PublishDate = n.CDate.Value,
+                                 Category = c.Name,
+                                 VideoUrl = n.VideoPath
+                             };
+            model.VideoList = videoQuery.Take(6).ToList();
 
-            return View();
+            return View(model);
         }
 
         /// <summary>

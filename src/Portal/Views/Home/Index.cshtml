@@ -1,11 +1,6 @@
-﻿@{
-    ViewBag.Title = "智匯創新 G-wise Design｜交通工具與產品設計";
-
-    // 转换数据为 List
-    var bannerList = ViewBag.BannerList as IEnumerable<dynamic> ?? new List<dynamic>();
-    var productList = ViewBag.ProductList as IEnumerable<dynamic> ?? new List<dynamic>();
-    var serversList = ViewBag.ServersList as IEnumerable<dynamic> ?? new List<dynamic>();
-    var newsList = ViewBag.NewsList as IEnumerable<dynamic> ?? new List<dynamic>();
+﻿<!-- Index.cshtml -->
+@{
+    ViewBag.Title = "首頁";
 }
 
 @section Styles {
@@ -18,282 +13,233 @@
 
 <div class="main">
     <div class="minner">
-        <!-- HERO -->
-        <section class="hero">
-            <div class="hero-slides" id="heroSlides">
-                @{
-                    var bannerIndex = 0;
-                }
-                @foreach (var item in bannerList)
-                {
-                    <div class="hero-slide @(bannerIndex == 0 ? "active" : "")"
-                         style="background-image:url('@item.Photo')"
-                         data-link="@item.LinkURL"
-                         data-open-type="@item.OpenType">
-                    </div>
-                    bannerIndex++;
-                }
-            </div>
-            <div class="hero-bg"></div>
-            <div class="hero-grid-lines"></div>
-
+        <!-- HERO BANNER -->
+        <section class="hero" id="hero">
+            <div class="hero-overlay"></div>
             <div class="hero-content">
-                <div class="hero-eyebrow">
-                    <div class="hero-eyebrow-line"></div>
-                    <span class="hero-eyebrow-text">Professional Design Studio · Since 2009</span>
+                <div class="hero-logo-wrap">
+                    <svg class="hero-logo-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <polygon points="100,4 158,28 192,80 192,120 158,172 100,196 42,172 8,120 8,80 42,28" fill="rgba(200,16,46,0.15)" stroke="#D4A843" stroke-width="3" />
+                        <polygon points="100,18 148,38 176,78 176,122 148,162 100,182 52,162 24,122 24,78 52,38" fill="none" stroke="rgba(212,168,67,0.4)" stroke-width="1.5" />
+                        <circle cx="100" cy="100" r="65" fill="rgba(200,16,46,0.2)" stroke="rgba(212,168,67,0.3)" stroke-width="1" />
+                        <text x="100" y="90" text-anchor="middle" dominant-baseline="middle" font-family="Noto Serif TC, serif" font-size="38" font-weight="900" fill="#F0CC78" letter-spacing="4">青青</text>
+                        <text x="100" y="130" text-anchor="middle" dominant-baseline="middle" font-family="Noto Serif TC, serif" font-size="18" font-weight="700" fill="rgba(240,204,120,0.8)" letter-spacing="6">餐廳</text>
+                        <circle cx="100" cy="26" r="3" fill="#D4A843" opacity=".8" />
+                        <circle cx="100" cy="174" r="3" fill="#D4A843" opacity=".8" />
+                        <circle cx="26" cy="100" r="3" fill="#D4A843" opacity=".8" />
+                        <circle cx="174" cy="100" r="3" fill="#D4A843" opacity=".8" />
+                    </svg>
+                    <div class="hero-since">SINCE 1977 ╱ 飲食男女廚藝顧問</div>
                 </div>
-                <h1 class="hero-title">
-                    Design<br>
-                    <span class="accent">Beyond</span><br>
-                    Limits
-                </h1>
-                <p class="hero-subtitle">
-                    智匯創新是交通工具與車用配件的全方位外型設計公司，<br>
-                    以現代數位方法，從設計概念到工程開發，全程為您創造最高價值。
+                <h1 class="hero-title">青青餐廳</h1>
+                <p class="hero-title-en">Chin Chin Restaurant</p>
+                <p class="hero-tagline">
+                    台菜廚神 <em>阿發師</em> 坐鎮 ╱ 新北土城在地 <em>46 年</em><br>
+                    新台菜料理 · 千坪庭園宴廳 · 婚宴喜慶首選
                 </p>
-                <div class="hero-actions">
-                    <a href="@Url.Action("Index", "Product")" class="btn-primary">
-                        探索作品集
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </a>
-                    <a href="@Url.Action("Index", "Service")" class="btn-outline">了解更多</a>
+                <div class="hero-btns">
+                    <a href="tel:0222691127" class="btn-red">📞 電話訂位</a>
+                    <a href="#dishes" class="btn-outline-gold">探索菜色</a>
                 </div>
             </div>
-
-            <div class="hero-slide-dots" id="heroDots">
-                @for (var i = 0; i < bannerList.Count(); i++)
-                {
-                    <div class="hero-dot @(i == 0 ? "active" : "")" onclick="goSlide(@i)"></div>
-                }
+            <div class="scroll-hint">
+                <div class="scroll-line"></div>
+                <span>SCROLL</span>
             </div>
+        </section>
 
-            <div class="hero-scroll">
-                <div class="hero-scroll-line"></div>
-                <span class="hero-scroll-text">SCROLL</span>
-            </div>
-
-            <div class="hero-stats">
-                <div class="stat">
-                    <div class="stat-num" data-target="15"><span class="count">0</span><span class="red">+</span></div>
-                    <div class="stat-label">Years Experience</div>
+        <!-- STORY SECTION -->
+        <section class="section-pad" id="story" style="background:var(--paper);">
+            <div class="story-grid">
+                <div class="story-img-frame">
+                    <div class="story-img-box">
+                        <img src="" alt="阿發師 施建發 主廚" loading="lazy">
+                    </div>
+                    <div class="story-badge">
+                        <span class="yr">46</span>
+                        <span class="sub">YEARS</span>
+                    </div>
                 </div>
-                <div class="stat">
-                    <div class="stat-num" data-target="300"><span class="count">0</span><span class="red">+</span></div>
-                    <div class="stat-label">Projects Done</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-num" data-target="50"><span class="count">0</span><span class="red">+</span></div>
-                    <div class="stat-label">Awards Won</div>
+                <div>
+                    <div class="tag">關於青青</div>
+                    <h2 class="h2">名菜有歷史<br>好菜唯有創新</h2>
+                    <div class="gold-rule"><span>◆</span></div>
+                    <p class="lead">
+                        1977年創立於新北土城，青青餐廳已深根在地近半個世紀。主廚施建發（阿發師）出身餐飲世家，曾擔任李安導演《飲食男女》廚藝技術顧問及手部替身，更獲頒多項國際中餐大師殊榮。
+                    </p>
+                    <br>
+                    <p class="lead" style="opacity:.65">
+                        餐廳坐擁128桌千坪宴席場地，小橋流水、瀑布庭景，氣派典雅。菜色融合傳統台菜與粵菜、川菜精華，每道佳餚皆以上選食材為本，呈現充滿創意的時尚台菜饗宴。
+                    </p>
+                    <br>
+                    <a href="#contact" class="btn-red" style="display:inline-block; margin-top:.8rem;">了解更多 →</a>
                 </div>
             </div>
         </section>
 
-        <!-- SERVICES -->
-        <section class="svc-section" id="svcSection">
-            <div style="padding: 0 48px 40px; display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:16px;">
-                <h2 class="section-title">設計服務<br>Service</h2>
-                <div class="svc-arrows">
-                    <button class="svc-arrow" id="svcPrev" disabled>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                            <path d="M15 18l-6-6 6-6" />
-                        </svg>
-                    </button>
-                    <button class="svc-arrow" id="svcNext">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                            <path d="M9 18l6-6-6-6" />
-                        </svg>
-                    </button>
+        <!-- DISHES SECTION -->
+        <!-- 招牌菜 区块 -->
+        <section class="dishes-section section-pad" id="dishes">
+            <div class="dishes-header">
+                <div>
+                    <div class="tag" style="color:var(--gold); --red:var(--gold);">招牌料理</div>
+                    <h2 class="h2" style="color:#fff;">每一道菜<br>都是廚神之作</h2>
                 </div>
+                <a href="#contact" class="btn-outline-gold">查看完整菜單</a>
             </div>
-
-            <div class="svc-viewport" id="svcViewport">
-                <div class="svc-track" id="svcTrack">
-                    @{
-                        // 将 serversList 数据分组，每组5个（1个大卡片 + 4个小卡片）
-                        var groupedActivities = new List<List<dynamic>>();
-                        var tempList = new List<dynamic>();
-                        var idx = 0;
-
-                        foreach (var item in serversList)
-                        {
-                            tempList.Add(item);
-                            idx++;
-                            if (idx % 5 == 0 || idx == serversList.Count())
-                            {
-                                groupedActivities.Add(new List<dynamic>(tempList));
-                                tempList.Clear();
-                            }
-                        }
-                    }
-
-                    @for (var slideIndex = 0; slideIndex < groupedActivities.Count; slideIndex++)
+            <div class="dishes-grid">
+                @if (Model.SignatureDishes != null && Model.SignatureDishes.Any())
+                {
+                    var firstItem = Model.SignatureDishes.FirstOrDefault();
+                    // 第一个菜品作为大卡片（tall）
+                    <div class="dish-card tall">
+                        <div class="dish-bg">
+                            <div style="position:absolute; inset:0; background-image:url('@firstItem.ImageUrl'); background-size:cover; background-position:center;"></div>
+                        </div>
+                        <div class="dish-overlay">
+                            <div class="dish-tag">@firstItem.Lable</div>
+                            <div class="dish-name">@firstItem.Title</div>
+                            <div class="dish-desc">@firstItem.Summary</div>
+                        </div>
+                    </div>
+                    // 其余菜品作为普通卡片
+                    foreach (var dish in Model.SignatureDishes.Skip(1))
                     {
-                        var group = groupedActivities[slideIndex];
-                        <div class="svc-slide">
-                            <div class="svc-layout">
-                                <!-- 左侧大卡片：取每组的第一个 -->
-                                @if (group.Count > 0)
-                                {
-                                    var featureItem = group[0];
-                                    <div class="svc-feature-card">
-                                        <div class="svc-feature-img" style="background-image:url('@featureItem.ImagePath')"></div>
-                                        <div class="svc-feature-overlay"></div>
-                                        <div class="svc-feature-content">
-                                            <div class="svc-tags">@(featureItem.Note ?? "活動集錦")</div>
-                                            <h3 class="svc-feature-title">@featureItem.Title</h3>
-                                            <a href="@Url.Action("Info", "Service", new { cataId = featureItem.CataID })" class="svc-link">View Details →</a>
-                                        </div>
-                                    </div>
-                                }
+                        <div class="dish-card">
+                            <div class="dish-bg">
+                                <div style="position:absolute; inset:0; background-image:url('@dish.ImageUrl'); background-size:cover; background-position:center;"></div>
+                            </div>
+                            <div class="dish-overlay">
+                                <div class="dish-tag">@dish.Lable</div>
+                                <div class="dish-name">@dish.Title</div>
+                                <div class="dish-desc">@dish.Summary</div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="dish-card tall">
+                        <div class="dish-bg"><div style="position:absolute; inset:0; background-image:url(''); background-size:cover;"></div></div>
+                        <div class="dish-overlay"><div class="dish-name">暫無菜品</div></div>
+                    </div>
+                }
+            </div>
+        </section>
 
-                                <!-- 右侧网格卡片 -->
-                                <div class="svc-grid-right">
-                                    @for (var i = 1; i < group.Count; i++)
-                                    {
-                                        var cardItem = group[i];
-                                        <div class="svc-card">
-                                            <div class="svc-card-img" style="background-image:url('@cardItem.ImagePath')"></div>
-                                            <div class="svc-card-overlay"></div>
-                                            <div class="svc-card-content">
-                                                <h4 class="svc-card-title">@(cardItem.Title)</h4>
-                                                <p class="svc-card-desc">@cardItem.Note</p>
-                                                <a href="@Url.Action("Info", "Service", new { cataId = cardItem.CataID })" class="svc-link">View Details →</a>
-                                            </div>
-                                        </div>
-                                    }
+        <!-- RED BANNER STRIP -->
+        <div class="red-banner">
+            <svg style="position:absolute;top:0;left:0;width:100%;height:8px;display:block;" viewBox="0 0 1440 8" preserveAspectRatio="none">
+                <rect width="1440" height="8" fill="rgba(90,6,18,0.5)" />
+                <path d="M0,4 Q360,0 720,4 Q1080,8 1440,4" fill="none" stroke="#D4A843" stroke-width="1" opacity=".5" />
+            </svg>
+            <div class="red-banner-inner">
+                <p class="red-banner-quote">"名菜有歷史，好菜唯有創新"</p>
+                <p class="red-banner-sub">── 台灣廚神 阿發師 施建發 ╱ 《飲食男女》幕後操刀手</p>
+                <a href="tel:0222691127" class="btn-outline-gold">📞 立即訂位 0222-691-127</a>
+            </div>
+        </div>
+
+        <!-- 活動與公告 区块 -->
+        <section class="section-pad" id="news" style="background:var(--cream);">
+            <div style="max-width:1200px; margin:0 auto;">
+                <div class="tag">最新消息</div>
+                <h2 class="h2">活動與公告</h2>
+                <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:1.5rem; margin-top:2.5rem;">
+                    @if (Model.NewsList != null && Model.NewsList.Any())
+                    {
+                        foreach (var news in Model.NewsList)
+                        {
+                            <div class="news-card">
+                                <div class="news-date">
+                                    <span class="news-month">@news.PublishDate?.ToString("MMM", System.Globalization.CultureInfo.CreateSpecificCulture("en-US")).ToUpper()</span>
+                                    <span class="news-day">@news.PublishDate?.Day</span>
+                                    <span class="news-year">@news.PublishDate?.Year</span>
+                                </div>
+                                <div class="news-body">
+                                    <div class="news-tag-label">@(news.Category ?? "最新消息")</div>
+                                    <h3 class="news-title">@news.Title</h3>
+                                    <p class="news-excerpt">@news.Summary</p>
+                                    <a href="@news.LinkUrl" class="news-more">了解更多 →</a>
                                 </div>
                             </div>
-                        </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="news-card"><div class="news-body"><p>暫無消息</p></div></div>
                     }
                 </div>
             </div>
-
-            <div style="display:flex;justify-content:center;gap:8px;margin-top:24px;" id="svcDots">
-                @for (var i = 0; i < groupedActivities.Count; i++)
-                {
-                    <button class="slider-dot @(i == 0 ? "active" : "")" onclick="svcGoTo(@i)"></button>
-                }
-            </div>
         </section>
 
-        <!-- FEATURED WORK -->
-        <div class="work-section">
-            <div class="section-header">
-                <div>
-                    <div class="section-label">
-                        <div class="section-label-line"></div>
-                        <span class="section-label-text">Portfolio</span>
-                    </div>
-                    <h2 class="section-title" style="color:var(--black)">精選作品<br>Our Work</h2>
-                </div>
-                <p class="section-desc" style="color: #777;">從交通工具到消費性產品，每一件作品都代表智匯創新對設計的嚴格要求。</p>
-            </div>
-
-            <div class="work-grid">
-                @foreach (var item in ViewBag.ProductList)
-                {
-                    <div class="work-item">
-                        <img class="work-thumb" src="@item.ImagePath" alt="@item.Title">
-                        <div class="work-overlay">
-                            <div class="work-info">
-                                <div class="work-category">@item.Category</div>
-                                <div class="work-title">@item.Title</div>
+        <!-- 影音專區 区块 -->
+        <section class="section-pad" id="youtube" style="background:var(--ink);">
+            <div style="max-width:1200px; margin:0 auto;">
+                <div class="tag" style="color:var(--gold);">影音專區</div>
+                <h2 class="h2" style="color:#fff; margin-bottom:.5rem;">阿發師上菜</h2>
+                <p style="color:rgba(255,255,255,.6); font-size:.9rem; margin-bottom:2.5rem; letter-spacing:.05em;">精彩料理示範 · 媒體採訪 · 廚神故事</p>
+                <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(320px,1fr)); gap:1.5rem;">
+                    @if (Model.VideoList != null && Model.VideoList.Any())
+                    {
+                        foreach (var video in Model.VideoList)
+                        {
+                            <div class="yt-card">
+                                <div class="yt-thumb">
+                                    @if (!string.IsNullOrEmpty(video.VideoUrl))
+                                    {
+                                        <iframe src="@video.VideoUrl" title="@video.Title" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; border:0;"></iframe>
+                                    }
+                                    else
+                                    {
+                                        <div style="position:absolute; inset:0; background-image:url('@video.ImageUrl'); background-size:cover; background-position:center;"></div>
+                                    }
+                                </div>
+                                <div class="yt-info">
+                                    <div class="yt-tag">@(video.Category ?? "影音分享")</div>
+                                    <h3 class="yt-title">@video.Title</h3>
+                                    <p class="yt-desc">@video.Summary</p>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                }
-            </div>
-
-            <div style="text-align:center; margin-top:48px;">
-                <a href="@Url.Action("Index", "Product")" class="btn-primary" style="background:var(--red)">
-                    查看完整作品集
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                </a>
-            </div>
-        </div>
-
-        <!-- ABOUT -->
-        <div class="about-section">
-            <div class="about-visual">
-                <div class="about-visual-pattern"></div>
-                <div class="about-visual-text">DESIGN</div>
-                <div class="about-visual-logo">
-                    <span class="big-g">G</span>
-                    <span class="big-w">G-WISE DESIGN</span>
+                        }
+                    }
+                    else
+                    {
+                        <div class="yt-card"><div class="yt-info"><p class="yt-desc">暫無影片</p></div></div>
+                    }
                 </div>
-            </div>
-
-            <div class="about-content">
-                <div class="section-label">
-                    <div class="section-label-line"></div>
-                    <span class="section-label-text">About Us</span>
-                </div>
-                <h2 class="section-title">智匯創新<br>G-Wise Design</h2>
-                <p class="about-body">
-                    青青餐廳是一家全方位的產品設計公司，本著替客戶創造最高價值的心態做設計。
-                    我們專注於交通工具設計與一般產品設計，以現代數位方法提供從設計到工程開發的完整服務。
-                </p>
-                <div class="about-features">
-                    <div class="about-feature">
-                        <div class="about-feature-dot"></div>
-                        <span class="about-feature-text">專業交通工具設計團隊</span>
-                    </div>
-                    <div class="about-feature">
-                        <div class="about-feature-dot"></div>
-                        <span class="about-feature-text">豐富原廠套件開發經驗</span>
-                    </div>
-                    <div class="about-feature">
-                        <div class="about-feature-dot"></div>
-                        <span class="about-feature-text">完整工程開發服務</span>
-                    </div>
-                    <div class="about-feature">
-                        <div class="about-feature-dot"></div>
-                        <span class="about-feature-text">國內外多項設計大獎</span>
-                    </div>
-                    <div class="about-feature">
-                        <div class="about-feature-dot"></div>
-                        <span class="about-feature-text">A級曲面專業製作</span>
-                    </div>
-                    <div class="about-feature">
-                        <div class="about-feature-dot"></div>
-                        <span class="about-feature-text">3D逆向工程服務</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- NEWS -->
-        <section class="news-section">
-            <div class="section-header">
-                <div>
-                    <div class="section-label">
-                        <div class="section-label-line"></div>
-                        <span class="section-label-text">Latest News</span>
-                    </div>
-                    <h2 class="section-title">新聞活動<br>News</h2>
-                </div>
-                <a href="@Url.Action("Index", "News")" class="btn-outline" style="align-self:flex-end">所有消息 →</a>
-            </div>
-
-            <div class="news-grid">
-                @foreach (var item in newsList)
-                {
-                    <div class="news-card">
-                        <div style="overflow:hidden;">
-                            <img class="news-card-img" src="@item.ImagePath" alt="@item.Title">
-                        </div>
-                        <div class="news-card-body">
-                            <div class="news-date">@item.PubDate</div>
-                            <div class="news-title">@item.Title</div>
-                            <p class="news-excerpt">@item.Note</p>
-                        </div>
-                    </div>
-                }
             </div>
         </section>
+
+        <!-- SERVICES SECTION -->
+        <section class="section-pad" id="services" style="background:var(--paper);">
+            <div style="max-width:1200px; margin:0 auto;">
+                <div class="tag">服務項目</div>
+                <h2 class="h2">每個重要時刻<br>交給青青</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card"><div class="svc-icon">💍</div><div class="svc-title">婚宴喜慶</div><p class="svc-desc">千坪宴席場地128桌，搭配婚禮企劃服務、三套光音響放映設備，讓您最重要的一天完美呈現。</p></div>
+                <div class="service-card"><div class="svc-icon">🎊</div><div class="svc-title">尾牙春酒</div><p class="svc-desc">企業尾牙、春酒聚餐專屬方案，多種桌菜組合任您選擇，服務貼心周到。</p></div>
+                <div class="service-card"><div class="svc-icon">🏮</div><div class="svc-title">節慶年菜</div><p class="svc-desc">年菜預訂、節慶合菜，嚴選上等食材，讓家人齊聚共享溫暖美好時光。</p></div>
+                <div class="service-card"><div class="svc-icon">🍱</div><div class="svc-title">客製化宴席</div><p class="svc-desc">依主廚建議或顧客需求客製菜色，打造獨一無二的專屬宴席體驗。</p></div>
+            </div>
+        </section>
+
+        <!-- CONTACT & MAP -->
+        <div class="contact-wrap" id="contact">
+            <div class="contact-info">
+                <div class="tag">聯絡我們</div>
+                <h2 class="h2" style="color:#fff; margin-bottom:0;">歡迎蒞臨<br>青青餐廳</h2>
+                <div class="contact-items">
+                    <div class="c-item"><div class="c-icon">📍</div><div><div class="c-label">地址</div><div class="c-text">新北市土城區中央路三段6號<br><small style="opacity:.6">板南線永寧站4號出口，步行約350公尺</small></div></div></div>
+                    <div class="c-item"><div class="c-icon">📞</div><div><div class="c-label">訂位電話</div><div class="c-text"><a href="tel:0222691127">02-2269-1127</a><br><a href="tel:0222696430">02-2269-6430</a></div></div></div>
+                    <div class="c-item"><div class="c-icon">🕐</div><div><div class="c-label">營業時間</div><div class="c-text">每日 11:00 — 22:00</div></div></div>
+                    <div class="c-item"><div class="c-icon">✉️</div><div><div class="c-label">電子信箱</div><div class="c-text"><a href="/cdn-cgi/l/email-protection#e98c9f8c9b8e9b8c8c87d0ded0a98e84888085c78a8684"><span class="__cf_email__" data-cfemail="90f5e6f5e2f7e2f5f5feadafa1d0f7fdf1f9fcbef3fffd">[email&#160;protected]</span></a></div></div></div>
+                </div>
+            </div>
+            <div class="map-box">
+                <iframe src="https://maps.google.com/maps?q=新北市土城區中央路三段6號+青青餐廳&t=&z=16&ie=UTF8&iwloc=&output=embed" style="border:0;width:100%;height:100%;min-height:420px;display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="青青餐廳地圖位置"></iframe>
+            </div>
+        </div>
     </div>
 </div>

@@ -19,6 +19,8 @@ namespace Academy.Models
         public int CataID { get; set; }
         [DisplayName("主題 ")]
         public string Title { get; set; }
+        [DisplayName("標籤")]
+        public string Lable { get; set; }
         [DisplayName("圖/編輯單位")]
         public string Dept1 { get; set; }
         [DisplayName("文/編輯單位")]
