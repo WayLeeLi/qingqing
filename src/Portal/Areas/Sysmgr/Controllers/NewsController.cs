@@ -27,13 +27,16 @@ namespace Academy.Areas.Sysmgr.Controllers
                 switch (menu)
                 {
                     case "3":
-                        ViewBag.MenuName = "設計服務";
+                        ViewBag.MenuName = "招牌菜色";
                         break;
                     case "4":
-                        ViewBag.MenuName = "作品集";
+                        ViewBag.MenuName = "最新消息";
+                        break;
+                    case "5":
+                        ViewBag.MenuName = "影音專區";
                         break;
                     default:
-                        ViewBag.MenuName = "新聞活動";
+                        ViewBag.MenuName = "服務項目";
                         break;
                 }
             }
@@ -299,6 +302,24 @@ namespace Academy.Areas.Sysmgr.Controllers
 
         public ActionResult Add(string menu = "")
         {
+            if (!string.IsNullOrEmpty(menu))
+            {
+                switch (menu)
+                {
+                    case "3":
+                        ViewBag.MenuName = "招牌菜色";
+                        break;
+                    case "4":
+                        ViewBag.MenuName = "最新消息";
+                        break;
+                    case "5":
+                        ViewBag.MenuName = "影音專區";
+                        break;
+                    default:
+                        ViewBag.MenuName = "服務項目";
+                        break;
+                }
+            }
             var resunt = string.IsNullOrEmpty(menu) ? 0 : int.Parse(menu);
             var categories = db.Categories.Where(s => s.Menu == resunt && s.Status == 1).OrderBy(c => c.Path).ToList();
 
@@ -384,6 +405,24 @@ namespace Academy.Areas.Sysmgr.Controllers
 
         public ActionResult Edit(int id, string menu = "")
         {
+            if (!string.IsNullOrEmpty(menu))
+            {
+                switch (menu)
+                {
+                    case "3":
+                        ViewBag.MenuName = "招牌菜色";
+                        break;
+                    case "4":
+                        ViewBag.MenuName = "最新消息";
+                        break;
+                    case "5":
+                        ViewBag.MenuName = "影音專區";
+                        break;
+                    default:
+                        ViewBag.MenuName = "服務項目";
+                        break;
+                }
+            }
             News model = db.Newss.Where(p => p.ID == id).FirstOrDefault();
             if (model != null)
             {

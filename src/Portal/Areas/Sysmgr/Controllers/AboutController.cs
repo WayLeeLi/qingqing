@@ -15,7 +15,7 @@ namespace Academy.Areas.Sysmgr.Controllers
     public class AboutController : BaseController
     {
         /// <summary>
-        /// 協會簡介
+        /// 餐廳介紹
         /// </summary>
         /// <returns></returns>
         public ActionResult Info()
@@ -62,15 +62,15 @@ namespace Academy.Areas.Sysmgr.Controllers
 
 
         /// <summary>
-        /// 理事長的話
+        /// 主廚介紹
         /// </summary>
         /// <returns></returns>
-        public ActionResult Chairman()
+        public ActionResult chefInfo()
         {
-            if (!db.DictSets.Any(a => a.Code == "AboutChairman"))
+            if (!db.DictSets.Any(a => a.Code == "AboutChef"))
             {
                 DictSet model = new DictSet();
-                model.Code = "AboutChairman";
+                model.Code = "AboutChef";
                 model.Name = "理事長的話";
                 model.Value = "";
                 db.DictSets.Add(model);
@@ -84,7 +84,7 @@ namespace Academy.Areas.Sysmgr.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Chairman(FormCollection collection)
+        public ActionResult ChefInfo(FormCollection collection)
         {
             if (ModelState.IsValid)
             {
@@ -111,12 +111,12 @@ namespace Academy.Areas.Sysmgr.Controllers
         /// 組織成員
         /// </summary>
         /// <returns></returns>
-        public ActionResult Member()
+        public ActionResult AcademicHonors()
         {
-            if (!db.DictSets.Any(a => a.Code == "AboutMember"))
+            if (!db.DictSets.Any(a => a.Code == "AboutAcademicHonors"))
             {
                 DictSet model = new DictSet();
-                model.Code = "AboutMember";
+                model.Code = "AboutAcademicHonors";
                 model.Name = "組織成員";
                 model.Value = "";
                 db.DictSets.Add(model);
@@ -130,7 +130,7 @@ namespace Academy.Areas.Sysmgr.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Member(FormCollection collection)
+        public ActionResult AcademicHonors(FormCollection collection)
         {
             if (ModelState.IsValid)
             {
@@ -154,16 +154,16 @@ namespace Academy.Areas.Sysmgr.Controllers
         }
 
         /// <summary>
-        /// 協會章程
+        /// 廚藝哲學
         /// </summary>
         /// <returns></returns>
-        public ActionResult Constitution()
+        public ActionResult PhilosophyCooking()
         {
-            if (!db.DictSets.Any(a => a.Code == "AboutConstitution"))
+            if (!db.DictSets.Any(a => a.Code == "AboutPhilosophyCooking"))
             {
                 DictSet model = new DictSet();
-                model.Code = "AboutConstitution";
-                model.Name = "協會章程";
+                model.Code = "AboutPhilosophyCooking";
+                model.Name = "廚藝哲學";
                 model.Value = "";
                 db.DictSets.Add(model);
                 db.SaveChanges();
@@ -176,7 +176,7 @@ namespace Academy.Areas.Sysmgr.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Constitution(FormCollection collection)
+        public ActionResult PhilosophyCooking(FormCollection collection)
         {
             if (ModelState.IsValid)
             {
@@ -200,16 +200,16 @@ namespace Academy.Areas.Sysmgr.Controllers
         }
 
         /// <summary>
-        /// 年度行事曆
+        /// 台菜三寶
         /// </summary>
         /// <returns></returns>
-        public ActionResult Calendar()
+        public ActionResult TaiwaneseTrio()
         {
-            if (!db.DictSets.Any(a => a.Code == "AboutCalendar"))
+            if (!db.DictSets.Any(a => a.Code == "AboutTaiwaneseTrio"))
             {
                 DictSet model = new DictSet();
-                model.Code = "AboutCalendar";
-                model.Name = "年度行事曆";
+                model.Code = "AboutTaiwaneseTrio";
+                model.Name = "台菜三寶";
                 model.Value = "";
                 db.DictSets.Add(model);
                 db.SaveChanges();
@@ -222,7 +222,53 @@ namespace Academy.Areas.Sysmgr.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Calendar(FormCollection collection)
+        public ActionResult TaiwaneseTrio(FormCollection collection)
+        {
+            if (ModelState.IsValid)
+            {
+                var list = db.DictSets;
+                foreach (var item in list)
+                {
+                    string val = collection.Get(item.Code);
+                    if (val != null)
+                    {
+                        item.Value = val;
+                    }
+                }
+                db.SaveChanges();
+
+                return Json(new { success = true });
+            }
+            else
+            {
+                return Json(new { success = false, msg = "保存失敗，請重試！" });
+            }
+        }
+
+        /// <summary>
+        /// 三代傳承
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult TriLegacy()
+        {
+            if (!db.DictSets.Any(a => a.Code == "AboutTriLegacy"))
+            {
+                DictSet model = new DictSet();
+                model.Code = "AboutTriLegacy";
+                model.Name = "三代傳承";
+                model.Value = "";
+                db.DictSets.Add(model);
+                db.SaveChanges();
+            }
+
+            ViewBag.Dict = db.DictSets.ToDictionary(k => k.Code, v => v.Value);
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult TriLegacy(FormCollection collection)
         {
             if (ModelState.IsValid)
             {
