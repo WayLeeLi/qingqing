@@ -6,6 +6,7 @@
     <title>青青餐廳 | 台菜廚神 SINCE 1977 - @ViewData["Title"]</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;700;900&family=Ma+Shan+Zheng&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <link href="~/css/site.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/js/site.js"></script>
     <style>
         /* 动态导航栏边框颜色控制 */
         nav.nav-home {
@@ -35,13 +36,13 @@
             </a>
         </div>
         <ul class="nav-links" id="navLinks">
-            <li><a href="@Url.Action("Index", "Home")">關於我們</a></li>
+            <li><a href="@Url.Action("Index", "About")">關於我們</a></li>
             <li><a href="@Url.Action("Index", "Product")">招牌菜色</a></li>
             <li><a href="@Url.Action("Index", "News")">最新消息</a></li>
             <li><a href="@Url.Action("Index", "Media")">影音專區</a></li>
             <li><a href="@Url.Action("Index", "Home")">服務項目</a></li>
-            <li><a href="@Url.Action("Index", "Home")">聯絡我們</a></li>
-            <li><a href="@Url.Action("Index", "Home")" class="nav-cta">立即訂位</a></li>
+            <li><a href="@Url.Action("Index", "Contact")">聯絡我們</a></li>
+            <li><a href="@Url.Action("Index", "Contact")" class="nav-cta">立即訂位</a></li>
         </ul>
         <button class="hamburger" id="hamburger" aria-label="選單">
             <span></span><span></span><span></span>

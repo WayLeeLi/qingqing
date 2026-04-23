@@ -1,13 +1,13 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "最新消息";
+    ViewBag.Title = "最新消息 - 青青餐廳";
 }
 
 @section Styles {
     <link rel="stylesheet" href="~/css/news.css" />
 }
 
-<!-- Hero 区域（全宽） -->
+<!-- Hero 區塊 -->
 <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-gd"></div>
@@ -18,35 +18,34 @@
     </div>
 </section>
 
-<!-- 全宽公告横幅 -->
-<div class="banner rv">
-    <div class="bn-ico">📢</div>
-    <div>
-        <div class="bn-ttl">2025 年節訂位公告</div>
-        <div class="bn-txt">除夕、初二「中午」已客滿，恕不接受訂位，敬請見諒！<strong>初一全日公休。</strong><br>年節晚餐場次名額有限，歡迎提早致電：<strong>(02) 2269-1127 ／ (02) 2269-6430</strong></div>
-    </div>
-</div>
-
-<!-- 主要内容容器：居中 -->
 <div class="wrap">
-    <div class="sec-hd rv">
+    <!-- 重點公告橫幅 -->
+    <div class="banner rv">
+        <div class="bn-ico">📢</div>
+        <div>
+            <div class="bn-ttl">2025 年節訂位公告</div>
+            <div class="bn-txt">除夕、初二「中午」已客滿，恕不接受訂位，敬請見諒！<strong>初一全日公休。</strong><br>年節晚餐場次名額有限，歡迎提早致電：<strong>(02) 2269-1127 ／ (02) 2269-6430</strong></div>
+        </div>
+    </div>
+
+    <!-- 標題與篩選 -->
+    <div class="sec-hd rv" style="transition-delay:.1s">
         <div><p class="s-lbl">LATEST NEWS</p><h2 class="s-ttl">最新消息</h2></div>
         <div class="cnt-badge">共 <strong>6</strong> 則消息</div>
     </div>
 
-    <!-- 分类筛选按钮组 -->
-    <div class="filters rv">
-        <button class="ftab on" data-filter="all">全部</button>
-        <button class="ftab" data-filter="年節公告">年節公告</button>
-        <button class="ftab" data-filter="新品上市">新品上市</button>
-        <button class="ftab" data-filter="活動參與">活動參與</button>
-        <button class="ftab" data-filter="媒體報導">媒體報導</button>
-        <button class="ftab" data-filter="冷凍外帶">冷凍外帶</button>
+    <div class="filters rv" style="transition-delay:.15s">
+        <button class="ftab on" onclick="ft(this,'all')">全部</button>
+        <button class="ftab" onclick="ft(this,'年節公告')">年節公告</button>
+        <button class="ftab" onclick="ft(this,'新品上市')">新品上市</button>
+        <button class="ftab" onclick="ft(this,'活動參與')">活動參與</button>
+        <button class="ftab" onclick="ft(this,'媒體報導')">媒體報導</button>
+        <button class="ftab" onclick="ft(this,'冷凍外帶')">冷凍外帶</button>
     </div>
 
-    <!-- 新闻列表 -->
+    <!-- 新聞列表 -->
     <div class="nlist" id="nlist">
-        <article class="ncard rv" data-tag="年節公告">
+        <article class="ncard rv" style="transition-delay:0.00s" data-tag="年節公告">
             <div class="nd-col">
                 <div class="nd-box">
                     <span class="nd-mo">01</span>
@@ -61,7 +60,8 @@
                 <p class="nbody">除夕、初二「中午」已客滿，恕不接受訂位，敬請見諒！初一全日公休。年節期間歡迎提早預約春節各日晚餐場次，名額有限，敬請把握。</p>
             </div>
         </article>
-        <article class="ncard rv" data-tag="新品上市">
+
+        <article class="ncard rv" style="transition-delay:0.06s" data-tag="新品上市">
             <div class="nd-col">
                 <div class="nd-box">
                     <span class="nd-mo">12</span>
@@ -76,7 +76,8 @@
                 <p class="nbody">台灣廚神阿發師與廣達香強強聯手，推出限量聯名冷凍佛跳牆，優惠嚐鮮價限時供應。排翅、鮑魚、海參、干貝等十全食材，在家輕鬆復熱即享國宴級美味。</p>
             </div>
         </article>
-        <article class="ncard rv" data-tag="活動參與">
+
+        <article class="ncard rv" style="transition-delay:0.12s" data-tag="活動參與">
             <div class="nd-col">
                 <div class="nd-box">
                     <span class="nd-mo">10</span>
@@ -91,7 +92,8 @@
                 <p class="nbody">青青餐廳受邀參與「2024 鶯歌產地開放日」，阿發師攜女兒施捷宜以鶯歌窯廠家族私房食譜為靈感，策劃限定13道菜桌宴「傳家味」，在陶瓷工廠實景中演繹台菜文化與世代傳承，於10/6–10/22限定登場。</p>
             </div>
         </article>
-        <article class="ncard rv" data-tag="活動參與">
+
+        <article class="ncard rv" style="transition-delay:0.18s" data-tag="活動參與">
             <div class="nd-col">
                 <div class="nd-box">
                     <span class="nd-mo">09</span>
@@ -106,7 +108,8 @@
                 <p class="nbody">阿發師 × 青青餐廳進駐新北台灣設計師展 A8-2 展區，以「老店新生」為題，將近半世紀台菜文化轉化為當代體驗，展期10/6–10/22，歡迎蒞臨。</p>
             </div>
         </article>
-        <article class="ncard rv" data-tag="冷凍外帶">
+
+        <article class="ncard rv" style="transition-delay:0.24s" data-tag="冷凍外帶">
             <div class="nd-col">
                 <div class="nd-box">
                     <span class="nd-mo">03</span>
@@ -121,7 +124,8 @@
                 <p class="nbody">無法親臨用餐？阿發師拿手菜系列冷凍外帶平台正式上線！精選招牌手路菜冷凍包裝，全台宅配到府，在家也能品嚐廚神好味道。</p>
             </div>
         </article>
-        <article class="ncard rv" data-tag="媒體報導">
+
+        <article class="ncard rv" style="transition-delay:0.30s" data-tag="媒體報導">
             <div class="nd-col">
                 <div class="nd-box">
                     <span class="nd-mo">11</span>
@@ -139,68 +143,52 @@
     </div>
 </div>
 
-<!-- 全宽 CTA 区域 -->
+<!-- CTA 區塊 -->
 <section class="sec-cta">
-    <p class="cta-eyebrow">RESERVATION</p>
+    <p class="cta-label">RESERVATION</p>
     <h2 class="cta-title">歡迎蒞臨青青餐廳</h2>
     <p class="cta-address">新北市土城區中央路三段6號 ╱ 週一至日 11:00–14:00 ／ 17:00–21:00</p>
     <div class="cta-buttons">
-        <a href="tel:0222691127" class="cta-phone">📞 立即訂位</a>
-        <a href="@Url.Action("Index", "Contact")" class="cta-reserve">線上預約 →</a>
+        <a href="tel:0222691127" class="btn-primary">📞 立即訂位</a>
+        <a href="contact.html" class="btn-secondary">線上預約 →</a>
     </div>
 </section>
 
 @section Scripts {
     <script>
-        // 汉堡菜单（如果布局中没有包含，这里补上；布局中应已经有，为避免冲突可注释）
-        // 但布局中可能已有全局 hamburger 脚本，此处不再重复。
-
-        // 回到顶部按钮（布局中已有，但可以保留）
-        var btt = document.getElementById('btt');
-        if (btt) {
-            window.addEventListener('scroll', function () {
-                btt.classList.toggle('vis', window.scrollY > 200);
-            });
-        }
-
-        // 滚动动画
-        var ro = new IntersectionObserver(function (entries) {
-            entries.forEach(function (e) {
-                if (e.isIntersecting) {
-                    e.target.classList.add('in');
-                    ro.unobserve(e.target);
-                }
-            });
-        }, { threshold: 0.08 });
-        document.querySelectorAll('.rv').forEach(function (r) { ro.observe(r); });
-
-        // 分类筛选
-        var filterBtns = document.querySelectorAll('.ftab');
-        var newsCards = document.querySelectorAll('.ncard');
-
-        function filterNews(filterValue) {
-            newsCards.forEach(function (card) {
-                var tag = card.getAttribute('data-tag');
-                var show = (filterValue === 'all' || tag === filterValue);
-                card.style.display = show ? 'flex' : 'none';
-                if (show) {
-                    setTimeout(function () { card.classList.add('in'); }, 30);
-                } else {
-                    card.classList.remove('in');
-                }
-            });
-        }
-
-        filterBtns.forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                filterBtns.forEach(function (b) { b.classList.remove('on'); });
-                btn.classList.add('on');
-                var filterValue = btn.getAttribute('data-filter') || 'all';
-                filterNews(filterValue);
-            });
+        // 漢堡選單 (若 Layout 未提供)
+        document.getElementById('ham')?.addEventListener('click', () => {
+            document.getElementById('navLinks')?.classList.toggle('open');
         });
 
-        // 初始化显示全部
-        filterNews('all');
+        // 回到頂部按鈕
+        const btt = document.getElementById('btt');
+        window.addEventListener('scroll', () => {
+            btt?.classList.toggle('vis', window.scrollY > 200);
+        });
+
+        // 滾動淡入動畫
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: .08 });
+        document.querySelectorAll('.rv').forEach(el => observer.observe(el));
+
+        // 分類篩選功能
+        window.ft = function (btn, tag) {
+            document.querySelectorAll('.ftab').forEach(t => t.classList.remove('on'));
+            btn.classList.add('on');
+            document.querySelectorAll('.ncard').forEach(card => {
+                const cardTag = card.dataset.tag;
+                const show = tag === 'all' || cardTag === tag;
+                card.style.display = show ? 'flex' : 'none';
+                if (show) setTimeout(() => card.classList.add('in'), 30);
+                else card.classList.remove('in');
+            });
+        };
     </script>
 }

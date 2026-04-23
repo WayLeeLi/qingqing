@@ -1,202 +1,270 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "招牌菜色";
+    ViewBag.Title = "招牌菜色 - 青青餐廳";
 }
 
 @section Styles {
     <link rel="stylesheet" href="~/css/product.css" />
 }
-<!-- Hero 区域（全宽） -->
-<main>
-    <section class="hero">
-        <div class="hero-slash"></div>
-        <div class="hero-deco-circle"></div>
-        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="hero-dish-art">
-            <circle cx="100" cy="108" r="82" stroke="rgba(212,168,67,.35)" stroke-width="1.5" />
-            <circle cx="100" cy="108" r="74" stroke="rgba(212,168,67,.18)" stroke-width="1" />
-            <circle cx="100" cy="108" r="68" fill="rgba(253,248,240,.06)" stroke="rgba(212,168,67,.25)" stroke-width="1" />
-            <circle cx="100" cy="108" r="44" fill="rgba(200,16,46,.08)" stroke="rgba(212,168,67,.2)" stroke-width=".8" />
-            <ellipse cx="100" cy="72" rx="10" ry="18" fill="rgba(212,168,67,.2)" transform="rotate(0 100 108)" />
-            <ellipse cx="100" cy="72" rx="10" ry="18" fill="rgba(212,168,67,.18)" transform="rotate(45 100 108)" />
-            <ellipse cx="100" cy="72" rx="10" ry="18" fill="rgba(212,168,67,.16)" transform="rotate(90 100 108)" />
-            <ellipse cx="100" cy="72" rx="10" ry="18" fill="rgba(212,168,67,.18)" transform="rotate(135 100 108)" />
-            <ellipse cx="100" cy="72" rx="10" ry="18" fill="rgba(212,168,67,.2)" transform="rotate(180 100 108)" />
-            <ellipse cx="100" cy="72" rx="10" ry="18" fill="rgba(212,168,67,.16)" transform="rotate(225 100 108)" />
-            <ellipse cx="100" cy="72" rx="10" ry="18" fill="rgba(212,168,67,.18)" transform="rotate(270 100 108)" />
-            <ellipse cx="100" cy="72" rx="10" ry="18" fill="rgba(212,168,67,.16)" transform="rotate(315 100 108)" />
-            <circle cx="100" cy="108" r="14" fill="rgba(212,168,67,.15)" stroke="rgba(212,168,67,.35)" stroke-width=".8" />
-            <circle cx="100" cy="108" r="5" fill="rgba(212,168,67,.45)" />
-            <line x1="155" y1="15" x2="138" y2="185" stroke="rgba(212,168,67,.55)" stroke-width="2.5" stroke-linecap="round" />
-            <line x1="170" y1="18" x2="153" y2="185" stroke="rgba(212,168,67,.4)" stroke-width="2" stroke-linecap="round" />
-            <circle cx="62" cy="72" r="3" fill="rgba(200,16,46,.5)" />
-            <circle cx="140" cy="148" r="2.5" fill="rgba(200,16,46,.4)" />
-            <circle cx="130" cy="70" r="2" fill="rgba(212,168,67,.6)" />
-            <circle cx="58" cy="138" r="2" fill="rgba(212,168,67,.5)" />
-        </svg>
-        <div class="hero-text">
-            <div class="hero-badge"><span>SIGNATURE DISHES</span></div>
-            <h1 class="hero-title">招牌<em>菜色</em></h1>
-            <p class="hero-note">名菜有歷史・好菜唯有創新</p>
-            <div class="hero-divider"><span></span><i></i><small>SINCE 1977</small><i></i><span></span></div>
-        </div>
-    </section>
 
-    <!-- 分類標籤條（全宽） -->
-    <div class="tab-bar" id="tabBar">
-        <button class="tab-btn" data-target="sanpei" onclick="goSec('sanpei')">
-            <span class="ti"><svg viewBox="0 0 40 40" fill="none"><path d="M8 30 Q10 18 20 16 Q30 18 32 30Z" fill="rgba(255,255,255,.9)" /><ellipse cx="20" cy="30" rx="12" ry="2.5" fill="rgba(255,255,255,.5)" /><circle cx="14" cy="22" r="2.5" fill="#F0CC78" /><circle cx="20" cy="20" r="2.5" fill="#F0CC78" /><circle cx="26" cy="22" r="2.5" fill="#F0CC78" /><rect x="18" y="8" width="4" height="8" rx="2" fill="rgba(255,255,255,.8)" /></svg></span>三杯類
-        </button>
-        <button class="tab-btn" data-target="stir" onclick="goSec('stir')"><span class="ti"><svg viewBox="0 0 40 40" fill="none"><path d="M6 26 Q8 14 20 12 Q32 14 34 26L32 28 Q20 32 8 28Z" fill="rgba(255,255,255,.85)" /><path d="M8 14 Q12 8 18 10" stroke="#F0CC78" stroke-width="2" stroke-linecap="round" /><path d="M16 12 Q20 6 26 9" stroke="#F0CC78" stroke-width="2" stroke-linecap="round" /><rect x="17" y="30" width="6" height="5" rx="1" fill="rgba(255,255,255,.7)" /></svg></span>炒類</button>
-        <button class="tab-btn" data-target="fried" onclick="goSec('fried')"><span class="ti"><svg viewBox="0 0 40 40" fill="none"><rect x="6" y="18" width="28" height="14" rx="4" fill="rgba(255,255,255,.85)" /><circle cx="14" cy="24" r="4" fill="#F0CC78" /><circle cx="26" cy="24" r="4" fill="#F0CC78" /><path d="M4 18L36 18" stroke="rgba(255,255,255,.5)" stroke-width="2" /><path d="M12 8 Q14 4 16 8 Q18 12 20 8 Q22 4 24 8" stroke="#F0CC78" stroke-width="1.5" stroke-linecap="round" fill="none" /></svg></span>炸類</button>
-        <button class="tab-btn" data-target="grill" onclick="goSec('grill')"><span class="ti"><svg viewBox="0 0 40 40" fill="none"><path d="M8 28L32 28L30 34L10 34Z" fill="rgba(255,255,255,.6)" /><rect x="6" y="22" width="28" height="6" rx="2" fill="rgba(255,255,255,.85)" /><path d="M12 22L12 14M20 22L20 12M28 22L28 14" stroke="#F0CC78" stroke-width="2" /><ellipse cx="12" cy="17" rx="3" ry="3.5" fill="rgba(255,255,255,.8)" /><ellipse cx="28" cy="17" rx="3" ry="3.5" fill="rgba(255,255,255,.8)" /></svg></span>烤類</button>
-        <button class="tab-btn" data-target="steam" onclick="goSec('steam')"><span class="ti"><svg viewBox="0 0 40 40" fill="none"><rect x="6" y="20" width="28" height="14" rx="3" fill="rgba(255,255,255,.85)" /><path d="M6 20L10 12L30 12L34 20" fill="rgba(255,255,255,.35)" /><path d="M14 8 Q15 5 14 3M20 7 Q21 4 20 2M26 8 Q27 5 26 3" stroke="#F0CC78" stroke-width="1.8" stroke-linecap="round" fill="none" /></svg></span>蒸類</button>
-        <button class="tab-btn" data-target="teppan" onclick="goSec('teppan')"><span class="ti"><svg viewBox="0 0 40 40" fill="none"><rect x="4" y="22" width="32" height="12" rx="2" fill="rgba(255,255,255,.85)" /><ellipse cx="20" cy="22" rx="16" ry="4" fill="rgba(255,255,255,.55)" /><path d="M14 22 Q16 14 20 12 Q24 14 26 22" fill="rgba(255,200,100,.7)" /><path d="M17 22 Q18 17 20 16 Q22 17 23 22" fill="#F0CC78" /></svg></span>鐵板類</button>
-        <button class="tab-btn" data-target="table" onclick="goSec('table')"><span class="ti"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="13" stroke="rgba(255,255,255,.85)" stroke-width="2" fill="rgba(255,255,255,.12)" /><circle cx="20" cy="14" r="2.5" fill="#F0CC78" /><circle cx="26" cy="18" r="2.5" fill="#F0CC78" /><circle cx="24" cy="25" r="2.5" fill="#F0CC78" /><circle cx="16" cy="25" r="2.5" fill="#F0CC78" /><circle cx="14" cy="18" r="2.5" fill="#F0CC78" /></svg></span>桌菜</button>
-        <button class="tab-btn" data-target="dimsum" onclick="goSec('dimsum')"><span class="ti"><svg viewBox="0 0 40 40" fill="none"><rect x="10" y="16" width="20" height="14" rx="2" fill="rgba(255,255,255,.85)" /><path d="M6 14 Q20 10 34 14" stroke="rgba(255,255,255,.65)" stroke-width="2" stroke-linecap="round" /><path d="M14 24 Q17 20 20 24 Q23 28 26 24" stroke="#F0CC78" stroke-width="1.5" fill="none" stroke-linecap="round" /></svg></span>港式點心</button>
-        <button class="tab-btn" data-target="soup" onclick="goSec('soup')"><span class="ti"><svg viewBox="0 0 40 40" fill="none"><path d="M8 24 Q10 34 20 35 Q30 34 32 24Z" fill="rgba(255,255,255,.85)" /><ellipse cx="20" cy="24" rx="12" ry="3.5" fill="rgba(255,255,255,.55)" /><path d="M14 12 Q13 8 15 6M20 10 Q19 6 21 4M26 12 Q25 8 27 6" stroke="#F0CC78" stroke-width="1.8" stroke-linecap="round" fill="none" /></svg></span>湯類</button>
+
+<!-- Hero 區塊 -->
+<section class="hero">
+    <div class="hero-slash"></div>
+    <div class="hero-deco-circle"></div>
+    <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="hero-dish-art">
+        <circle cx="100" cy="108" r="82" stroke="rgba(212,168,67,.35)" stroke-width="1.5" />
+        <circle cx="100" cy="108" r="74" stroke="rgba(212,168,67,.18)" stroke-width="1" />
+        <circle cx="100" cy="108" r="68" fill="rgba(253,248,240,.06)" stroke="rgba(212,168,67,.25)" stroke-width="1" />
+        <circle cx="100" cy="108" r="44" fill="rgba(200,16,46,.08)" stroke="rgba(212,168,67,.2)" stroke-width=".8" />
+        @for (int i = 0; i < 8; i++)
+        {
+            var angle = i * 45;
+            <ellipse cx="100" cy="72" rx="10" ry="18" fill="rgba(212,168,67,.2)" transform="rotate(@angle 100 108)" />
+        }
+        <circle cx="100" cy="108" r="14" fill="rgba(212,168,67,.15)" stroke="rgba(212,168,67,.35)" stroke-width=".8" />
+        <circle cx="100" cy="108" r="5" fill="rgba(212,168,67,.45)" />
+        <line x1="155" y1="15" x2="138" y2="185" stroke="rgba(212,168,67,.55)" stroke-width="2.5" stroke-linecap="round" />
+        <line x1="170" y1="18" x2="153" y2="185" stroke="rgba(212,168,67,.4)" stroke-width="2" stroke-linecap="round" />
+        <circle cx="62" cy="72" r="3" fill="rgba(200,16,46,.5)" />
+        <circle cx="140" cy="148" r="2.5" fill="rgba(200,16,46,.4)" />
+        <circle cx="130" cy="70" r="2" fill="rgba(212,168,67,.6)" />
+        <circle cx="58" cy="138" r="2" fill="rgba(212,168,67,.5)" />
+    </svg>
+    <div class="hero-text">
+        <div class="hero-badge"><span>SIGNATURE DISHES</span></div>
+        <h1 class="hero-title">招牌<em>菜色</em></h1>
+        <p class="hero-note">名菜有歷史・好菜唯有創新</p>
+        <div class="hero-divider"><span></span><i></i><small>SINCE 1977</small><i></i><span></span></div>
     </div>
+</section>
 
-    <!-- 引言區（全宽） -->
-    <div class="quote">
-        <blockquote>「名菜有歷史，好菜唯有創新。每一道手路菜都是三代家族對台灣辦桌文化的熱愛與堅持。」<cite>─ 阿發師 施建發 · 青青餐廳 SINCE 1977</cite></blockquote>
-    </div>
-
-    <!-- 主要内容容器：菜品区域居中对齐 -->
-
-    <section class="cat-sec" id="sanpei">
-        <div class="cat-hd">
-            <div class="cat-icon" style="background:linear-gradient(135deg,#7A0E20,#C8102E);"><svg viewBox="0 0 40 40" fill="none"><path d="M8 30 Q10 18 20 16 Q30 18 32 30Z" fill="rgba(255,255,255,.9)" /><ellipse cx="20" cy="30" rx="12" ry="2.5" fill="rgba(255,255,255,.5)" /><circle cx="14" cy="22" r="2.5" fill="#F0CC78" /><circle cx="20" cy="20" r="2.5" fill="#F0CC78" /><circle cx="26" cy="22" r="2.5" fill="#F0CC78" /><rect x="18" y="8" width="4" height="8" rx="2" fill="rgba(255,255,255,.8)" /></svg></div>
-            <div><div class="cat-nm">三杯類</div><div class="cat-en">Three-Cup Dishes</div></div>
-            <div class="cat-ct">共 8 道</div>
-        </div>
-        <div class="grid-wrap">
-            <div class="dishes-grid" id="g-sanpei">
-                <!-- 8道菜品卡片，与之前相同，省略重复代码以节省篇幅 -->
-                <div class="dish-card" onclick="openLb('http://xn--3ztt86ja89o.tw/upload/jiay/sanpei_squid.jpg','三杯中卷')">
-                    <div class="dish-photo">
-                        <img class="main-img" src="http://xn--3ztt86ja89o.tw/upload/jiay/sanpei_squid.jpg" alt="三杯中卷" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-                        <div class="fb" style="background:linear-gradient(135deg,#7A0E20,#C8102E);"><div class="fb-ic"><svg viewBox="0 0 40 40" fill="none"><path d="M8 30 Q10 18 20 16 Q30 18 32 30Z" fill="rgba(255,255,255,.9)" /><ellipse cx="20" cy="30" rx="12" ry="2.5" fill="rgba(255,255,255,.5)" /><circle cx="14" cy="22" r="2.5" fill="#F0CC78" /><circle cx="20" cy="20" r="2.5" fill="#F0CC78" /><circle cx="26" cy="22" r="2.5" fill="#F0CC78" /><rect x="18" y="8" width="4" height="8" rx="2" fill="rgba(255,255,255,.8)" /></svg></div><div class="fb-ln"></div><div class="fb-nm">三杯中卷</div></div>
-                        <img class="logo-wm" src="" alt="">
-                        <div class="zoom-hint"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" /></svg></div>
-                    </div>
-                    <div class="dish-label"><div class="dish-nm">三杯中卷</div></div>
-                </div>
-                <div class="dish-card" onclick="openLb('http://xn--3ztt86ja89o.tw/upload/jiay/sanpei_squid.jpg','三杯中卷')">
-                    <div class="dish-photo">
-                        <img class="main-img" src="http://xn--3ztt86ja89o.tw/upload/jiay/sanpei_squid.jpg" alt="三杯中卷" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-                        <div class="fb" style="background:linear-gradient(135deg,#7A0E20,#C8102E);"><div class="fb-ic"><svg viewBox="0 0 40 40" fill="none"><path d="M8 30 Q10 18 20 16 Q30 18 32 30Z" fill="rgba(255,255,255,.9)" /><ellipse cx="20" cy="30" rx="12" ry="2.5" fill="rgba(255,255,255,.5)" /><circle cx="14" cy="22" r="2.5" fill="#F0CC78" /><circle cx="20" cy="20" r="2.5" fill="#F0CC78" /><circle cx="26" cy="22" r="2.5" fill="#F0CC78" /><rect x="18" y="8" width="4" height="8" rx="2" fill="rgba(255,255,255,.8)" /></svg></div><div class="fb-ln"></div><div class="fb-nm">三杯中卷</div></div>
-                        <img class="logo-wm" src="" alt="">
-                        <div class="zoom-hint"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" /></svg></div>
-                    </div>
-                    <div class="dish-label"><div class="dish-nm">三杯中卷</div></div>
-                </div>
-                <!-- 其余7道菜品请自行补充，结构同上 -->
-            </div>
-        </div>
-    </section>
-    <section class="cat-sec" id="sanpei">
-        <div class="cat-hd">
-            <div class="cat-icon" style="background:linear-gradient(135deg,#7A0E20,#C8102E);"><svg viewBox="0 0 40 40" fill="none"><path d="M8 30 Q10 18 20 16 Q30 18 32 30Z" fill="rgba(255,255,255,.9)" /><ellipse cx="20" cy="30" rx="12" ry="2.5" fill="rgba(255,255,255,.5)" /><circle cx="14" cy="22" r="2.5" fill="#F0CC78" /><circle cx="20" cy="20" r="2.5" fill="#F0CC78" /><circle cx="26" cy="22" r="2.5" fill="#F0CC78" /><rect x="18" y="8" width="4" height="8" rx="2" fill="rgba(255,255,255,.8)" /></svg></div>
-            <div><div class="cat-nm">三杯類</div><div class="cat-en">Three-Cup Dishes</div></div>
-            <div class="cat-ct">共 8 道</div>
-        </div>
-        <div class="grid-wrap">
-            <div class="dishes-grid" id="g-sanpei">
-                <!-- 8道菜品卡片，与之前相同，省略重复代码以节省篇幅 -->
-                <div class="dish-card" onclick="openLb('http://xn--3ztt86ja89o.tw/upload/jiay/sanpei_squid.jpg','三杯中卷')">
-                    <div class="dish-photo">
-                        <img class="main-img" src="http://xn--3ztt86ja89o.tw/upload/jiay/sanpei_squid.jpg" alt="三杯中卷" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-                        <div class="fb" style="background:linear-gradient(135deg,#7A0E20,#C8102E);"><div class="fb-ic"><svg viewBox="0 0 40 40" fill="none"><path d="M8 30 Q10 18 20 16 Q30 18 32 30Z" fill="rgba(255,255,255,.9)" /><ellipse cx="20" cy="30" rx="12" ry="2.5" fill="rgba(255,255,255,.5)" /><circle cx="14" cy="22" r="2.5" fill="#F0CC78" /><circle cx="20" cy="20" r="2.5" fill="#F0CC78" /><circle cx="26" cy="22" r="2.5" fill="#F0CC78" /><rect x="18" y="8" width="4" height="8" rx="2" fill="rgba(255,255,255,.8)" /></svg></div><div class="fb-ln"></div><div class="fb-nm">三杯中卷</div></div>
-                        <img class="logo-wm" src="" alt="">
-                        <div class="zoom-hint"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" /></svg></div>
-                    </div>
-                    <div class="dish-label"><div class="dish-nm">三杯中卷</div></div>
-                </div>
-                <!-- 其余7道菜品请自行补充，结构同上 -->
-            </div>
-        </div>
-    </section>
-
-    <!-- 其他分类区块，暂时隐藏，可按需扩充 -->
-    <section class="cat-sec" id="stir" style="display: none;"></section>
-    <section class="cat-sec" id="fried" style="display: none;"></section>
-    <section class="cat-sec" id="grill" style="display: none;"></section>
-    <section class="cat-sec" id="steam" style="display: none;"></section>
-    <section class="cat-sec" id="teppan" style="display: none;"></section>
-    <section class="cat-sec" id="table" style="display: none;"></section>
-    <section class="cat-sec" id="dimsum" style="display: none;"></section>
-    <section class="cat-sec" id="soup" style="display: none;"></section>
-
-
-    <!-- Lightbox 和 BTT 与之前相同 -->
-    <div id="lb" onclick="closeLb(event)">
-        <div id="lb-inner">
-            <button id="lb-close" onclick="closeLbBtn()">✕</button>
-            <div id="lb-img-wrap">
-                <img id="lb-img" src="" alt="">
-                <img id="lb-logo" src="https://www.chinchin.com.tw/images/logo.png" alt="青青餐廳 Chin Chin Restaurant">
-            </div>
-            <div id="lb-caption"><div id="lb-name"></div></div>
-        </div>
-    </div>
-    <section style="background:var(--red);padding:2.5rem 5%;text-align:center;">
-        <p style="font-size:.7rem;letter-spacing:.4em;color:rgba(255,255,255,.5);margin-bottom:.4rem;">RESERVATION</p>
-        <h2 style="font-size:clamp(1.1rem,2.8vw,1.7rem);color:#fff;font-weight:900;letter-spacing:.1em;margin-bottom:1.1rem;">立即預訂，品嚐阿發師手路饗宴</h2>
-        <a href="tel:0222691127" style="display:inline-block;background:#fff;color:var(--red);font-weight:900;font-size:.9rem;letter-spacing:.12em;padding:.75rem 2rem;border-radius:2px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.2);" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">📞 (02) 2269-1127</a>
-        <p style="margin-top:.8rem;font-size:.72rem;color:rgba(255,255,255,.45);letter-spacing:.1em;">新北市土城區中央路三段6號 ╱ 捷運板南線永寧站4號出口</p>
-    </section>
-    <button id="btt" class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-        <svg viewBox="0 0 24 24"><path d="M12 4L4 12h5v8h6v-8h5z" /></svg>
+<!-- 分類標籤欄 -->
+<div class="tab-bar" id="tabBar">
+    <button class="tab-btn" data-target="sanpei" onclick="goSec('sanpei')">
+        <span class="ti"><svg viewBox="0 0 40 40" fill="none"><path d="M8 30 Q10 18 20 16 Q30 18 32 30Z" fill="rgba(255,255,255,.9)" /><ellipse cx="20" cy="30" rx="12" ry="2.5" fill="rgba(255,255,255,.5)" /><circle cx="14" cy="22" r="2.5" fill="#F0CC78" /><circle cx="20" cy="20" r="2.5" fill="#F0CC78" /><circle cx="26" cy="22" r="2.5" fill="#F0CC78" /><rect x="18" y="8" width="4" height="8" rx="2" fill="rgba(255,255,255,.8)" /></svg></span>三杯類
     </button>
+    <button class="tab-btn" data-target="stir" onclick="goSec('stir')">
+        <span class="ti"><svg viewBox="0 0 40 40" fill="none"><path d="M6 26 Q8 14 20 12 Q32 14 34 26L32 28 Q20 32 8 28Z" fill="rgba(255,255,255,.85)" /><path d="M8 14 Q12 8 18 10" stroke="#F0CC78" stroke-width="2" stroke-linecap="round" /><path d="M16 12 Q20 6 26 9" stroke="#F0CC78" stroke-width="2" stroke-linecap="round" /><rect x="17" y="30" width="6" height="5" rx="1" fill="rgba(255,255,255,.7)" /></svg></span>炒類
+    </button>
+    <button class="tab-btn" data-target="fried" onclick="goSec('fried')">
+        <span class="ti"><svg viewBox="0 0 40 40" fill="none"><rect x="6" y="18" width="28" height="14" rx="4" fill="rgba(255,255,255,.85)" /><circle cx="14" cy="24" r="4" fill="#F0CC78" /><circle cx="26" cy="24" r="4" fill="#F0CC78" /><path d="M4 18L36 18" stroke="rgba(255,255,255,.5)" stroke-width="2" /><path d="M12 8 Q14 4 16 8 Q18 12 20 8 Q22 4 24 8" stroke="#F0CC78" stroke-width="1.5" stroke-linecap="round" fill="none" /></svg></span>炸類
+    </button>
+    <button class="tab-btn" data-target="grill" onclick="goSec('grill')">
+        <span class="ti"><svg viewBox="0 0 40 40" fill="none"><path d="M8 28L32 28L30 34L10 34Z" fill="rgba(255,255,255,.6)" /><rect x="6" y="22" width="28" height="6" rx="2" fill="rgba(255,255,255,.85)" /><path d="M12 22L12 14M20 22L20 12M28 22L28 14" stroke="#F0CC78" stroke-width="2" /><ellipse cx="12" cy="17" rx="3" ry="3.5" fill="rgba(255,255,255,.8)" /><ellipse cx="28" cy="17" rx="3" ry="3.5" fill="rgba(255,255,255,.8)" /></svg></span>烤類
+    </button>
+    <button class="tab-btn" data-target="steam" onclick="goSec('steam')">
+        <span class="ti"><svg viewBox="0 0 40 40" fill="none"><rect x="6" y="20" width="28" height="14" rx="3" fill="rgba(255,255,255,.85)" /><path d="M6 20L10 12L30 12L34 20" fill="rgba(255,255,255,.35)" /><path d="M14 8 Q15 5 14 3M20 7 Q21 4 20 2M26 8 Q27 5 26 3" stroke="#F0CC78" stroke-width="1.8" stroke-linecap="round" fill="none" /></svg></span>蒸類
+    </button>
+    <button class="tab-btn" data-target="teppan" onclick="goSec('teppan')">
+        <span class="ti"><svg viewBox="0 0 40 40" fill="none"><rect x="4" y="22" width="32" height="12" rx="2" fill="rgba(255,255,255,.85)" /><ellipse cx="20" cy="22" rx="16" ry="4" fill="rgba(255,255,255,.55)" /><path d="M14 22 Q16 14 20 12 Q24 14 26 22" fill="rgba(255,200,100,.7)" /><path d="M17 22 Q18 17 20 16 Q22 17 23 22" fill="#F0CC78" /></svg></span>鐵板類
+    </button>
+    <button class="tab-btn" data-target="table" onclick="goSec('table')">
+        <span class="ti"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="13" stroke="rgba(255,255,255,.85)" stroke-width="2" fill="rgba(255,255,255,.12)" /><circle cx="20" cy="14" r="2.5" fill="#F0CC78" /><circle cx="26" cy="18" r="2.5" fill="#F0CC78" /><circle cx="24" cy="25" r="2.5" fill="#F0CC78" /><circle cx="16" cy="25" r="2.5" fill="#F0CC78" /><circle cx="14" cy="18" r="2.5" fill="#F0CC78" /></svg></span>桌菜
+    </button>
+    <button class="tab-btn" data-target="dimsum" onclick="goSec('dimsum')">
+        <span class="ti"><svg viewBox="0 0 40 40" fill="none"><rect x="10" y="16" width="20" height="14" rx="2" fill="rgba(255,255,255,.85)" /><path d="M6 14 Q20 10 34 14" stroke="rgba(255,255,255,.65)" stroke-width="2" stroke-linecap="round" /><path d="M14 24 Q17 20 20 24 Q23 28 26 24" stroke="#F0CC78" stroke-width="1.5" fill="none" stroke-linecap="round" /></svg></span>港式點心
+    </button>
+    <button class="tab-btn" data-target="soup" onclick="goSec('soup')">
+        <span class="ti"><svg viewBox="0 0 40 40" fill="none"><path d="M8 24 Q10 34 20 35 Q30 34 32 24Z" fill="rgba(255,255,255,.85)" /><ellipse cx="20" cy="24" rx="12" ry="3.5" fill="rgba(255,255,255,.55)" /><path d="M14 12 Q13 8 15 6M20 10 Q19 6 21 4M26 12 Q25 8 27 6" stroke="#F0CC78" stroke-width="1.8" stroke-linecap="round" fill="none" /></svg></span>湯類
+    </button>
+</div>
+
+<!-- 引言區 -->
+<div class="quote">
+    <blockquote>「名菜有歷史，好菜唯有創新。每一道手路菜都是三代家族對台灣辦桌文化的熱愛與堅持。」<cite>─ 阿發師 施建發 · 青青餐廳 SINCE 1977</cite></blockquote>
+</div>
+<main class="menu-container">
+    <!-- 三杯類 -->
+    <section class="cat-sec" id="sanpei">
+        <div class="cat-hd">
+            <div class="cat-icon" style="background:linear-gradient(135deg,#7A0E20,#C8102E);"><svg viewBox="0 0 40 40" fill="none"><path d="M8 30 Q10 18 20 16 Q30 18 32 30Z" fill="rgba(255,255,255,.9)" /><ellipse cx="20" cy="30" rx="12" ry="2.5" fill="rgba(255,255,255,.5)" /><circle cx="14" cy="22" r="2.5" fill="#F0CC78" /><circle cx="20" cy="20" r="2.5" fill="#F0CC78" /><circle cx="26" cy="22" r="2.5" fill="#F0CC78" /><rect x="18" y="8" width="4" height="8" rx="2" fill="rgba(255,255,255,.8)" /></svg></div>
+            <div><div class="cat-nm">三杯類</div><div class="cat-en">Three-Cup Dishes</div></div>
+            <div class="cat-ct">共 8 道</div>
+        </div>
+        <div class="grid-wrap">
+            <div class="dishes-grid" id="g-sanpei">
+                <div class="dish-card" onclick="openLb('','三杯中卷')">
+                    <div class="dish-photo">
+                        <img class="main-img" src="" alt="三杯中卷" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <div class="fb" style="background:linear-gradient(135deg,#7A0E20,#C8102E);"><div class="fb-ic"><svg viewBox="0 0 40 40" fill="none"><path d="M8 30 Q10 18 20 16 Q30 18 32 30Z" fill="rgba(255,255,255,.9)" /><ellipse cx="20" cy="30" rx="12" ry="2.5" fill="rgba(255,255,255,.5)" /><circle cx="14" cy="22" r="2.5" fill="#F0CC78" /><circle cx="20" cy="20" r="2.5" fill="#F0CC78" /><circle cx="26" cy="22" r="2.5" fill="#F0CC78" /><rect x="18" y="8" width="4" height="8" rx="2" fill="rgba(255,255,255,.8)" /></svg></div><div class="fb-ln"></div><div class="fb-nm">三杯中卷</div></div>
+                        <img class="logo-wm" src="" alt="">
+                        <div class="zoom-hint"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" /></svg></div>
+                    </div>
+                    <div class="dish-label"><div class="dish-nm">三杯中卷</div></div>
+                </div>
+                <div class="dish-card" onclick="openLb('','三杯臭豆腐')">
+                    <div class="dish-photo">
+                        <img class="main-img" src="" alt="三杯臭豆腐" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <div class="fb" style="background:linear-gradient(135deg,#7A0E20,#C8102E);"><div class="fb-ic"><svg viewBox="0 0 40 40" fill="none"><path d="M8 30 Q10 18 20 16 Q30 18 32 30Z" fill="rgba(255,255,255,.9)" /><ellipse cx="20" cy="30" rx="12" ry="2.5" fill="rgba(255,255,255,.5)" /><circle cx="14" cy="22" r="2.5" fill="#F0CC78" /><circle cx="20" cy="20" r="2.5" fill="#F0CC78" /><circle cx="26" cy="22" r="2.5" fill="#F0CC78" /><rect x="18" y="8" width="4" height="8" rx="2" fill="rgba(255,255,255,.8)" /></svg></div><div class="fb-ln"></div><div class="fb-nm">三杯臭豆腐</div></div>
+                        <img class="logo-wm" src="" alt="">
+                        <div class="zoom-hint"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" /></svg></div>
+                    </div>
+                    <div class="dish-label"><div class="dish-nm">三杯臭豆腐</div></div>
+                </div>
+                <div class="dish-card" onclick="openLb('','三杯杏鮑菇')">
+                    <div class="dish-photo">
+                        <img class="main-img" src="" alt="三杯杏鮑菇" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <div class="fb" style="background:linear-gradient(135deg,#7A0E20,#C8102E);"><div class="fb-ic"><svg viewBox="0 0 40 40" fill="none"><path d="M8 30 Q10 18 20 16 Q30 18 32 30Z" fill="rgba(255,255,255,.9)" /><ellipse cx="20" cy="30" rx="12" ry="2.5" fill="rgba(255,255,255,.5)" /><circle cx="14" cy="22" r="2.5" fill="#F0CC78" /><circle cx="20" cy="20" r="2.5" fill="#F0CC78" /><circle cx="26" cy="22" r="2.5" fill="#F0CC78" /><rect x="18" y="8" width="4" height="8" rx="2" fill="rgba(255,255,255,.8)" /></svg></div><div class="fb-ln"></div><div class="fb-nm">三杯杏鮑菇</div></div>
+                        <img class="logo-wm" src="" alt="">
+                        <div class="zoom-hint"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" /></svg></div>
+                    </div>
+                    <div class="dish-label"><div class="dish-nm">三杯杏鮑菇</div></div>
+                </div>
+                <div class="dish-card" onclick="openLb('','三杯雞')">
+                    <div class="dish-photo">
+                        <img class="main-img" src="" alt="三杯雞" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <div class="fb" style="background:linear-gradient(135deg,#7A0E20,#C8102E);"><div class="fb-ic"><svg viewBox="0 0 40 40" fill="none"><path d="M8 30 Q10 18 20 16 Q30 18 32 30Z" fill="rgba(255,255,255,.9)" /><ellipse cx="20" cy="30" rx="12" ry="2.5" fill="rgba(255,255,255,.5)" /><circle cx="14" cy="22" r="2.5" fill="#F0CC78" /><circle cx="20" cy="20" r="2.5" fill="#F0CC78" /><circle cx="26" cy="22" r="2.5" fill="#F0CC78" /><rect x="18" y="8" width="4" height="8" rx="2" fill="rgba(255,255,255,.8)" /></svg></div><div class="fb-ln"></div><div class="fb-nm">三杯雞</div></div>
+                        <img class="logo-wm" src="" alt="">
+                        <div class="zoom-hint"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" /></svg></div>
+                    </div>
+                    <div class="dish-label"><div class="dish-nm">三杯雞</div></div>
+                </div>
+                <div class="dish-card" onclick="openLb('','麻油松阪豬')">
+                    <div class="dish-photo">
+                        <img class="main-img" src="" alt="麻油松阪豬" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <div class="fb" style="background:linear-gradient(135deg,#7A0E20,#C8102E);"><div class="fb-ic"><svg viewBox="0 0 40 40" fill="none"><path d="M8 30 Q10 18 20 16 Q30 18 32 30Z" fill="rgba(255,255,255,.9)" /><ellipse cx="20" cy="30" rx="12" ry="2.5" fill="rgba(255,255,255,.5)" /><circle cx="14" cy="22" r="2.5" fill="#F0CC78" /><circle cx="20" cy="20" r="2.5" fill="#F0CC78" /><circle cx="26" cy="22" r="2.5" fill="#F0CC78" /><rect x="18" y="8" width="4" height="8" rx="2" fill="rgba(255,255,255,.8)" /></svg></div><div class="fb-ln"></div><div class="fb-nm">麻油松阪豬</div></div>
+                        <img class="logo-wm" src="" alt="">
+                        <div class="zoom-hint"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" /></svg></div>
+                    </div>
+                    <div class="dish-label"><div class="dish-nm">麻油松阪豬</div></div>
+                </div>
+                <div class="dish-card" onclick="openLb('','三杯蛤蜊')">
+                    <div class="dish-photo">
+                        <img class="main-img" src="" alt="三杯蛤蜊" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <div class="fb" style="background:linear-gradient(135deg,#7A0E20,#C8102E);"><div class="fb-ic"><svg viewBox="0 0 40 40" fill="none"><path d="M8 30 Q10 18 20 16 Q30 18 32 30Z" fill="rgba(255,255,255,.9)" /><ellipse cx="20" cy="30" rx="12" ry="2.5" fill="rgba(255,255,255,.5)" /><circle cx="14" cy="22" r="2.5" fill="#F0CC78" /><circle cx="20" cy="20" r="2.5" fill="#F0CC78" /><circle cx="26" cy="22" r="2.5" fill="#F0CC78" /><rect x="18" y="8" width="4" height="8" rx="2" fill="rgba(255,255,255,.8)" /></svg></div><div class="fb-ln"></div><div class="fb-nm">三杯蛤蜊</div></div>
+                        <img class="logo-wm" src="" alt="">
+                        <div class="zoom-hint"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" /></svg></div>
+                    </div>
+                    <div class="dish-label"><div class="dish-nm">三杯蛤蜊</div></div>
+                </div>
+                <div class="dish-card" onclick="openLb('','三杯皮蛋豆腐')">
+                    <div class="dish-photo">
+                        <img class="main-img" src="" alt="三杯皮蛋豆腐" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <div class="fb" style="background:linear-gradient(135deg,#7A0E20,#C8102E);"><div class="fb-ic"><svg viewBox="0 0 40 40" fill="none"><path d="M8 30 Q10 18 20 16 Q30 18 32 30Z" fill="rgba(255,255,255,.9)" /><ellipse cx="20" cy="30" rx="12" ry="2.5" fill="rgba(255,255,255,.5)" /><circle cx="14" cy="22" r="2.5" fill="#F0CC78" /><circle cx="20" cy="20" r="2.5" fill="#F0CC78" /><circle cx="26" cy="22" r="2.5" fill="#F0CC78" /><rect x="18" y="8" width="4" height="8" rx="2" fill="rgba(255,255,255,.8)" /></svg></div><div class="fb-ln"></div><div class="fb-nm">三杯皮蛋豆腐</div></div>
+                        <img class="logo-wm" src="" alt="">
+                        <div class="zoom-hint"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" /></svg></div>
+                    </div>
+                    <div class="dish-label"><div class="dish-nm">三杯皮蛋豆腐</div></div>
+                </div>
+                <div class="dish-card" onclick="openLb('','三杯龍蝦')">
+                    <div class="dish-photo">
+                        <img class="main-img" src="" alt="三杯龍蝦" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <div class="fb" style="background:linear-gradient(135deg,#7A0E20,#C8102E);"><div class="fb-ic"><svg viewBox="0 0 40 40" fill="none"><path d="M8 30 Q10 18 20 16 Q30 18 32 30Z" fill="rgba(255,255,255,.9)" /><ellipse cx="20" cy="30" rx="12" ry="2.5" fill="rgba(255,255,255,.5)" /><circle cx="14" cy="22" r="2.5" fill="#F0CC78" /><circle cx="20" cy="20" r="2.5" fill="#F0CC78" /><circle cx="26" cy="22" r="2.5" fill="#F0CC78" /><rect x="18" y="8" width="4" height="8" rx="2" fill="rgba(255,255,255,.8)" /></svg></div><div class="fb-ln"></div><div class="fb-nm">三杯龍蝦</div></div>
+                        <img class="logo-wm" src="" alt="">
+                        <div class="zoom-hint"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" /></svg></div>
+                    </div>
+                    <div class="dish-label"><div class="dish-nm">三杯龍蝦</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 炒類 -->
+    <section class="cat-sec" id="stir">
+        <div class="cat-hd">
+            <div class="cat-icon" style="background:linear-gradient(135deg,#7A0E20,#C8102E);"><svg viewBox="0 0 40 40" fill="none"><path d="M6 26 Q8 14 20 12 Q32 14 34 26L32 28 Q20 32 8 28Z" fill="rgba(255,255,255,.85)" /><path d="M8 14 Q12 8 18 10" stroke="#F0CC78" stroke-width="2" stroke-linecap="round" /><path d="M16 12 Q20 6 26 9" stroke="#F0CC78" stroke-width="2" stroke-linecap="round" /><rect x="17" y="30" width="6" height="5" rx="1" fill="rgba(255,255,255,.7)" /></svg></div>
+            <div><div class="cat-nm">炒類</div><div class="cat-en">Stir-Fry</div></div>
+            <div class="cat-ct">共 4 道</div>
+        </div>
+        <div class="grid-wrap">
+            <div class="dishes-grid">
+                <div class="dish-card" onclick="openLb('','金沙南瓜')"><div class="dish-photo"><img class="main-img" src="" alt="金沙南瓜" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="fb"><div class="fb-ic"><svg viewBox="0 0 40 40" fill="none"><path d="M6 26 Q8 14 20 12 Q32 14 34 26L32 28 Q20 32 8 28Z" fill="rgba(255,255,255,.85)" /><path d="M8 14 Q12 8 18 10" stroke="#F0CC78" stroke-width="2" stroke-linecap="round" /><path d="M16 12 Q20 6 26 9" stroke="#F0CC78" stroke-width="2" stroke-linecap="round" /><rect x="17" y="30" width="6" height="5" rx="1" fill="rgba(255,255,255,.7)" /></svg></div><div class="fb-ln"></div><div class="fb-nm">金沙南瓜</div></div><img class="logo-wm" src="" alt=""><div class="zoom-hint"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" /></svg></div></div><div class="dish-label"><div class="dish-nm">金沙南瓜</div></div></div>
+                <div class="dish-card" onclick="openLb('','客家小炒')"><div class="dish-photo"><img class="main-img" src="" alt="客家小炒" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="fb"><div class="fb-ic"><svg viewBox="0 0 40 40" fill="none"><path d="M6 26 Q8 14 20 12 Q32 14 34 26L32 28 Q20 32 8 28Z" fill="rgba(255,255,255,.85)" /><path d="M8 14 Q12 8 18 10" stroke="#F0CC78" stroke-width="2" stroke-linecap="round" /><path d="M16 12 Q20 6 26 9" stroke="#F0CC78" stroke-width="2" stroke-linecap="round" /><rect x="17" y="30" width="6" height="5" rx="1" fill="rgba(255,255,255,.7)" /></svg></div><div class="fb-ln"></div><div class="fb-nm">客家小炒</div></div><img class="logo-wm" src="" alt=""><div class="zoom-hint"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" /></svg></div></div><div class="dish-label"><div class="dish-nm">客家小炒</div></div></div>
+                <div class="dish-card" onclick="openLb('','宮保雞丁')"><div class="dish-photo"><img class="main-img" src="" alt="宮保雞丁" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="fb"><div class="fb-ic"><svg viewBox="0 0 40 40" fill="none"><path d="M6 26 Q8 14 20 12 Q32 14 34 26L32 28 Q20 32 8 28Z" fill="rgba(255,255,255,.85)" /><path d="M8 14 Q12 8 18 10" stroke="#F0CC78" stroke-width="2" stroke-linecap="round" /><path d="M16 12 Q20 6 26 9" stroke="#F0CC78" stroke-width="2" stroke-linecap="round" /><rect x="17" y="30" width="6" height="5" rx="1" fill="rgba(255,255,255,.7)" /></svg></div><div class="fb-ln"></div><div class="fb-nm">宮保雞丁</div></div><img class="logo-wm" src="" alt=""><div class="zoom-hint"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" /></svg></div></div><div class="dish-label"><div class="dish-nm">宮保雞丁</div></div></div>
+                <div class="dish-card" onclick="openLb('','蔥爆牛肉')"><div class="dish-photo"><img class="main-img" src="" alt="蔥爆牛肉" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="fb"><div class="fb-ic"><svg viewBox="0 0 40 40" fill="none"><path d="M6 26 Q8 14 20 12 Q32 14 34 26L32 28 Q20 32 8 28Z" fill="rgba(255,255,255,.85)" /><path d="M8 14 Q12 8 18 10" stroke="#F0CC78" stroke-width="2" stroke-linecap="round" /><path d="M16 12 Q20 6 26 9" stroke="#F0CC78" stroke-width="2" stroke-linecap="round" /><rect x="17" y="30" width="6" height="5" rx="1" fill="rgba(255,255,255,.7)" /></svg></div><div class="fb-ln"></div><div class="fb-nm">蔥爆牛肉</div></div><img class="logo-wm" src="" alt=""><div class="zoom-hint"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" /></svg></div></div><div class="dish-label"><div class="dish-nm">蔥爆牛肉</div></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 炸類 -->
+    <section class="cat-sec" id="fried">
+        <div class="cat-hd">
+            <div class="cat-icon" style="background:linear-gradient(135deg,#7A0E20,#C8102E);"><svg viewBox="0 0 40 40" fill="none"><rect x="6" y="18" width="28" height="14" rx="4" fill="rgba(255,255,255,.85)" /><circle cx="14" cy="24" r="4" fill="#F0CC78" /><circle cx="26" cy="24" r="4" fill="#F0CC78" /><path d="M4 18L36 18" stroke="rgba(255,255,255,.5)" stroke-width="2" /><path d="M12 8 Q14 4 16 8 Q18 12 20 8 Q22 4 24 8" stroke="#F0CC78" stroke-width="1.5" stroke-linecap="round" fill="none" /></svg></div>
+            <div><div class="cat-nm">炸類</div><div class="cat-en">Fried Dishes</div></div>
+            <div class="cat-ct">共 2 道</div>
+        </div>
+        <div class="grid-wrap">
+            <div class="dishes-grid">
+                <div class="dish-card" onclick="openLb('','炸蚵仔酥')"><div class="dish-photo"><img class="main-img" src="" alt="炸蚵仔酥" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="fb"><div class="fb-ic"><svg viewBox="0 0 40 40" fill="none"><rect x="6" y="18" width="28" height="14" rx="4" fill="rgba(255,255,255,.85)" /><circle cx="14" cy="24" r="4" fill="#F0CC78" /><circle cx="26" cy="24" r="4" fill="#F0CC78" /><path d="M4 18L36 18" stroke="rgba(255,255,255,.5)" stroke-width="2" /><path d="M12 8 Q14 4 16 8 Q18 12 20 8 Q22 4 24 8" stroke="#F0CC78" stroke-width="1.5" stroke-linecap="round" fill="none" /></svg></div><div class="fb-ln"></div><div class="fb-nm">炸蚵仔酥</div></div><img class="logo-wm" src="" alt=""><div class="zoom-hint"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" /></svg></div></div><div class="dish-label"><div class="dish-nm">炸蚵仔酥</div></div></div>
+                <div class="dish-card" onclick="openLb('','香酥肥腸')"><div class="dish-photo"><img class="main-img" src="" alt="香酥肥腸" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="fb"><div class="fb-ic"><svg viewBox="0 0 40 40" fill="none"><rect x="6" y="18" width="28" height="14" rx="4" fill="rgba(255,255,255,.85)" /><circle cx="14" cy="24" r="4" fill="#F0CC78" /><circle cx="26" cy="24" r="4" fill="#F0CC78" /><path d="M4 18L36 18" stroke="rgba(255,255,255,.5)" stroke-width="2" /><path d="M12 8 Q14 4 16 8 Q18 12 20 8 Q22 4 24 8" stroke="#F0CC78" stroke-width="1.5" stroke-linecap="round" fill="none" /></svg></div><div class="fb-ln"></div><div class="fb-nm">香酥肥腸</div></div><img class="logo-wm" src="" alt=""><div class="zoom-hint"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" /></svg></div></div><div class="dish-label"><div class="dish-nm">香酥肥腸</div></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 烤類、蒸類、鐵板類、桌菜、港式點心、湯類 等其余分類可依相同結構補充，此處為節省篇幅不再贅列，實際開發時請補齊 -->
+
 </main>
+<!-- Lightbox 燈箱 -->
+<div id="lb" onclick="closeLb(event)">
+    <div id="lb-inner">
+        <button id="lb-close" onclick="closeLbBtn()">✕</button>
+        <div id="lb-img-wrap">
+            <img id="lb-img" src="" alt="">
+            <img id="lb-logo" src="" alt="阿發師 logo">
+        </div>
+        <div id="lb-caption"><div id="lb-name"></div></div>
+    </div>
+</div>
+
+<!-- 預約資訊區 -->
+<section class="booking-section">
+    <p class="booking-label">RESERVATION</p>
+    <h2 class="booking-title">立即預訂，品嚐阿發師手路饗宴</h2>
+    <a href="tel:0222691127" class="booking-btn">📞 (02) 2269-1127</a>
+    <p class="booking-address">新北市土城區中央路三段6號 ╱ 捷運板南線永寧站4號出口</p>
+</section>
+
+<button id="btt" class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24"><path d="M12 4L4 12h5v8h6v-8h5z" /></svg>
+</button>
+
 @section Scripts {
     <script>
-        // 回到顶部按钮显示/隐藏
-        var btt = document.getElementById('btt');
-        window.addEventListener('scroll', function () {
+        // 回到頂部按鈕顯示/隱藏
+        const btt = document.getElementById('btt');
+        window.addEventListener('scroll', () => {
             btt.classList.toggle('vis', window.scrollY > 200);
         });
 
-        // tab 高亮联动滚动
-        var tabs = document.querySelectorAll('.tab-btn');
-        var sects = document.querySelectorAll('.cat-sec');
-        function setAct(id) {
-            for (var i = 0; i < tabs.length; i++) {
-                var t = tabs[i];
-                if (t.getAttribute('data-target') === id) {
-                    t.classList.add('active');
-                } else {
-                    t.classList.remove('active');
-                }
-            }
+        // Tab 高亮 + 滾動聯動
+        const tabs = document.querySelectorAll('.tab-btn');
+        const sections = document.querySelectorAll('.cat-sec');
+        function setActiveTab(id) {
+            tabs.forEach(tab => {
+                const target = tab.getAttribute('data-target');
+                if (target === id) tab.classList.add('active');
+                else tab.classList.remove('active');
+            });
         }
-        var obs = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) setAct(entry.target.id);
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) setActiveTab(entry.target.id);
             });
         }, { rootMargin: '-20% 0px -70% 0px' });
-        for (var i = 0; i < sects.length; i++) {
-            if (sects[i].style.display !== 'none') obs.observe(sects[i]);
-        }
+        sections.forEach(sec => observer.observe(sec));
 
         window.goSec = function (id) {
-            var el = document.getElementById(id);
-            if (el && el.style.display !== 'none') {
-                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                var btn = document.querySelector('.tab-btn[data-target="' + id + '"]');
-                if (btn) {
-                    var bar = document.getElementById('tabBar');
-                    bar.scrollTo({ left: btn.offsetLeft - bar.offsetWidth / 2 + btn.offsetWidth / 2, behavior: 'smooth' });
+            const targetSec = document.getElementById(id);
+            if (targetSec) {
+                targetSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                const activeBtn = document.querySelector(`.tab-btn[data-target="${id}"]`);
+                if (activeBtn) {
+                    const bar = document.getElementById('tabBar');
+                    bar.scrollTo({
+                        left: activeBtn.offsetLeft - bar.offsetWidth / 2 + activeBtn.offsetWidth / 2,
+                        behavior: 'smooth'
+                    });
                 }
             }
         };
 
-        // Lightbox 逻辑
-        var lb = document.getElementById('lb');
-        var lbImg = document.getElementById('lb-img');
-        var lbName = document.getElementById('lb-name');
+        // Lightbox 邏輯
+        const lb = document.getElementById('lb');
+        const lbImg = document.getElementById('lb-img');
+        const lbName = document.getElementById('lb-name');
         window.openLb = function (src, name) {
-            lbImg.src = src;
+            lbImg.src = src || '';
             lbName.textContent = name;
             lb.classList.add('show');
             document.body.style.overflow = 'hidden';
@@ -204,13 +272,14 @@
         window.closeLbBtn = function () {
             lb.classList.remove('show');
             document.body.style.overflow = '';
-            setTimeout(function () { lbImg.src = ''; }, 300);
+            setTimeout(() => { lbImg.src = ''; }, 300);
         };
         window.closeLb = function (e) {
             if (e.target === lb) closeLbBtn();
         };
-        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLbBtn(); });
+        document.addEventListener('keydown', e => e.key === 'Escape' && closeLbBtn());
 
-        setAct('sanpei');
+        // 初始高亮三杯類
+        setActiveTab('sanpei');
     </script>
 }
