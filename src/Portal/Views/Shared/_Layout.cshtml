@@ -6,25 +6,42 @@
     <title>青青餐廳 | 台菜廚神 SINCE 1977 - @ViewData["Title"]</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;700;900&family=Ma+Shan+Zheng&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <link href="~/css/site.css" rel="stylesheet" />
+    <style>
+        /* 动态导航栏边框颜色控制 */
+        nav.nav-home {
+            border-bottom-color: var(--red) !important;
+        }
+
+        nav.nav-other {
+            border-bottom-color: var(--gold) !important;
+        }
+        /* 确保 nav 已有的 border-bottom 样式能被覆盖（site.css 中应保持基础样式，不含颜色） */
+    </style>
     @RenderSection("Styles", required: false)
 </head>
 <body>
 
     <!-- ══ NAV ══ -->
-    <nav>
+    @{
+        var controller = ViewContext.RouteData.Values["controller"] as string;
+        var action = ViewContext.RouteData.Values["action"] as string;
+        var isHomePage = controller == "Home" && action == "Index";
+        var navClass = isHomePage ? "nav-home" : "nav-other";
+    }
+    <nav class="@navClass">
         <div class="nav-logo-wrap">
-            <a href="#" style="display:block;">
+            <a href="@Url.Action("Index", "Home")" style="display:block;">
                 <img src="~/images/web/templatemo_logo.png" alt="青青餐廳" style="height:64px; width:auto; display:block;">
             </a>
         </div>
         <ul class="nav-links" id="navLinks">
-            <li><a href="#story">關於我們</a></li>
-            <li><a href="#dishes">招牌菜色</a></li>
-            <li><a href="#news">最新消息</a></li>
-            <li><a href="#youtube">影音專區</a></li>
-            <li><a href="#services">服務項目</a></li>
-            <li><a href="#contact">聯絡我們</a></li>
-            <li><a href="tel:0222691127" class="nav-cta">立即訂位</a></li>
+            <li><a href="@Url.Action("Index", "Home")">關於我們</a></li>
+            <li><a href="@Url.Action("Index", "Product")">招牌菜色</a></li>
+            <li><a href="@Url.Action("Index", "News")">最新消息</a></li>
+            <li><a href="@Url.Action("Index", "Media")">影音專區</a></li>
+            <li><a href="@Url.Action("Index", "Home")">服務項目</a></li>
+            <li><a href="@Url.Action("Index", "Home")">聯絡我們</a></li>
+            <li><a href="@Url.Action("Index", "Home")" class="nav-cta">立即訂位</a></li>
         </ul>
         <button class="hamburger" id="hamburger" aria-label="選單">
             <span></span><span></span><span></span>

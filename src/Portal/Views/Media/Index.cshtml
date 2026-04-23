@@ -1,0 +1,256 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "媒體報導";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/media.css" />
+}
+
+<!-- Hero 区域（全宽） -->
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-gd"></div>
+    <div class="hero-cnt">
+        <div class="hero-eye">MEDIA COVERAGE</div>
+        <h1 class="hero-h1">媒體<em>報導</em></h1>
+        <p class="hero-sub">TV · Documentary · Event Records</p>
+    </div>
+</section>
+
+<div class="wrap">
+    <!-- 统计数据区块 -->
+    <div class="stats-bar">
+        <div class="stat"><div class="stat-num">30+</div><div class="stat-lbl">年媒體曝光</div></div>
+        <div class="stat"><div class="stat-num">50+</div><div class="stat-lbl">媒體合作紀錄</div></div>
+        <div class="stat"><div class="stat-num">1994</div><div class="stat-lbl">飲食男女 起點</div></div>
+    </div>
+
+    <div class="sec-hd rv">
+        <div><p class="s-lbl">MEDIA COVERAGE</p><h2 class="s-ttl">媒體報導影音</h2></div>
+        <div class="cnt-badge">共 <strong>9</strong> 支影片</div>
+    </div>
+
+    <!-- 分类筛选按钮组 -->
+    <div class="filters rv">
+        <button class="ftab on" data-filter="all">全部</button>
+        <button class="ftab" data-filter="專題報導">專題報導</button>
+        <button class="ftab" data-filter="料理示範">料理示範</button>
+        <button class="ftab" data-filter="歷史檔案">歷史檔案</button>
+        <button class="ftab" data-filter="活動紀錄">活動紀錄</button>
+        <button class="ftab" data-filter="產品介紹">產品介紹</button>
+        <button class="ftab" data-filter="美食報導">美食報導</button>
+        <button class="ftab" data-filter="電視報導">電視報導</button>
+    </div>
+
+    <!-- 视频网格 -->
+    <div class="vgrid" id="vgrid">
+        <!-- 卡片1 -->
+        <article class="vcard rv" data-tag="電視報導">
+            <div class="vthumb" onclick="openModal('9Zs3YRWI3x4','台灣廚神阿發師 青青餐廳 手路菜精華')">
+                <img src="https://img.youtube.com/vi/9Zs3YRWI3x4/mqdefault.jpg" alt="台灣廚神阿發師 青青餐廳 手路菜精華" loading="lazy" onerror="this.src='https://img.youtube.com/vi/9Zs3YRWI3x4/0.jpg'">
+                <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></div>
+            </div>
+            <div class="vinfo">
+                <span class="vtag tv">電視報導</span>
+                <h3 class="vtitle">台灣廚神阿發師 青青餐廳 手路菜精華</h3>
+                <p class="vsrc">📺 非凡大探索</p>
+                <p class="vdesc">非凡大探索深入青青餐廳，記錄阿發師精湛刀工與手路菜製作精髓，帶您感受台灣廚神的廚藝世界。</p>
+                <a class="vlink" href="https://www.youtube.com/watch?v=9Zs3YRWI3x4" target="_blank" rel="noopener">在 YouTube 觀看 ↗</a>
+            </div>
+        </article>
+        <!-- 卡片2 -->
+        <article class="vcard rv" data-tag="活動紀錄">
+            <div class="vthumb" onclick="openModal('tQ3sGwJy4Vg','阿發師 × 青青餐廳｜鶯歌桌宴傳家味 2024')">
+                <img src="https://img.youtube.com/vi/tQ3sGwJy4Vg/mqdefault.jpg" alt="阿發師 × 青青餐廳｜鶯歌桌宴傳家味 2024" loading="lazy" onerror="this.src='https://img.youtube.com/vi/tQ3sGwJy4Vg/0.jpg'">
+                <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></div>
+            </div>
+            <div class="vinfo">
+                <span class="vtag activity">活動紀錄</span>
+                <h3 class="vtitle">阿發師 × 青青餐廳｜鶯歌桌宴傳家味 2024</h3>
+                <p class="vsrc">📺 台灣設計研究院</p>
+                <p class="vdesc">2024鶯歌產地開放日，阿發師攜女兒施捷宜以鶯歌窯廠家族私房菜為靈感，策劃限定13道菜桌宴「傳家味」。</p>
+                <a class="vlink" href="https://www.youtube.com/watch?v=tQ3sGwJy4Vg" target="_blank" rel="noopener">在 YouTube 觀看 ↗</a>
+            </div>
+        </article>
+        <!-- 卡片3 -->
+        <article class="vcard rv" data-tag="專題報導">
+            <div class="vthumb" onclick="openModal('YHbk3HZIYQY','飲食男女 電影幕後｜阿發師談廚藝顧問')">
+                <img src="https://img.youtube.com/vi/YHbk3HZIYQY/mqdefault.jpg" alt="飲食男女 電影幕後｜阿發師談廚藝顧問" loading="lazy" onerror="this.src='https://img.youtube.com/vi/YHbk3HZIYQY/0.jpg'">
+                <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></div>
+            </div>
+            <div class="vinfo">
+                <span class="vtag feature">專題報導</span>
+                <h3 class="vtitle">飲食男女 電影幕後｜阿發師談廚藝顧問</h3>
+                <p class="vsrc">📺 紀錄片</p>
+                <p class="vdesc">1994年李安導演《飲食男女》，阿發師擔任廚藝顧問與替身，片中所有精彩烹飪特寫皆由阿發師親自操刀。</p>
+                <a class="vlink" href="https://www.youtube.com/watch?v=YHbk3HZIYQY" target="_blank" rel="noopener">在 YouTube 觀看 ↗</a>
+            </div>
+        </article>
+        <!-- 卡片4 -->
+        <article class="vcard rv" data-tag="專題報導">
+            <div class="vthumb" onclick="openModal('Eq7hMpM0ETk','台菜廚神阿發師｜青青餐廳三代傳承故事')">
+                <img src="https://img.youtube.com/vi/Eq7hMpM0ETk/mqdefault.jpg" alt="台菜廚神阿發師｜青青餐廳三代傳承故事" loading="lazy" onerror="this.src='https://img.youtube.com/vi/Eq7hMpM0ETk/0.jpg'">
+                <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></div>
+            </div>
+            <div class="vinfo">
+                <span class="vtag feature">專題報導</span>
+                <h3 class="vtitle">台菜廚神阿發師｜青青餐廳三代傳承故事</h3>
+                <p class="vsrc">📺 農傳媒</p>
+                <p class="vdesc">深入報導青青餐廳從1977年創立至今的三代傳承，探索阿發師對台菜的堅持與創新精神。</p>
+                <a class="vlink" href="https://www.youtube.com/watch?v=Eq7hMpM0ETk" target="_blank" rel="noopener">在 YouTube 觀看 ↗</a>
+            </div>
+        </article>
+        <!-- 卡片5 -->
+        <article class="vcard rv" data-tag="料理示範">
+            <div class="vthumb" onclick="openModal('Pz9hpGogHPc','阿發師拿手菜｜佛跳牆製作全紀錄')">
+                <img src="https://img.youtube.com/vi/Pz9hpGogHPc/mqdefault.jpg" alt="阿發師拿手菜｜佛跳牆製作全紀錄" loading="lazy" onerror="this.src='https://img.youtube.com/vi/Pz9hpGogHPc/0.jpg'">
+                <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></div>
+            </div>
+            <div class="vinfo">
+                <span class="vtag demo">料理示範</span>
+                <h3 class="vtitle">阿發師拿手菜｜佛跳牆製作全紀錄</h3>
+                <p class="vsrc">📺 美食頻道</p>
+                <p class="vdesc">阿發師不藏私分享招牌佛跳牆製作秘訣，從食材挑選到烹調手法完整呈現，十全食材鑄就一甕好味。</p>
+                <a class="vlink" href="https://www.youtube.com/watch?v=Pz9hpGogHPc" target="_blank" rel="noopener">在 YouTube 觀看 ↗</a>
+            </div>
+        </article>
+        <!-- 卡片6 -->
+        <article class="vcard rv" data-tag="活動紀錄">
+            <div class="vthumb" onclick="openModal('4OMdBEjwqzA','新北台灣設計師展｜老店新生 青青餐廳')">
+                <img src="https://img.youtube.com/vi/4OMdBEjwqzA/mqdefault.jpg" alt="新北台灣設計師展｜老店新生 青青餐廳" loading="lazy" onerror="this.src='https://img.youtube.com/vi/4OMdBEjwqzA/0.jpg'">
+                <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></div>
+            </div>
+            <div class="vinfo">
+                <span class="vtag activity">活動紀錄</span>
+                <h3 class="vtitle">新北台灣設計師展｜老店新生 青青餐廳</h3>
+                <p class="vsrc">📺 設計展紀錄</p>
+                <p class="vdesc">阿發師 × 青青餐廳進駐新北台灣設計師展A8-2「老店新生」展區，以半世紀台菜文化展現當代詮釋。</p>
+                <a class="vlink" href="https://www.youtube.com/watch?v=4OMdBEjwqzA" target="_blank" rel="noopener">在 YouTube 觀看 ↗</a>
+            </div>
+        </article>
+        <!-- 卡片7 -->
+        <article class="vcard rv" data-tag="美食報導">
+            <div class="vthumb" onclick="openModal('7oJoNWRHHrg','土城在地美食｜青青餐廳手路菜宴席')">
+                <img src="https://img.youtube.com/vi/7oJoNWRHHrg/mqdefault.jpg" alt="土城在地美食｜青青餐廳手路菜宴席" loading="lazy" onerror="this.src='https://img.youtube.com/vi/7oJoNWRHHrg/0.jpg'">
+                <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></div>
+            </div>
+            <div class="vinfo">
+                <span class="vtag food">美食報導</span>
+                <h3 class="vtitle">土城在地美食｜青青餐廳手路菜宴席</h3>
+                <p class="vsrc">📺 食旅台灣</p>
+                <p class="vdesc">跟著美食節目走進土城青青餐廳，品嚐魷魚螺肉蒜、千絲蝦餅、十全佛跳牆等阿發師經典手路菜。</p>
+                <a class="vlink" href="https://www.youtube.com/watch?v=7oJoNWRHHrg" target="_blank" rel="noopener">在 YouTube 觀看 ↗</a>
+            </div>
+        </article>
+        <!-- 卡片8 -->
+        <article class="vcard rv" data-tag="產品介紹">
+            <div class="vthumb" onclick="openModal('vYFRhGNB5Ek','阿發師冷凍外帶美食｜在家品嚐廚神好味')">
+                <img src="https://img.youtube.com/vi/vYFRhGNB5Ek/mqdefault.jpg" alt="阿發師冷凍外帶美食｜在家品嚐廚神好味" loading="lazy" onerror="this.src='https://img.youtube.com/vi/vYFRhGNB5Ek/0.jpg'">
+                <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></div>
+            </div>
+            <div class="vinfo">
+                <span class="vtag product">產品介紹</span>
+                <h3 class="vtitle">阿發師冷凍外帶美食｜在家品嚐廚神好味</h3>
+                <p class="vsrc">📺 生活頻道</p>
+                <p class="vdesc">青青餐廳推出阿發師拿手菜冷凍調理包，無防腐劑、真材實料，讓您在家也能輕鬆享用廚神手路菜。</p>
+                <a class="vlink" href="https://www.youtube.com/watch?v=vYFRhGNB5Ek" target="_blank" rel="noopener">在 YouTube 觀看 ↗</a>
+            </div>
+        </article>
+        <!-- 卡片9 -->
+        <article class="vcard rv" data-tag="歷史檔案">
+            <div class="vthumb" onclick="openModal('G8mA5-lEtIE','2005年 總統府春宴主廚｜阿發師國宴紀錄')">
+                <img src="https://img.youtube.com/vi/G8mA5-lEtIE/mqdefault.jpg" alt="2005年 總統府春宴主廚｜阿發師國宴紀錄" loading="lazy" onerror="this.src='https://img.youtube.com/vi/G8mA5-lEtIE/0.jpg'">
+                <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></div>
+            </div>
+            <div class="vinfo">
+                <span class="vtag history">歷史檔案</span>
+                <h3 class="vtitle">2005年 總統府春宴主廚｜阿發師國宴紀錄</h3>
+                <p class="vsrc">📺 新聞紀錄</p>
+                <p class="vdesc">2005年阿發師獲邀擔任總統府春宴宴席主辦人，以精湛廚藝代表台灣料理登上最高殿堂。</p>
+                <a class="vlink" href="https://www.youtube.com/watch?v=G8mA5-lEtIE" target="_blank" rel="noopener">在 YouTube 觀看 ↗</a>
+            </div>
+        </article>
+    </div>
+</div>
+
+<!-- 全宽 CTA 区域 -->
+<section class="sec-cta">
+    <p class="cta-eyebrow">RESERVATION</p>
+    <h2 class="cta-title">歡迎蒞臨青青餐廳</h2>
+    <p class="cta-address">新北市土城區中央路三段6號 ╱ 週一至日 11:00–14:00 ／ 17:00–21:00</p>
+    <div class="cta-buttons">
+        <a href="tel:0222691127" class="cta-phone">📞 立即訂位</a>
+        <a href="@Url.Action("Index", "Contact")" class="cta-reserve">線上預約 →</a>
+    </div>
+</section>
+
+<!-- 视频模态框 -->
+<div class="modal-wrap" id="modal">
+    <div class="modal-bg" onclick="closeModal()"></div>
+    <div class="modal-box">
+        <div class="modal-header">
+            <span class="modal-title" id="modalTitle"></span>
+            <button class="modal-close" onclick="closeModal()">✕</button>
+        </div>
+        <iframe id="modalFrame" src="" allowfullscreen allow="autoplay;encrypted-media"></iframe>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // 滚动动画
+        var ro = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                if (e.isIntersecting) {
+                    e.target.classList.add('in');
+                    ro.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.06 });
+        document.querySelectorAll('.rv').forEach(function (r) { ro.observe(r); });
+
+        // 分类筛选
+        var filterBtns = document.querySelectorAll('.ftab');
+        var videoCards = document.querySelectorAll('.vcard');
+        function filterVideos(filterValue) {
+            videoCards.forEach(function (card) {
+                var tag = card.getAttribute('data-tag');
+                var show = (filterValue === 'all' || tag === filterValue);
+                card.style.display = show ? 'flex' : 'none';
+                if (show) {
+                    setTimeout(function () { card.classList.add('in'); }, 30);
+                } else {
+                    card.classList.remove('in');
+                }
+            });
+        }
+        filterBtns.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                filterBtns.forEach(function (b) { b.classList.remove('on'); });
+                btn.classList.add('on');
+                var filterValue = btn.getAttribute('data-filter') || 'all';
+                filterVideos(filterValue);
+            });
+        });
+        // 默认显示全部
+        filterVideos('all');
+
+        // 模态框
+        var modal = document.getElementById('modal');
+        var modalTitle = document.getElementById('modalTitle');
+        var modalFrame = document.getElementById('modalFrame');
+        window.openModal = function (vid, title) {
+            modalTitle.textContent = title;
+            modalFrame.src = 'https://www.youtube.com/embed/' + vid + '?autoplay=1&rel=0';
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        };
+        window.closeModal = function () {
+            modal.classList.remove('open');
+            modalFrame.src = '';
+            document.body.style.overflow = '';
+        };
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+    </script>
+}

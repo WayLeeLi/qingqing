@@ -49,14 +49,15 @@ namespace Academy.Controllers
                                   Lable = n.Lable,
                                   Content = n.Content,
                                   PublishDate = n.CDate.Value,
-                                  Category = c.Name   // 关联得到的分类名称
+                                  Category = c.Name
                               };
             model.SignatureDishes = dishesQuery.Take(10).ToList();
 
             // 3. 活動與公告 (Menu == 5) 关联 Category
+            // 注意：此处不能直接在 LINQ 中使用 Url.Action，需要先查询到内存再赋值
             var newsQuery = from n in db.Newss
                             join c in db.Categories on n.CataID equals c.Id
-                            where n.Status == 1 && n.Menu == 5 && c.Status == 1
+                            where n.Status == 1 && n.Menu == 4 && c.Status == 1
                             orderby n.CDate descending
                             select new ContentItem
                             {
@@ -66,23 +67,29 @@ namespace Academy.Controllers
                                 Summary = n.Note,
                                 Content = n.Content,
                                 PublishDate = n.CDate.Value,
-                                Category = c.Name,
-                                LinkUrl = Url.Action("Detail", "News", new { id = n.ID }) // 详情链接
+                                Category = c.Name
+                                // LinkUrl 不在此处赋值
                             };
-            model.NewsList = newsQuery.Take(6).ToList();
+            var newsList = newsQuery.Take(6).ToList();
+            // 在内存中循环设置 LinkUrl
+            foreach (var item in newsList)
+            {
+                item.LinkUrl = Url.Action("Detail", "News", new { id = item.Id });
+            }
+            model.NewsList = newsList;
 
             // 4. 影音專區 (Menu == 6) 关联 Category
             var videoQuery = from n in db.Newss
                              join c in db.Categories on n.CataID equals c.Id
-                             where n.Status == 1 && n.Menu == 6 && c.Status == 1
+                             where n.Status == 1 && n.Menu == 5 && c.Status == 1
                              orderby n.CDate descending
                              select new ContentItem
                              {
                                  Id = n.ID,
                                  Title = n.Title,
-                                 ImageUrl = n.ImagePath,          // 封面图
+                                 ImageUrl = n.ImagePath,
                                  Summary = n.Note,
-                                 Content = n.Content,            // 存储视频嵌入地址
+                                 Content = n.Content,
                                  PublishDate = n.CDate.Value,
                                  Category = c.Name,
                                  VideoUrl = n.VideoPath

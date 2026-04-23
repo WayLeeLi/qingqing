@@ -1,141 +1,206 @@
 ﻿@{
-    ViewBag.Title = "新聞活動 News｜智匯創新 G-wise Design";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "最新消息";
 }
 
 @section Styles {
-    <link href="/css/news.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/news.css" />
 }
+
+<!-- Hero 区域（全宽） -->
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-gd"></div>
+    <div class="hero-cnt">
+        <div class="hero-eye">LATEST NEWS</div>
+        <h1 class="hero-h1">最新<em>消息</em></h1>
+        <p class="hero-sub">News · Events · Announcements</p>
+    </div>
+</section>
+
+<!-- 全宽公告横幅 -->
+<div class="banner rv">
+    <div class="bn-ico">📢</div>
+    <div>
+        <div class="bn-ttl">2025 年節訂位公告</div>
+        <div class="bn-txt">除夕、初二「中午」已客滿，恕不接受訂位，敬請見諒！<strong>初一全日公休。</strong><br>年節晚餐場次名額有限，歡迎提早致電：<strong>(02) 2269-1127 ／ (02) 2269-6430</strong></div>
+    </div>
+</div>
+
+<!-- 主要内容容器：居中 -->
+<div class="wrap">
+    <div class="sec-hd rv">
+        <div><p class="s-lbl">LATEST NEWS</p><h2 class="s-ttl">最新消息</h2></div>
+        <div class="cnt-badge">共 <strong>6</strong> 則消息</div>
+    </div>
+
+    <!-- 分类筛选按钮组 -->
+    <div class="filters rv">
+        <button class="ftab on" data-filter="all">全部</button>
+        <button class="ftab" data-filter="年節公告">年節公告</button>
+        <button class="ftab" data-filter="新品上市">新品上市</button>
+        <button class="ftab" data-filter="活動參與">活動參與</button>
+        <button class="ftab" data-filter="媒體報導">媒體報導</button>
+        <button class="ftab" data-filter="冷凍外帶">冷凍外帶</button>
+    </div>
+
+    <!-- 新闻列表 -->
+    <div class="nlist" id="nlist">
+        <article class="ncard rv" data-tag="年節公告">
+            <div class="nd-col">
+                <div class="nd-box">
+                    <span class="nd-mo">01</span>
+                    <span class="nd-dy">20</span>
+                    <span class="nd-yr">2025</span>
+                </div>
+                <div class="nd-line"></div>
+            </div>
+            <div class="nb-col">
+                <span class="ntag t-red">年節公告</span>
+                <h3 class="ntitle">📢 2025 年節訂位公告</h3>
+                <p class="nbody">除夕、初二「中午」已客滿，恕不接受訂位，敬請見諒！初一全日公休。年節期間歡迎提早預約春節各日晚餐場次，名額有限，敬請把握。</p>
+            </div>
+        </article>
+        <article class="ncard rv" data-tag="新品上市">
+            <div class="nd-col">
+                <div class="nd-box">
+                    <span class="nd-mo">12</span>
+                    <span class="nd-dy">01</span>
+                    <span class="nd-yr">2024</span>
+                </div>
+                <div class="nd-line"></div>
+            </div>
+            <div class="nb-col">
+                <span class="ntag t-gold">新品上市</span>
+                <h3 class="ntitle">🍲 阿發師 × 廣達香 聯名佛跳牆 新上市</h3>
+                <p class="nbody">台灣廚神阿發師與廣達香強強聯手，推出限量聯名冷凍佛跳牆，優惠嚐鮮價限時供應。排翅、鮑魚、海參、干貝等十全食材，在家輕鬆復熱即享國宴級美味。</p>
+            </div>
+        </article>
+        <article class="ncard rv" data-tag="活動參與">
+            <div class="nd-col">
+                <div class="nd-box">
+                    <span class="nd-mo">10</span>
+                    <span class="nd-dy">06</span>
+                    <span class="nd-yr">2024</span>
+                </div>
+                <div class="nd-line"></div>
+            </div>
+            <div class="nb-col">
+                <span class="ntag t-green">活動參與</span>
+                <h3 class="ntitle">🏺 2024 鶯歌產地開放日 × 阿發師桌宴「傳家味」</h3>
+                <p class="nbody">青青餐廳受邀參與「2024 鶯歌產地開放日」，阿發師攜女兒施捷宜以鶯歌窯廠家族私房食譜為靈感，策劃限定13道菜桌宴「傳家味」，在陶瓷工廠實景中演繹台菜文化與世代傳承，於10/6–10/22限定登場。</p>
+            </div>
+        </article>
+        <article class="ncard rv" data-tag="活動參與">
+            <div class="nd-col">
+                <div class="nd-box">
+                    <span class="nd-mo">09</span>
+                    <span class="nd-dy">15</span>
+                    <span class="nd-yr">2024</span>
+                </div>
+                <div class="nd-line"></div>
+            </div>
+            <div class="nb-col">
+                <span class="ntag t-blue">活動參與</span>
+                <h3 class="ntitle">🎨 新北台灣設計師展 A8-2「老店新生」</h3>
+                <p class="nbody">阿發師 × 青青餐廳進駐新北台灣設計師展 A8-2 展區，以「老店新生」為題，將近半世紀台菜文化轉化為當代體驗，展期10/6–10/22，歡迎蒞臨。</p>
+            </div>
+        </article>
+        <article class="ncard rv" data-tag="冷凍外帶">
+            <div class="nd-col">
+                <div class="nd-box">
+                    <span class="nd-mo">03</span>
+                    <span class="nd-dy">10</span>
+                    <span class="nd-yr">2024</span>
+                </div>
+                <div class="nd-line"></div>
+            </div>
+            <div class="nb-col">
+                <span class="ntag t-gold">冷凍外帶</span>
+                <h3 class="ntitle">📦 阿發師拿手菜冷凍外帶平台 正式上線</h3>
+                <p class="nbody">無法親臨用餐？阿發師拿手菜系列冷凍外帶平台正式上線！精選招牌手路菜冷凍包裝，全台宅配到府，在家也能品嚐廚神好味道。</p>
+            </div>
+        </article>
+        <article class="ncard rv" data-tag="媒體報導">
+            <div class="nd-col">
+                <div class="nd-box">
+                    <span class="nd-mo">11</span>
+                    <span class="nd-dy">01</span>
+                    <span class="nd-yr">2023</span>
+                </div>
+                <div class="nd-line"></div>
+            </div>
+            <div class="nb-col">
+                <span class="ntag t-ink">媒體報導</span>
+                <h3 class="ntitle">🦐 「呷臺菜」品牌進駐新北美術館鶯歌園區</h3>
+                <p class="nbody">青青餐廳第三代接班，以全新副品牌「呷臺菜」進駐新北市美術館鶯歌園區一樓，除傳統手路菜外更推出創意黃金起司蝦堡與玉兔奶酪，平假日皆有營業。</p>
+            </div>
+        </article>
+    </div>
+</div>
+
+<!-- 全宽 CTA 区域 -->
+<section class="sec-cta">
+    <p class="cta-eyebrow">RESERVATION</p>
+    <h2 class="cta-title">歡迎蒞臨青青餐廳</h2>
+    <p class="cta-address">新北市土城區中央路三段6號 ╱ 週一至日 11:00–14:00 ／ 17:00–21:00</p>
+    <div class="cta-buttons">
+        <a href="tel:0222691127" class="cta-phone">📞 立即訂位</a>
+        <a href="@Url.Action("Index", "Contact")" class="cta-reserve">線上預約 →</a>
+    </div>
+</section>
 
 @section Scripts {
-    <script src="/js/news.js"></script>
-}
+    <script>
+        // 汉堡菜单（如果布局中没有包含，这里补上；布局中应已经有，为避免冲突可注释）
+        // 但布局中可能已有全局 hamburger 脚本，此处不再重复。
 
-<!-- HERO -->
-<div class="page-hero">
-    <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1600&q=80');"></div>
-    <div class="page-hero-grad"></div>
-    <div class="page-hero-content">
-        <div class="eyebrow">
-            <div class="eyebrow-line"></div>
-            <span class="eyebrow-label">News &amp; Events</span>
-        </div>
-        <h1 class="page-title">新聞活動<br>News</h1>
-    </div>
-</div>
-
-<!-- BREADCRUMB -->
-<div class="breadcrumb">
-    <a href="@Url.Action("Index", "Home")">首頁</a>
-    <span>›</span>
-    <span style="color:#fff" id="bcText">@(ViewBag.CurrentCategoryName ?? "新聞消息")</span>
-</div>
-
-<!-- TAB NAV - 从后端数据绑定 -->
-<div class="tab-nav">
-    <a href="@Url.Action("Index", "News")" class="tab-btn @(ViewBag.CurrentCategoryId == 0 ? "active" : "")">全部新聞</a>
-    @if (ViewBag.CategoryList != null)
-    {
-        var categories = ViewBag.CategoryList as List<Academy.Models.Category> ?? new List<Academy.Models.Category>();
-        foreach (var cat in categories)
-        {
-            <a href="@Url.Action("Index", "News", new { categoryId = cat.Id })" class="tab-btn @(ViewBag.CurrentCategoryId == cat.Id ? "active" : "")">@cat.Name</a>
+        // 回到顶部按钮（布局中已有，但可以保留）
+        var btt = document.getElementById('btt');
+        if (btt) {
+            window.addEventListener('scroll', function () {
+                btt.classList.toggle('vis', window.scrollY > 200);
+            });
         }
-    }
-</div>
 
-<!-- NEWS LIST -->
-<div id="panelNews">
-    @if (ViewBag.NewsList == null || ((IEnumerable<dynamic>)ViewBag.NewsList).Count() == 0)
-    {
-        <div style="text-align:center;padding:100px;color:var(--gray);">暫無新聞</div>
-    }
-    else
-    {
-        var newsList = ViewBag.NewsList as List<Academy.Models.News> ?? new List<Academy.Models.News>();
-        var featured = newsList.FirstOrDefault();
-        
-        <div class="news-wrap">
-            @if (featured != null)
-            {
-                <div class="news-featured">
-                    <div class="news-featured-img">
-                        <img src="@(featured.ImagePath ?? featured.ImagePath)" alt="@featured.Title" loading="lazy">
-                    </div>
-                    <div class="news-featured-body">
-                        <div class="news-featured-tag">@(featured.Title ?? "")</div>
-                        <div class="news-featured-date">@(featured.CDate)</div>
-                        <p class="news-featured-text">@featured.Note</p>
-                        <a href="@Url.Action("Detail", "News", new { id = featured.ID })" class="news-read-more" >閱讀更多 →</a>
-                    </div>
-                </div>
-            }
+        // 滚动动画
+        var ro = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                if (e.isIntersecting) {
+                    e.target.classList.add('in');
+                    ro.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.rv').forEach(function (r) { ro.observe(r); });
 
-            @if (newsList.Count > 1)
-            {
-                <div class="news-grid">
-                    @for (int i = 1; i < newsList.Count; i++)
-                    {
-                        var item = newsList[i];
-                        <div class="news-card">
-                            <div class="news-card-img">
-                                <img src="@(item.ImagePath ?? item.ImagePath)" alt="@item.Title" loading="lazy">
-                            </div>
-                            <div class="news-card-body">
-                                <div class="news-card-tag">@(item.Title ?? "")</div>
-                                <div class="news-card-date">@(item.CDate)</div>
-                                <p class="news-card-text">@item.Note</p>
-                                <a href="@Url.Action("Detail", "News", new { id = item.ID })">閱讀更多 →</a>
-                            </div>
-                        </div>
-                    }
-                </div>
-            }
-        </div>
-    }
-</div>
+        // 分类筛选
+        var filterBtns = document.querySelectorAll('.ftab');
+        var newsCards = document.querySelectorAll('.ncard');
 
-<!-- HIRING TAB -->
-<div id="panelHiring" style="display:none;">
-    <div class="hiring-wrap">
-        <div class="hiring-section">
-            <h3>企業精神</h3>
-            <p>針對不同市場需求，為客戶創造最高品牌價值產品，是智匯創新的企業精神指標。智匯創新本著為客戶創造最高價值的心態做設計，而這些核心的能力，須從人才出發，結合眾人智慧，進而設計出具備外觀優美、品質優良的產品。</p>
-        </div>
+        function filterNews(filterValue) {
+            newsCards.forEach(function (card) {
+                var tag = card.getAttribute('data-tag');
+                var show = (filterValue === 'all' || tag === filterValue);
+                card.style.display = show ? 'flex' : 'none';
+                if (show) {
+                    setTimeout(function () { card.classList.add('in'); }, 30);
+                } else {
+                    card.classList.remove('in');
+                }
+            });
+        }
 
-        <div class="hiring-section">
-            <h3>企業文化</h3>
-            <p>智匯創新特別著重在人才的專業素質與人格的培育，開放式管理風格，注重自我管理與創新精神。</p>
-        </div>
+        filterBtns.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                filterBtns.forEach(function (b) { b.classList.remove('on'); });
+                btn.classList.add('on');
+                var filterValue = btn.getAttribute('data-filter') || 'all';
+                filterNews(filterValue);
+            });
+        });
 
-        <div class="hiring-section">
-            <h3>挑戰與機會</h3>
-            <p>智匯創新不斷從事計畫性產品設計，從產品概念、產品外觀設計、機構設計、產品模型都是本公司的專業領域範圍，我們誠摯歡迎可塑性高且自我期許未來成為全方位人才的你加入我們行列。</p>
-        </div>
-
-        <div class="hiring-info-grid">
-            <div class="hiring-info-card">
-                <h4>工作時間</h4>
-                <p>周休二日<br>08：30 — 17：30<br>午休時間一小時</p>
-            </div>
-            <div class="hiring-info-card">
-                <h4>福利制度</h4>
-                <p>年終固定提撥 8% 分紅<br>三節禮品<br>完善勞健保</p>
-            </div>
-            <div class="hiring-info-card">
-                <h4>應徵方式</h4>
-                <p>請下載履歷表格，填妥後 e-mail 至：<br><a href="mailto:service@g-wise.com">service@g-wise.com</a></p>
-            </div>
-            <div class="hiring-info-card">
-                <h4>公司地址</h4>
-                <p>桃園市桃園區經國路9號3樓之2<br>TEL：(03)358-2500</p>
-            </div>
-        </div>
-
-        <a href="mailto:service@g-wise.com" class="hiring-cta">
-            立即投遞履歷
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-        </a>
-    </div>
-</div>
-
-<!-- CTA BAR（已在 Layout 中，可省略） -->
+        // 初始化显示全部
+        filterNews('all');
+    </script>
+}

@@ -1,4 +1,5 @@
-﻿<!-- Index.cshtml -->
+﻿@using System.Linq
+
 @{
     ViewBag.Title = "首頁";
 }
@@ -51,33 +52,18 @@
         <!-- STORY SECTION -->
         <section class="section-pad" id="story" style="background:var(--paper);">
             <div class="story-grid">
-                <div class="story-img-frame">
-                    <div class="story-img-box">
-                        <img src="" alt="阿發師 施建發 主廚" loading="lazy">
-                    </div>
-                    <div class="story-badge">
-                        <span class="yr">46</span>
-                        <span class="sub">YEARS</span>
-                    </div>
-                </div>
-                <div>
-                    <div class="tag">關於青青</div>
-                    <h2 class="h2">名菜有歷史<br>好菜唯有創新</h2>
-                    <div class="gold-rule"><span>◆</span></div>
-                    <p class="lead">
-                        1977年創立於新北土城，青青餐廳已深根在地近半個世紀。主廚施建發（阿發師）出身餐飲世家，曾擔任李安導演《飲食男女》廚藝技術顧問及手部替身，更獲頒多項國際中餐大師殊榮。
-                    </p>
-                    <br>
-                    <p class="lead" style="opacity:.65">
-                        餐廳坐擁128桌千坪宴席場地，小橋流水、瀑布庭景，氣派典雅。菜色融合傳統台菜與粵菜、川菜精華，每道佳餚皆以上選食材為本，呈現充滿創意的時尚台菜饗宴。
-                    </p>
-                    <br>
-                    <a href="#contact" class="btn-red" style="display:inline-block; margin-top:.8rem;">了解更多 →</a>
-                </div>
+                @if (Model.AboutInfo != null)
+                {
+                    @Html.Raw(Model.AboutInfo.Content)
+                }
+                else
+                {
+                    <div style="text-align:center;padding:100px;color:var(--gray);">暫無內容</div>
+                }
+
             </div>
         </section>
 
-        <!-- DISHES SECTION -->
         <!-- 招牌菜 区块 -->
         <section class="dishes-section section-pad" id="dishes">
             <div class="dishes-header">
@@ -88,10 +74,10 @@
                 <a href="#contact" class="btn-outline-gold">查看完整菜單</a>
             </div>
             <div class="dishes-grid">
-                @if (Model.SignatureDishes != null && Model.SignatureDishes.Any())
+                @if (Model.SignatureDishes != null && Model.SignatureDishes.Count > 0)
                 {
-                    var firstItem = Model.SignatureDishes.FirstOrDefault();
-                    // 第一个菜品作为大卡片（tall）
+                    var firstItem = Model.SignatureDishes[0];
+                    <!-- 第一个菜品作为大卡片（tall） -->
                     <div class="dish-card tall">
                         <div class="dish-bg">
                             <div style="position:absolute; inset:0; background-image:url('@firstItem.ImageUrl'); background-size:cover; background-position:center;"></div>
@@ -102,9 +88,11 @@
                             <div class="dish-desc">@firstItem.Summary</div>
                         </div>
                     </div>
-                    // 其余菜品作为普通卡片
-                    foreach (var dish in Model.SignatureDishes.Skip(1))
+
+                    <!-- 其余菜品作为普通卡片（不使用 LINQ，用传统 for 循环） -->
+                    for (int i = 1; i < Model.SignatureDishes.Count; i++)
                     {
+                        var dish = Model.SignatureDishes[i];
                         <div class="dish-card">
                             <div class="dish-bg">
                                 <div style="position:absolute; inset:0; background-image:url('@dish.ImageUrl'); background-size:cover; background-position:center;"></div>
@@ -146,15 +134,15 @@
                 <div class="tag">最新消息</div>
                 <h2 class="h2">活動與公告</h2>
                 <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:1.5rem; margin-top:2.5rem;">
-                    @if (Model.NewsList != null && Model.NewsList.Any())
+                    @if (Model.NewsList != null && Model.NewsList.Count > 0)
                     {
                         foreach (var news in Model.NewsList)
                         {
                             <div class="news-card">
                                 <div class="news-date">
-                                    <span class="news-month">@news.PublishDate?.ToString("MMM", System.Globalization.CultureInfo.CreateSpecificCulture("en-US")).ToUpper()</span>
-                                    <span class="news-day">@news.PublishDate?.Day</span>
-                                    <span class="news-year">@news.PublishDate?.Year</span>
+                                    <span class="news-month">@news.PublishDate.ToString("MMM").ToUpper()</span>
+                                    <span class="news-day">@news.PublishDate.Day</span>
+                                    <span class="news-year">@news.PublishDate.Year</span>
                                 </div>
                                 <div class="news-body">
                                     <div class="news-tag-label">@(news.Category ?? "最新消息")</div>
@@ -180,7 +168,7 @@
                 <h2 class="h2" style="color:#fff; margin-bottom:.5rem;">阿發師上菜</h2>
                 <p style="color:rgba(255,255,255,.6); font-size:.9rem; margin-bottom:2.5rem; letter-spacing:.05em;">精彩料理示範 · 媒體採訪 · 廚神故事</p>
                 <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(320px,1fr)); gap:1.5rem;">
-                    @if (Model.VideoList != null && Model.VideoList.Any())
+                    @if (Model.VideoList != null && Model.VideoList.Count > 0)
                     {
                         foreach (var video in Model.VideoList)
                         {

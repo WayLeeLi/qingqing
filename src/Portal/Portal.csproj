@@ -214,6 +214,7 @@
       <DependentUpon>ValidateCode.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Controllers\MediaController.cs" />
     <Compile Include="Controllers\QuoteController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\AboutController.cs" />
@@ -270,11 +271,13 @@
     <Content Include="css\about.css" />
     <Content Include="css\contact.css" />
     <Content Include="css\index.css" />
+    <Content Include="css\media.css" />
     <Content Include="css\news-detail.css" />
     <Content Include="css\news.css" />
     <Content Include="css\product.css" />
     <Content Include="css\quotation.css" />
     <Content Include="css\service.css" />
+    <Content Include="css\site.css" />
     <Content Include="Global.asax" />
     <Content Include="ie8.htm" />
     <Content Include="Images\admin\default.png" />
@@ -314,6 +317,7 @@
     <Content Include="js\about.js" />
     <Content Include="js\contact.js" />
     <Content Include="js\flexslider.css" />
+    <Content Include="js\site.js" />
     <Content Include="js\index.js" />
     <Content Include="js\jquery-1.11.0.min.js" />
     <Content Include="js\jquery.flexslider.js" />
@@ -1555,6 +1559,7 @@
     <Content Include="Views-en\Shared\_Layout.cshtml" />
     <Content Include="Views-en\Shared\Error.cshtml" />
     <Content Include="Views-en\Web.config" />
+    <Content Include="Views\Media\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
