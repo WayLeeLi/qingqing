@@ -190,6 +190,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Sysmgr\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Sysmgr\Controllers\ContactConfigController.cs" />
     <Compile Include="Areas\Sysmgr\Controllers\AccountController.cs" />
     <Compile Include="Areas\Sysmgr\Controllers\AdLinkController.cs" />
     <Compile Include="Areas\Sysmgr\Controllers\CategoryController.cs" />
@@ -253,6 +254,7 @@
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\CategoryFilter.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
+    <Compile Include="ViewModels\ContactConfigViewModel.cs" />
     <Compile Include="ViewModels\ContentItem.cs" />
     <Compile Include="ViewModels\DishViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
@@ -323,6 +325,7 @@
     <Content Include="Images\web\mobilead_8133_733504_67059.jpg" />
     <Content Include="Images\web\mobilead_8134_9323453_12992.jpg" />
     <Content Include="Images\web\search.png" />
+    <Content Include="Images\web\templatemo_logo.png" />
     <Content Include="Images\web\top.png" />
     <Content Include="js\about.js" />
     <Content Include="js\contact.js" />
@@ -1376,6 +1379,7 @@
     <Content Include="Areas\Sysmgr\Views\Quote\Edit.cshtml" />
     <Content Include="Areas\Sysmgr\Views\About\TriLegacy.cshtml" />
     <Content Include="Areas\Sysmgr\Views\About\OurStory.cshtml" />
+    <Content Include="Areas\Sysmgr\Views\ContactConfig\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\NCRS.pubxml" />
     <Content Include="Scripts\fonts\lg.eot" />
     <Content Include="Scripts\fonts\lg.ttf" />

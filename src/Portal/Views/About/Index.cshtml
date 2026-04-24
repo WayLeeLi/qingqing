@@ -45,25 +45,16 @@
     </section>
 }
 
-@if (Model.Stats != null && Model.Stats.Any())
-{
-    <!-- 統計數據 -->
-    <div class="stats-band">
-        <div class="wrap">
-            <div class="stats-row">
-                @{ int delay = 0; }
-                @foreach (var stat in Model.Stats)
-                {
-                    <div class="stt rv" style="transition-delay:@(delay * 0.1)s">
-                        <div class="stn">@Html.Raw(stat.Number)</div>
-                        <div class="stl"><strong>@stat.Label</strong>@stat.SubLabel</div>
-                    </div>
-                    delay++;
-                }
-            </div>
+<div class="stats-band">
+    <div class="wrap">
+        <div class="stats-row">
+            <div class="stt rv"><div class="stn">1977</div><div class="stl"><strong>創立年份</strong>FOUNDED</div></div>
+            <div class="stt rv" style="transition-delay:.1s"><div class="stn">3<sup>代</sup></div><div class="stl"><strong>家族傳承</strong>GENERATIONS</div></div>
+            <div class="stt rv" style="transition-delay:.2s"><div class="stn">千<sup>坪</sup></div><div class="stl"><strong>場地規模</strong>VENUE SIZE</div></div>
+            <div class="stt rv" style="transition-delay:.3s"><div class="stn">44<sup>年</sup></div><div class="stl"><strong>阿發師廚齡</strong>CULINARY CAREER</div></div>
         </div>
     </div>
-}
+</div>
 
 @if (Model.ChefIntro != null && !string.IsNullOrEmpty(Model.ChefIntro.Content))
 {
@@ -83,7 +74,7 @@
     <section class="s-cred" id="sec-cred">
         <div class="wrap">
             <div class="rv"><p class="slabel">QUALIFICATIONS</p><h2 class="stitle">學歷・證照・榮耀</h2></div>
-            <div class="cred-content">
+            <div class="cred-grid">
                 @Html.Raw(Model.ChefCredentials.Content)
             </div>
         </div>
@@ -96,7 +87,7 @@
     <section class="s-philo" id="sec-philo">
         <div class="wrap">
             <div class="rv"><p class="slabel">OUR PHILOSOPHY</p><h2 class="stitle">阿發師的廚藝哲學</h2></div>
-            <div class="philo-content">
+            <div class="philo-grid">
                 @Html.Raw(Model.ChefPhilosophy.Content)
             </div>
         </div>
@@ -113,7 +104,7 @@
                 <h2 class="stitle">台菜風味三寶</h2>
                 <p class="sdesc">阿發師說：「這三種組合都是絕配，是我們的廚房三寶。如果這三種油可以做到好，也就掌握了台菜的大半精髓。」</p>
             </div>
-            <div class="trinity-content">
+            <div class="trow rv" style="transition-delay:.14s">
                 @Html.Raw(Model.Trinity.Content)
             </div>
         </div>
@@ -126,7 +117,7 @@
     <section class="s-gen" id="sec-gen">
         <div class="wrap">
             <div class="rv"><p class="slabel">FAMILY HERITAGE</p><h2 class="stitle">三代飲食傳承</h2></div>
-            <div class="heritage-content">
+            <div class="timeline">
                 @Html.Raw(Model.FamilyHeritage.Content)
             </div>
         </div>

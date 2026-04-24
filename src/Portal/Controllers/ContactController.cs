@@ -14,80 +14,74 @@ namespace Academy.Controllers
 {
     public class ContactController : WebController
     {
-        /// <summary>
-        /// 公司简介 - 默认显示关于我们
-        /// </summary>
         public ActionResult Index()
         {
-            ViewBag.CategoryList = db.Categories
-                .Where(c => c.Menu == 3 && c.ParentId != null && c.Status == 1)
-                .OrderBy(c => c.SortOrder)
-                .ToList();
+            // 從 DictSets 讀取各項設定
+            ViewBag.Address = GetDictValue("Contact_Address");
+            ViewBag.Phone = GetDictValue("Contact_Phone");
+            ViewBag.Email = GetDictValue("Contact_Email");
+            ViewBag.Fax = GetDictValue("Contact_Fax");
+            ViewBag.MapLongitude = GetDictValue("Contact_MapLongitude");
+            ViewBag.MapLatitude = GetDictValue("Contact_MapLatitude");
+            ViewBag.OnlineBookingText = GetDictValue("Contact_OnlineBookingText");
+            ViewBag.BookingInquiry = GetDictValue("Contact_BookingInquiry");
+            ViewBag.BusinessHours = GetDictValue("Contact_BusinessHours");
+            ViewBag.TrafficGuide = GetDictValue("Contact_TrafficGuide");
 
-            var model = db.DictSets.FirstOrDefault(a => a.Code == "SettingContact");
-            return View(model);
+            // 若沒有設定經緯度，使用預設值
+            if (string.IsNullOrEmpty(ViewBag.MapLongitude)) ViewBag.MapLongitude = "121.449";
+            if (string.IsNullOrEmpty(ViewBag.MapLatitude)) ViewBag.MapLatitude = "25.034";
+
+            return View();
+        }
+
+        private string GetDictValue(string code)
+        {
+            var dict = db.DictSets.FirstOrDefault(d => d.Code == code);
+            return dict?.Value ?? "";
         }
 
         [HttpPost]
-        public JsonResult PostMsg(FormCollection form)
+        public JsonResult PostMsg(string name, string phone, string email, string date,
+                          string timeSlot, string guests, string eventType, string note)
         {
             try
             {
-                string userName = form["UserName"];
-                string companyName = form["CompanyName"];
-                string tel = form["Tel"];
-                string mail = form["Mail"];
-                string category = form["CategoryName"];
-                string content = form["Content"];
-
-                // 必填项验证
-                if (string.IsNullOrWhiteSpace(userName))
+                // 必填檢查
+                if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(phone) ||
+                    string.IsNullOrWhiteSpace(date) || string.IsNullOrWhiteSpace(timeSlot) ||
+                    string.IsNullOrWhiteSpace(guests))
                 {
-                    return Json(new { success = false, msg = "請輸入姓名！" });
-                }
-                if (string.IsNullOrWhiteSpace(tel))
-                {
-                    return Json(new { success = false, msg = "請輸入電話！" });
-                }
-                if (string.IsNullOrWhiteSpace(mail))
-                {
-                    return Json(new { success = false, msg = "請輸入電子信箱！" });
-                }
-                if (string.IsNullOrWhiteSpace(content))
-                {
-                    return Json(new { success = false, msg = "請輸入諮詢內容！" });
+                    return Json(new { success = false, message = "請填寫所有必填欄位" });
                 }
 
-                // 邮箱格式验证
-                if (!System.Text.RegularExpressions.Regex.IsMatch(mail, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"))
+                if (!DateTime.TryParse(date, out DateTime bookingDate))
                 {
-                    return Json(new { success = false, msg = "請輸入有效的電子信箱地址！" });
+                    return Json(new { success = false, message = "日期格式無效" });
                 }
 
-                // 保存到数据库
-                var message = new InquiryRecord
+                var msg = new Message
                 {
-                    FormType = "QA",
-                    UserName = userName,
-                    CompanyName = companyName,
-                    Phone = tel,
-                    Email = mail,
-                    CategoryName = category,
-                    Content = content,
-                    CDate = DateTime.Now,
-                    Status = 0
+                    UserName = name.Trim(),
+                    Tel = phone.Trim(),
+                    Mail = email?.Trim(),
+                    BookingDate = bookingDate,
+                    TimeSlot = timeSlot,
+                    Guests = guests,
+                    EventType = eventType,
+                    Content = note,
+                    Status = 0,
+                    CDate = DateTime.Now
                 };
-                db.InquiryRecords.Add(message);
+
+                db.Messages.Add(msg);   // 假設 DbSet 名稱為 Messages
                 db.SaveChanges();
 
-                // 可选：发送邮件
-                // SendEmail(userName, mail, content);
-
-                return Json(new { success = true, msg = "發送成功！" });
+                return Json(new { success = true, message = "訊息已送出，我們將盡快與您聯繫！" });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return Json(new { success = false, msg = "系統錯誤：" + ex.Message });
+                return Json(new { success = false, message = "系統錯誤，請稍後再試" });
             }
         }
     }

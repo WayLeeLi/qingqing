@@ -29,49 +29,58 @@
             <div class="info-col">
                 <div class="rv"><p class="slabel">GET IN TOUCH</p><h2 class="stitle">餐廳資訊</h2></div>
                 <div class="info-cards rv" style="transition-delay:.1s">
+                    <!-- 地址 -->
                     <div class="icard">
                         <div class="icard-ico"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" /></svg></div>
                         <div class="icard-body">
                             <div class="icard-label">ADDRESS 地址</div>
-                            <div class="icard-val">新北市土城區中央路三段 6 號</div>
+                            <div class="icard-val">@ViewBag.Address</div>
                             <div class="icard-note">捷運板南線　永寧站 4 號出口</div>
                         </div>
                     </div>
+                    <!-- 電話與傳真 -->
                     <div class="icard">
                         <div class="icard-ico"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" /></svg></div>
                         <div class="icard-body">
                             <div class="icard-label">PHONE 電話</div>
-                            <div class="icard-val"><a href="tel:0222691127">(02) 2269-1127</a>　/　<a href="tel:0222696430">(02) 2269-6430</a></div>
-                            <div class="icard-note">傳真：(02) 2269-7101</div>
+                            <div class="icard-val">
+                                @if (!string.IsNullOrEmpty(ViewBag.Phone))
+                                {
+                                    var phones = ViewBag.Phone.Split(new[] { ',', '，', '/' }, StringSplitOptions.RemoveEmptyEntries);
+                                    foreach (var p in phones)
+                                    {
+                                        <a href="tel:@p.Replace(" ", "").Replace("-", "")">@p</a><text>　</text>
+                                    }
+                                }
+                            </div>
+                            @if (!string.IsNullOrEmpty(ViewBag.Fax))
+                            {
+                                <div class="icard-note">傳真：@ViewBag.Fax</div>
+                            }
                         </div>
                     </div>
+                    <!-- 電子信箱 -->
                     <div class="icard">
                         <div class="icard-ico"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" /></svg></div>
                         <div class="icard-body">
                             <div class="icard-label">EMAIL 電子信箱</div>
-                            <div class="icard-val"><a href="/cdn-cgi/l/email-protection#5d382b382f3a2f383833646a641d3a303c3431733e3230"><span class="__cf_email__" data-cfemail="c5a0b3a0b7a2b7a0a0abfcf2fc85a2a8a4aca9eba6aaa8">[email&#160;protected]</span></a></div>
+                            <div class="icard-val"><a href="mailto:@ViewBag.Email">@ViewBag.Email</a></div>
                         </div>
                     </div>
                 </div>
 
-                <div class="hours-card rv" style="transition-delay:.18s">
-                    <div class="hours-title">OPENING HOURS 營業時間</div>
-                    <div class="hours-row">
-                        <span class="hours-day">週一 ─ 週日</span>
-                        <div style="display:flex;gap:.5rem;align-items:center;">
-                            <span class="hours-time">11:00 – 14:00</span><span class="hours-badge">午餐</span>
-                        </div>
+                <!-- 營業時間（支援 HTML） -->
+                @if (!string.IsNullOrEmpty(ViewBag.BusinessHours))
+                {
+                    <div class="hours-card rv" style="transition-delay:.18s">
+                        <div class="hours-title">OPENING HOURS 營業時間</div>
+                        @Html.Raw(ViewBag.BusinessHours)
                     </div>
-                    <div class="hours-row">
-                        <span class="hours-day">週一 ─ 週日</span>
-                        <div style="display:flex;gap:.5rem;align-items:center;">
-                            <span class="hours-time">17:00 – 21:00</span><span class="hours-badge">晚餐</span>
-                        </div>
-                    </div>
-                </div>
+                }
 
+                <!-- 社群按鈕 -->
                 <div class="social-row rv" style="transition-delay:.25s">
-                    <a class="soc-btn line" href="" target="_blank">
+                    <a class="soc-btn line" href="https://lin.ee/xxxxxxxx" target="_blank">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.07 9.436-6.975C23.176 14.393 24 12.458 24 10.314" /></svg>
                         LINE 官方帳號
                     </a>
@@ -85,29 +94,21 @@
             <!-- 右：地圖 -->
             <div class="map-col rv" style="transition-delay:.12s">
                 <div class="map-wrap">
-                    <iframe src="https://maps.google.com/maps?q=%E6%96%B0%E5%8C%97%E5%B8%82%E5%9C%9F%E5%9F%8E%E5%8D%80%E4%B8%AD%E5%A4%AE%E8%B7%AF%E4%B8%89%E6%AE%B66%E8%99%9F&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    <a class="map-btn" href="https://maps.google.com/maps?q=新北市土城區中央路三段6號" target="_blank">
+                    <iframe src="https://maps.google.com/maps?q=@ViewBag.MapLatitude,@ViewBag.MapLongitude&z=16&output=embed"
+                            allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <a class="map-btn" href="https://maps.google.com/maps?q=@ViewBag.MapLatitude,@ViewBag.MapLongitude" target="_blank">
                         <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" /></svg>
                         Google Maps 開啟
                     </a>
                 </div>
-                <div class="trans-card rv" style="transition-delay:.22s">
-                    <div class="trans-title">TRANSPORTATION 交通指引</div>
-                    <div class="trans-items">
-                        <div class="trans-item">
-                            <div class="trans-ico mrt">捷運</div>
-                            <div class="trans-txt"><strong>板南線永寧站 4 號出口</strong>，步行約 5 分鐘即可抵達</div>
-                        </div>
-                        <div class="trans-item">
-                            <div class="trans-ico bus">公車</div>
-                            <div class="trans-txt">搭乘 <strong>231、705、藍16</strong> 等路線，於「中央路三段」站下車</div>
-                        </div>
-                        <div class="trans-item">
-                            <div class="trans-ico car">自駕</div>
-                            <div class="trans-txt"><strong>北二高土城交流道</strong>下，右轉中央路三段直行；本餐廳設有停車場</div>
-                        </div>
+                <!-- 交通指引 -->
+                @if (!string.IsNullOrEmpty(ViewBag.TrafficGuide))
+                {
+                    <div class="trans-card rv" style="transition-delay:.22s">
+                        <div class="trans-title">TRANSPORTATION 交通指引</div>
+                        @Html.Raw(ViewBag.TrafficGuide)
                     </div>
-                </div>
+                }
             </div>
 
         </div>
@@ -120,7 +121,14 @@
         <div class="form-layout">
             <div class="form-intro rv">
                 <div><p class="slabel">RESERVATION</p><h2 class="stitle">線上預約<br>訂位詢問</h2></div>
-                <p class="sdesc">無論家庭聚餐、商務宴請、婚宴壽宴，歡迎填寫以下表單，我們將盡快與您確認訂位細節。</p>
+                @if (!string.IsNullOrEmpty(ViewBag.OnlineBookingText))
+                {
+                    <p class="sdesc">@ViewBag.OnlineBookingText</p>
+                }
+                else
+                {
+                    <p class="sdesc">無論家庭聚餐、商務宴請、婚宴壽宴，歡迎填寫以下表單，我們將盡快與您確認訂位細節。</p>
+                }
                 <ul class="note-list">
                     <li>建議提前 <strong>3 天以上</strong>預約，以便安排最佳座位</li>
                     <li>10 人以上桌菜宴席，請提前 <strong>7 天</strong>洽詢</li>
@@ -167,7 +175,7 @@
     <p class="cta-address">新北市土城區中央路三段6號 ╱ 捷運板南線永寧站4號出口</p>
     <div class="cta-buttons">
         <a href="tel:0222691127" class="btn-primary">📞 (02) 2269-1127</a>
-        <a href="menu.html" class="btn-secondary">查看菜單 →</a>
+        <a href="@Url.Action("Product", "Home")" class="btn-secondary">查看菜單 →</a>
     </div>
 </section>
 
@@ -201,17 +209,27 @@
             observer.observe(el);
         });
 
-        // 設置日期選擇器最小日期為今天
+        // 設定日期選擇器最小為今天
         const dateInput = document.getElementById('f-date');
         const today = new Date();
         const pad = function (n) { return String(n).padStart(2, '0'); };
         dateInput.min = `${today.getFullYear()}-${pad(today.getMonth() + 1)}-${pad(today.getDate())}`;
 
-        // 表單提交處理
+        // 表單提交（AJAX）
         window.submitForm = function () {
-            const required = ['f-name', 'f-phone', 'f-date', 'f-time', 'f-guests'];
+            const name = document.getElementById('f-name').value.trim();
+            const phone = document.getElementById('f-phone').value.trim();
+            const email = document.getElementById('f-email').value.trim();
+            const date = document.getElementById('f-date').value;
+            const timeSlot = document.getElementById('f-time').value;
+            const guests = document.getElementById('f-guests').value;
+            const eventType = document.getElementById('f-type').value;
+            const note = document.getElementById('f-note').value;
+
+            // 必填檢查
             let isValid = true;
-            required.forEach(function (id) {
+            const requiredIds = ['f-name', 'f-phone', 'f-date', 'f-time', 'f-guests'];
+            requiredIds.forEach(function (id) {
                 const el = document.getElementById(id);
                 if (!el.value.trim()) {
                     el.style.borderColor = 'var(--red)';
@@ -221,14 +239,41 @@
             });
             if (!isValid) return;
 
-            const toast = document.getElementById('toast');
-            toast.classList.add('show');
-            setTimeout(function () { toast.classList.remove('show'); }, 3500);
+            const btn = document.querySelector('.fsubmit');
+            const originalText = btn.innerText;
+            btn.innerText = '傳送中...';
+            btn.disabled = true;
 
-            // 清空表單
-            ['f-name', 'f-phone', 'f-email', 'f-date', 'f-time', 'f-guests', 'f-type', 'f-note'].forEach(function (id) {
-                const el = document.getElementById(id);
-                if (el) el.value = '';
+            fetch('@Url.Action("PostMsg", "Contact")', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({
+                    name: name, phone: phone, email: email, date: date,
+                    timeSlot: timeSlot, guests: guests, eventType: eventType, note: note
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                btn.innerText = originalText;
+                btn.disabled = false;
+                const toast = document.getElementById('toast');
+                toast.innerHTML = `<svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" /></svg> ${data.message}`;
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 3500);
+                if (data.success) {
+                    ['f-name', 'f-phone', 'f-email', 'f-date', 'f-time', 'f-guests', 'f-type', 'f-note'].forEach(id => {
+                        const el = document.getElementById(id);
+                        if (el) el.value = '';
+                    });
+                }
+            })
+            .catch(() => {
+                btn.innerText = originalText;
+                btn.disabled = false;
+                const toast = document.getElementById('toast');
+                toast.innerHTML = `<svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" /></svg> 連線錯誤，請稍後再試`;
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 3500);
             });
         };
     </script>

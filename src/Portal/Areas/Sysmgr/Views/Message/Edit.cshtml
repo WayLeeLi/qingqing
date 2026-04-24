@@ -7,57 +7,108 @@
 @section Scripts {
     <script>
         $(function () {
-            // binds form submission and fields to the validation engine
             $.validationEngine.defaults.scroll = false;
             $("#formcontent").validationEngine();
-
         });
     </script>
-    <!--CK 套件-->
     <script type="text/javascript" src="~/Scripts/ckeditor/ckeditor.js"></script>
     <script type="text/javascript" src="~/Scripts/ckfinder/ckfinder.js"></script>
 }
 
-<!--主要內容-->
 <article class="contentArea" id="content">
     @using (Html.BeginForm("Edit", "Message", FormMethod.Post, new { id = "formcontent", enctype = "multipart/form-data" }))
     {
         <h1>
-            線上 Q&A<span>/ 回覆</span><span class="tip">
+            線上 Q&A<span>／ 回覆</span><span class="tip">
                 <section class="tipBox">
                     <span>&nbsp;</span>
                     <ul>
-                        <li>填入您要編輯的資訊。 *為必填欄位。</li>
-                        <li>回覆內容時，會自動給用戶發送一封郵件。</li>
+                        <li>回覆內容時，系統將自動發送郵件給用戶。</li>
                     </ul>
                 </section>
             </span>
         </h1>
+
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.ID)
+
+        <!-- 客戶提交的原始資訊（只讀） -->
         <section class="detailGroup">
-            <h3>基本資料</h3>
+            <h3>客戶提交資訊</h3>
+            <ul>
+                <li><strong>編號：</strong> @Model.ID</li>
+                <li><strong>聯絡人：</strong> @(string.IsNullOrEmpty(Model.UserName) ? "—" : Model.UserName)</li>
+                <li><strong>電話：</strong> @(string.IsNullOrEmpty(Model.Tel) ? "—" : Model.Tel)</li>
+                <li><strong>電子信箱：</strong> @(string.IsNullOrEmpty(Model.Mail) ? "—" : Model.Mail)</li>
+                <li><strong>用餐日期：</strong> @(Model.BookingDate.HasValue ? Model.BookingDate.Value.ToString("yyyy-MM-dd") : "—")</li>
+                <li><strong>用餐時段：</strong> @(string.IsNullOrEmpty(Model.TimeSlot) ? "—" : Model.TimeSlot)</li>
+                <li><strong>用餐人數：</strong> @(string.IsNullOrEmpty(Model.Guests) ? "—" : Model.Guests)</li>
+                <li><strong>宴席類型：</strong> @(string.IsNullOrEmpty(Model.EventType) ? "—" : Model.EventType)</li>
+                <li><strong>諮詢內容：</strong> @(string.IsNullOrEmpty(Model.Content) ? "—" : Model.Content)</li>
+                <li><strong>狀態：</strong> @(Model.Status == 1 ? "已回覆" : "未回覆")</li>
+                <li><strong>創建時間：</strong> @(Model.CDate.HasValue ? Model.CDate.Value.ToString("yyyy-MM-dd HH:mm:ss") : "—")</li>
+                @if (Model.ReplyDate.HasValue)
+                {
+                    <li><strong>回覆時間：</strong> @Model.ReplyDate.Value.ToString("yyyy-MM-dd HH:mm:ss")</li>
+                    <li><strong>前次回覆內容：</strong> @(string.IsNullOrEmpty(Model.ReplyContent) ? "—" : Model.ReplyContent)</li>
+                }
+            </ul>
+        </section>
+
+        <section class="detailGroup">
+            <h3>回覆內容</h3>
             <ul>
                 <li>
                     <p class="title">回覆內容 : <mark class="mark">(*最多1000個中英文字元)</mark></p>
-                    <br>
                     @Html.TextAreaFor(model => model.ReplyContent, new { @class = "validate[maxSize[1000]] text-input", @cols = "80", @rows = "10" })
                 </li>
             </ul>
         </section>
 
-        <!--功能操作-->
+        <!-- 功能操作列 -->
         <section class="openArea">
             <span class="open" title="開啟執行列">開啟執行列</span>
         </section>
         <section class="functionArea">
             <span class="close" title="關閉執行列">關閉執行列</span>
             <span class="close" title="關閉執行列" id="closeShort"></span>
-
             <div>
-                <input name="按鈕" type="button" class="btnBack" value="x 回上一頁">
+                <input name="按鈕" type="button" class="btnBack" value="x 回上一頁" onclick="history.back();">
                 <input name="送出" type="submit" class="btnAdd" value="B 確定回覆">
             </div>
         </section>
     }
 </article>
+
+<style>
+    .detailGroup h3 {
+        margin-bottom: 15px;
+        color: #6DB82A;
+        border-left: 4px solid #6DB82A;
+        padding-left: 10px;
+    }
+
+    .detailGroup ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+        .detailGroup ul li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+    .detailGroup .title {
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #6DB82A;
+    }
+
+    textarea {
+        width: 100%;
+        max-width: 800px;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+</style>
