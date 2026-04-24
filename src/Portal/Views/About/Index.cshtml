@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Academy.ViewModels.AboutViewModel
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "關於我們 - 青青餐廳";
 }
@@ -7,8 +8,7 @@
     <link rel="stylesheet" href="~/css/about.css" />
 }
 
-
-<!-- HERO 區塊 -->
+<!-- HERO 區塊（靜態保留，不做綁定） -->
 <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-grid"></div>
@@ -21,7 +21,7 @@
     </div>
 </section>
 
-<!-- 錨點導航欄 -->
+<!-- 錨點導航欄（靜態保留） -->
 <div class="anchor-bar" id="abar">
     <div class="anchor-inner">
         <a class="anc on" href="#sec-intro"><span class="anc-dot"></span>餐廳介紹</a>
@@ -33,210 +33,107 @@
     </div>
 </div>
 
-<!-- §1 餐廳介紹 -->
-<section class="s-intro" id="sec-intro">
-    <div class="wrap">
-        <div class="intro-grid">
-            <!-- 餐廳照片 -->
-            <div class="photo-frame rv">
-                <div class="photo-box">
-                    <img src="" alt="青青餐廳外觀夜景">
-                </div>
-            </div>
-            <!-- 文字 -->
-            <div class="intro-body rv" style="transition-delay:.14s">
-                <div><p class="slabel">OUR STORY</p><h2 class="stitle">傳承與創新<br>同在一鍋</h2></div>
-                <p class="intro-p">青青餐廳坐落於新北市土城區，自民國 66 年（1977 年）創立至今，歷經近半世紀的深耕，早已成為在地宴席文化的重要地標。由施建發先生（阿發師）率領三代家族共同經營，以廣達千坪的場地、精緻庭園造景，提供兼具排場與溫度的台菜饗宴。</p>
-                <p class="intro-p">本餐廳擁有千坪賣場，庭園造景，氣派高雅，是聚餐筵席的最佳選擇。菜色以最新鮮的上等食材呈現，變化多樣，可依顧客需求客製烹調，以「無國界台菜西吃」概念，讓傳統台菜展現嶄新面貌。</p>
-                <div class="qblock">
-                    <p>「名菜有歷史，好菜唯有創新。」</p>
-                    <cite>─ 阿發師 施建發</cite>
-                </div>
+@if (Model.AboutIntro != null && !string.IsNullOrEmpty(Model.AboutIntro.Content))
+{
+    <!-- §1 餐廳介紹 -->
+    <section class="s-intro" id="sec-intro">
+        <div class="wrap">
+            <div class="intro-grid">
+                @Html.Raw(Model.AboutIntro.Content)
             </div>
         </div>
-    </div>
-</section>
+    </section>
+}
 
-<!-- 統計數據 -->
-<div class="stats-band">
-    <div class="wrap">
-        <div class="stats-row">
-            <div class="stt rv"><div class="stn">1977</div><div class="stl"><strong>創立年份</strong>FOUNDED</div></div>
-            <div class="stt rv" style="transition-delay:.1s"><div class="stn">3<sup>代</sup></div><div class="stl"><strong>家族傳承</strong>GENERATIONS</div></div>
-            <div class="stt rv" style="transition-delay:.2s"><div class="stn">千<sup>坪</sup></div><div class="stl"><strong>場地規模</strong>VENUE SIZE</div></div>
-            <div class="stt rv" style="transition-delay:.3s"><div class="stn">44<sup>年</sup></div><div class="stl"><strong>阿發師廚齡</strong>CULINARY CAREER</div></div>
-        </div>
-    </div>
-</div>
-
-<!-- §2 主廚介紹 -->
-<section class="s-chef" id="sec-chef">
-    <div class="wrap">
-        <div class="chef-grid">
-            <!-- 阿發師照片 -->
-            <div class="chef-card rv">
-                <div class="chef-topbar"></div>
-                <div class="chef-frame">
-                    <img src="" alt="阿發師 施建發">
-                    <div class="chef-plate">
-                        <div class="chef-cn">施建發</div>
-                        <div class="chef-en">SHI JIAN-FA · 阿發師</div>
+@if (Model.Stats != null && Model.Stats.Any())
+{
+    <!-- 統計數據 -->
+    <div class="stats-band">
+        <div class="wrap">
+            <div class="stats-row">
+                @{ int delay = 0; }
+                @foreach (var stat in Model.Stats)
+                {
+                    <div class="stt rv" style="transition-delay:@(delay * 0.1)s">
+                        <div class="stn">@Html.Raw(stat.Number)</div>
+                        <div class="stl"><strong>@stat.Label</strong>@stat.SubLabel</div>
                     </div>
-                </div>
-                <div class="chef-tags">
-                    <span class="ctag">台灣廚神</span>
-                    <span class="ctag">行政主廚</span>
-                    <span class="ctag">廚齡44年</span>
-                    <span class="ctag">生於民國49年</span>
-                    <span class="ctag">菜系：台菜</span>
-                </div>
-            </div>
-            <!-- 故事 -->
-            <div class="chef-body rv" style="transition-delay:.14s">
-                <div><p class="slabel">MASTER CHEF</p><h2 class="stitle">台灣廚神<br>阿發師的故事</h2></div>
-                <p class="chef-p">阿發師 14 歲入行，從日本料理學徒做起，歷經廣東菜、台菜各大名廚磨練，足跡遍及天天來、圓山飯店金龍廳、北投台菜名店。儘管已有多年資歷，仍甘願再當學徒、跑遍烤、蒸、煮各部門，只為吸收更完整的廚藝知識。24 歲那年，正式擔任青青餐廳行政主廚。</p>
-                <div class="filmbox">
-                    <div class="filmico">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="rgba(212,168,67,.8)" stroke-width="1.5">
-                            <rect x="2" y="4" width="20" height="16" rx="2" />
-                            <path d="M7 4v16M17 4v16M2 9h5M17 9h5M2 15h5M17 15h5" />
-                        </svg>
-                    </div>
-                    <div class="filmtxt">
-                        <h4>電影榮耀 · 飲食顧問</h4>
-                        <p>1994 年李安執導《飲食男女》片中所有菜色設計及烹飪特寫鏡頭，皆由阿發師親自操刀；此後亦擔任熱門美食電影《總鋪師》的餐飲顧問，以精湛廚藝名揚國際。</p>
-                    </div>
-                </div>
-                <p class="chef-p">阿發師最常提起的是「感恩」——感恩媽媽是廚藝啟蒙師，感恩師傅們不藏私的傳授，也感恩每一位到訪的客人。「餐飲業很重視倫理，懂得感恩的人絕對可以成為很好的廚師，傳承不只是味道與技術，倫理的傳承也是餐飲文化的一部份。」</p>
+                    delay++;
+                }
             </div>
         </div>
     </div>
-</section>
+}
 
-<!-- §3 學歷榮耀 -->
-<section class="s-cred" id="sec-cred">
-    <div class="wrap">
-        <div class="rv"><p class="slabel">QUALIFICATIONS</p><h2 class="stitle">學歷・證照・榮耀</h2></div>
-        <div class="cred-grid">
-            <div class="ccard rv" style="transition-delay:.08s">
-                <p class="ctitle">學歷 EDUCATION</p>
-                <ul class="clist">
-                    <li><strong>南京中醫藥大學</strong>　專科學校畢業程度自學進修學力鑑定證書</li>
-                    <li><strong>交通大學</strong>　推廣教育證明書</li>
-                </ul>
-            </div>
-            <div class="ccard rv" style="transition-delay:.16s">
-                <p class="ctitle">技術證照 CERTIFICATIONS</p>
-                <ul class="clist">
-                    <li>中餐烹調　<strong>乙級技術士證書</strong></li>
-                    <li>中餐烹調素食　<strong>丙級技術士證書</strong></li>
-                    <li><strong>國際技術士技能檢定監評人員</strong>證書</li>
-                    <li>中華人民共和國職業資格　<strong>中式烹調高級技能</strong></li>
-                </ul>
-            </div>
-            <div class="ccard rv" style="transition-delay:.24s">
-                <p class="ctitle">國際殊榮 AWARDS</p>
-                <ul class="clist">
-                    <li>世界中國烹飪聯合會　<strong>國際評委證書</strong></li>
-                    <li>2006年世界中國烹飪聯合會15週年　<strong>國際中餐大師證書</strong></li>
-                    <li>李安導演《飲食男女》　<strong>菜色設計・替身主廚</strong>（1994）</li>
-                    <li>電影《總鋪師》　<strong>餐飲顧問</strong></li>
-                </ul>
-            </div>
-            <div class="ccard rv" style="transition-delay:.32s">
-                <p class="ctitle">餐廳特色 RESTAURANT</p>
-                <ul class="clist">
-                    <li>廣達 <strong>千坪賣場</strong>，庭園造景，氣派高雅</li>
-                    <li>提供宴席、喜宴、包廂，<strong>聚餐筵席最佳選擇</strong></li>
-                    <li>菜色變化多樣，<strong>可依顧客需求客製烹調</strong></li>
-                    <li>嚴選上等食材，<strong>無國界台菜西吃</strong>概念</li>
-                </ul>
+@if (Model.ChefIntro != null && !string.IsNullOrEmpty(Model.ChefIntro.Content))
+{
+    <!-- §2 主廚介紹 -->
+    <section class="s-chef" id="sec-chef">
+        <div class="wrap">
+            <div class="chef-grid">
+                @Html.Raw(Model.ChefIntro.Content)
             </div>
         </div>
-    </div>
-</section>
+    </section>
+}
 
-<!-- §4 廚藝哲學 -->
-<section class="s-philo" id="sec-philo">
-    <div class="wrap">
-        <div class="rv"><p class="slabel">OUR PHILOSOPHY</p><h2 class="stitle">阿發師的廚藝哲學</h2></div>
-        <div class="philo-grid">
-            <div class="pcard rv" style="transition-delay:.1s">
-                <div class="pico"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" /></svg></div>
-                <div class="ptitle">傳承古早味</div>
-                <p class="pbody">代代相傳的經典名菜自有歷史典故，是珍貴的無形文化資產，作法必須傳承。「名菜有歷史」，唯有紮實的基礎，才能真正創新突破。</p>
-            </div>
-            <div class="pcard rv" style="transition-delay:.18s">
-                <div class="pico"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg></div>
-                <div class="ptitle">不斷創新突破</div>
-                <p class="pbody">以古早味的食材元素、味道、烹調方法為根基，進而改良創新。臺菜海納百川，臺灣的食材、調味料、臺灣人的方式，就是台灣菜的精神所在。</p>
-            </div>
-            <div class="pcard rv" style="transition-delay:.26s">
-                <div class="pico"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" /></svg></div>
-                <div class="ptitle">感恩・用心・傳承</div>
-                <p class="pbody">「餐飲業很重視倫理，懂得感恩的人絕對可以成為很好的廚師。傳承不只是味道與技術，倫理的傳承也是餐飲文化的一部份。」</p>
+@if (Model.ChefCredentials != null && !string.IsNullOrEmpty(Model.ChefCredentials.Content))
+{
+    <!-- §3 學歷榮耀 -->
+    <section class="s-cred" id="sec-cred">
+        <div class="wrap">
+            <div class="rv"><p class="slabel">QUALIFICATIONS</p><h2 class="stitle">學歷・證照・榮耀</h2></div>
+            <div class="cred-content">
+                @Html.Raw(Model.ChefCredentials.Content)
             </div>
         </div>
-    </div>
-</section>
+    </section>
+}
 
-<!-- §5 台菜三寶 -->
-<section class="s-trinity" id="sec-trinity">
-    <div class="wrap">
-        <div class="rv">
-            <p class="slabel">FLAVOUR SECRETS</p>
-            <h2 class="stitle">台菜風味三寶</h2>
-            <p class="sdesc">阿發師說：「這三種組合都是絕配，是我們的廚房三寶。如果這三種油可以做到好，也就掌握了台菜的大半精髓。」</p>
-        </div>
-        <div class="trow rv" style="transition-delay:.14s">
-            <div class="titem">
-                <div class="tnum">一</div>
-                <div class="tcomb">麻油 ＋ 薑</div>
-                <div class="trep">代表：麻油雞</div>
-                <p class="tdesc">麻油的醇香與老薑的辛溫完美融合，是台菜滋補料理不可或缺的靈魂組合，溫潤而深沉。</p>
-            </div>
-            <div class="titem">
-                <div class="tnum">二</div>
-                <div class="tcomb">紅蔥頭 ＋ 豬油</div>
-                <div class="trep">代表：油飯・米糕</div>
-                <p class="tdesc">炸過後的紅蔥酥與豬油各有妙用，搭配肉類最為合拍，是辦桌宴席最令人難忘的古早香氣。</p>
-            </div>
-            <div class="titem">
-                <div class="tnum">三</div>
-                <div class="tcomb">蒜頭 ＋ 雞油</div>
-                <div class="trep">代表：蒜酥海鮮</div>
-                <p class="tdesc">蒜香與雞油的組合特別適合海鮮，蒜酥酥脆金香搭配雞油清甜，層次豐富而不搶味。</p>
+@if (Model.ChefPhilosophy != null && !string.IsNullOrEmpty(Model.ChefPhilosophy.Content))
+{
+    <!-- §4 廚藝哲學 -->
+    <section class="s-philo" id="sec-philo">
+        <div class="wrap">
+            <div class="rv"><p class="slabel">OUR PHILOSOPHY</p><h2 class="stitle">阿發師的廚藝哲學</h2></div>
+            <div class="philo-content">
+                @Html.Raw(Model.ChefPhilosophy.Content)
             </div>
         </div>
-    </div>
-</section>
+    </section>
+}
 
-<!-- §6 三代傳承 -->
-<section class="s-gen" id="sec-gen">
-    <div class="wrap">
-        <div class="rv"><p class="slabel">FAMILY HERITAGE</p><h2 class="stitle">三代飲食傳承</h2></div>
-        <div class="timeline">
-            <div class="tl-item rv" style="transition-delay:.08s">
-                <div class="tl-era">第一代</div>
-                <div class="tl-body"><h4>祖父母・扁擔起家</h4><p>施家祖父母以一副扁擔賣小吃起家，憑藉勤勞與手藝，在艱苦年代建立起家族對飲食的熱情與執著，埋下三代傳承的根苗。</p></div>
+@if (Model.Trinity != null && !string.IsNullOrEmpty(Model.Trinity.Content))
+{
+    <!-- §5 台菜三寶 -->
+    <section class="s-trinity" id="sec-trinity">
+        <div class="wrap">
+            <div class="rv">
+                <p class="slabel">FLAVOUR SECRETS</p>
+                <h2 class="stitle">台菜風味三寶</h2>
+                <p class="sdesc">阿發師說：「這三種組合都是絕配，是我們的廚房三寶。如果這三種油可以做到好，也就掌握了台菜的大半精髓。」</p>
             </div>
-            <div class="tl-item rv" style="transition-delay:.18s">
-                <div class="tl-era">第二代</div>
-                <div class="tl-body"><h4>施性賢・創業奠基</h4><p>父親施性賢北上打拼，與母親從路邊攤做到小吃店，解嚴後成為餐飲界第一位創設烹飪協會的人士。1977 年在土城開設青青餐廳，母親以總鋪師功力掌廚，奠定餐廳的台菜靈魂。</p></div>
-            </div>
-            <div class="tl-item rv" style="transition-delay:.28s">
-                <div class="tl-era">第三代</div>
-                <div class="tl-body"><h4>阿發師 施建發・廚神發揚</h4><p>14 歲入行，歷練多家名廚，24 歲接任行政主廚，擔任李安《飲食男女》廚藝顧問，以「名菜有歷史，好菜唯有創新」為信念，將青青餐廳打造為台灣台菜宴席的重要品牌。</p></div>
-            </div>
-            <div class="tl-item rv" style="transition-delay:.38s">
-                <div class="tl-era">新世代</div>
-                <div class="tl-body"><h4>施捷宜・融合創新</h4><p>阿發師之女施捷宜出國學習法式料理精神，回台後融入台式廚房，推動冷凍料理包等創新業態，讓阿發師的手路菜走進更多家庭。「廚師就是要創造出食材最好的味道。」</p></div>
+            <div class="trinity-content">
+                @Html.Raw(Model.Trinity.Content)
             </div>
         </div>
-    </div>
-</section>
+    </section>
+}
 
-<!-- CTA 預約區塊 -->
+@if (Model.FamilyHeritage != null && !string.IsNullOrEmpty(Model.FamilyHeritage.Content))
+{
+    <!-- §6 三代傳承 -->
+    <section class="s-gen" id="sec-gen">
+        <div class="wrap">
+            <div class="rv"><p class="slabel">FAMILY HERITAGE</p><h2 class="stitle">三代飲食傳承</h2></div>
+            <div class="heritage-content">
+                @Html.Raw(Model.FamilyHeritage.Content)
+            </div>
+        </div>
+    </section>
+}
+
+<!-- CTA 預約區塊（靜態保留，不做綁定） -->
 <section class="booking-section">
     <div class="booking-overlay"></div>
     <div class="booking-content">
@@ -245,11 +142,10 @@
         <p class="booking-address">新北市土城區中央路三段6號 ╱ 捷運板南線永寧站4號出口</p>
         <div class="booking-buttons">
             <a href="tel:0222691127" class="btn-primary">📞 (02) 2269-1127</a>
-            <a href="menu.html" class="btn-secondary">查看菜單 →</a>
+            <a href="@Url.Action("Product", "Home")" class="btn-secondary">查看菜單 →</a>
         </div>
     </div>
 </section>
-
 
 <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">
     <svg viewBox="0 0 24 24"><path d="M12 4L4 12h5v8h6v-8h5z" /></svg>
@@ -257,8 +153,6 @@
 
 @section Scripts {
     <script>
-
-
         // 回到頂部按鈕
         const btt = document.getElementById('btt');
         window.addEventListener('scroll', function () {
@@ -278,8 +172,8 @@
             observer.observe(el);
         });
 
-        // 錨點導航 — 平滑滾動 + 偏移補正
-        const OFFSET = 72 + 44 + 4; // top-nav + anchor-bar + buffer
+        // 錨點導航平滑滾動 + 偏移補正
+        const OFFSET = 72 + 44 + 4;
         document.querySelectorAll('.anc').forEach(function (a) {
             a.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -293,7 +187,7 @@
             });
         });
 
-        // 滾動監聽高亮當前章節
+        // 滾動監聽高亮當前章節（僅針對存在的區塊）
         const sections = ['sec-intro', 'sec-chef', 'sec-cred', 'sec-philo', 'sec-trinity', 'sec-gen'];
         const anchors = document.querySelectorAll('.anc');
         const spy = new IntersectionObserver(function (entries) {

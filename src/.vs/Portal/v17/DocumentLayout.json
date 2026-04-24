@@ -3,60 +3,56 @@
   "WorkspaceRootPath": "F:\\project\\qingqing\\src\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\views\\contact\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\views\\contact\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\areas\\sysmgr\\views\\about\\chefinfo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\areas\\sysmgr\\views\\about\\chefinfo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\areas\\sysmgr\\controllers\\aboutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\areas\\sysmgr\\controllers\\aboutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\views\\media\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\views\\media\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\areas\\sysmgr\\views\\about\\ourstory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\areas\\sysmgr\\views\\about\\ourstory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\views\\about\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\views\\about\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\controllers\\aboutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\controllers\\aboutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\css\\about.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\css\\about.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\areas\\sysmgr\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\areas\\sysmgr\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\areas\\sysmgr\\views\\about\\info.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\areas\\sysmgr\\views\\about\\info.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\controllers\\mediacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\controllers\\mediacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\views\\product\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\views\\product\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\views\\news\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\views\\news\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\css\\media.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\css\\media.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\css\\news.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\css\\news.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\css\\product.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\css\\product.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\css\\index.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\css\\index.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -66,36 +62,97 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Views\\Contact\\Index.cshtml",
-              "RelativeDocumentMoniker": "Portal\\Views\\Contact\\Index.cshtml",
-              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Views\\Contact\\Index.cshtml",
-              "RelativeToolTip": "Portal\\Views\\Contact\\Index.cshtml",
-              "ViewState": "AgIAAJkAAAAAAAAAAAAAAKsAAAAKAAAAAAAAAA==",
+              "Title": "ChefInfo.cshtml",
+              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Areas\\Sysmgr\\Views\\About\\ChefInfo.cshtml",
+              "RelativeDocumentMoniker": "Portal\\Areas\\Sysmgr\\Views\\About\\ChefInfo.cshtml",
+              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Areas\\Sysmgr\\Views\\About\\ChefInfo.cshtml",
+              "RelativeToolTip": "Portal\\Areas\\Sysmgr\\Views\\About\\ChefInfo.cshtml",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAUwFUAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-23T15:28:56.316Z",
+              "WhenOpened": "2026-04-24T03:04:57.939Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Info.cshtml",
+              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Areas\\Sysmgr\\Views\\About\\Info.cshtml",
+              "RelativeDocumentMoniker": "Portal\\Areas\\Sysmgr\\Views\\About\\Info.cshtml",
+              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Areas\\Sysmgr\\Views\\About\\Info.cshtml",
+              "RelativeToolTip": "Portal\\Areas\\Sysmgr\\Views\\About\\Info.cshtml",
+              "ViewState": "AgIAACQAAAAAAAAAAADwvy8AAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-24T02:49:27.088Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "OurStory.cshtml",
+              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Areas\\Sysmgr\\Views\\About\\OurStory.cshtml",
+              "RelativeDocumentMoniker": "Portal\\Areas\\Sysmgr\\Views\\About\\OurStory.cshtml",
+              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Areas\\Sysmgr\\Views\\About\\OurStory.cshtml",
+              "RelativeToolTip": "Portal\\Areas\\Sysmgr\\Views\\About\\OurStory.cshtml",
+              "ViewState": "AgIAACoAAAAAAAAAAAAUwFAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-24T02:49:05.723Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AboutController.cs",
+              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Areas\\Sysmgr\\Controllers\\AboutController.cs",
+              "RelativeDocumentMoniker": "Portal\\Areas\\Sysmgr\\Controllers\\AboutController.cs",
+              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Areas\\Sysmgr\\Controllers\\AboutController.cs",
+              "RelativeToolTip": "Portal\\Areas\\Sysmgr\\Controllers\\AboutController.cs",
+              "ViewState": "AgIAAFMAAAAAAAAAAAAQwHMAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T02:30:27.615Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "about.css",
-              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\css\\about.css",
-              "RelativeDocumentMoniker": "Portal\\css\\about.css",
-              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\css\\about.css",
-              "RelativeToolTip": "Portal\\css\\about.css",
-              "ViewState": "AgIAAMEEAAAAAAAAAAAuwAEFAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-04-23T15:21:56.493Z",
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Areas\\Sysmgr\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Portal\\Areas\\Sysmgr\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Areas\\Sysmgr\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Portal\\Areas\\Sysmgr\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAH4AAAAAAAAAAADwv50AAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-24T02:21:03.692Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MediaController.cs",
+              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Controllers\\MediaController.cs",
+              "RelativeDocumentMoniker": "Portal\\Controllers\\MediaController.cs",
+              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Controllers\\MediaController.cs",
+              "RelativeToolTip": "Portal\\Controllers\\MediaController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvxEAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T02:20:19.175Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AboutController.cs",
+              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Controllers\\AboutController.cs",
+              "RelativeDocumentMoniker": "Portal\\Controllers\\AboutController.cs",
+              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Controllers\\AboutController.cs",
+              "RelativeToolTip": "Portal\\Controllers\\AboutController.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAswBUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T02:15:03.052Z",
               "EditorCaption": ""
             },
             {
@@ -106,152 +163,74 @@
               "RelativeDocumentMoniker": "Portal\\Views\\About\\Index.cshtml",
               "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Views\\About\\Index.cshtml",
               "RelativeToolTip": "Portal\\Views\\About\\Index.cshtml",
-              "ViewState": "AgIAAOAAAAAAAAAAAAAAAPsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAACwAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-23T15:19:31.543Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "media.css",
-              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\css\\media.css",
-              "RelativeDocumentMoniker": "Portal\\css\\media.css",
-              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\css\\media.css",
-              "RelativeToolTip": "Portal\\css\\media.css",
-              "ViewState": "AgIAAK4CAAAAAAAAAAAuwNACAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-04-23T15:16:17.158Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "index.css",
-              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\css\\index.css",
-              "RelativeDocumentMoniker": "Portal\\css\\index.css",
-              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\css\\index.css",
-              "RelativeToolTip": "Portal\\css\\index.css",
-              "ViewState": "AgIAAJsDAAAAAAAAAAAuwMMDAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-04-23T14:48:42.919Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Views\\Media\\Index.cshtml",
-              "RelativeDocumentMoniker": "Portal\\Views\\Media\\Index.cshtml",
-              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Views\\Media\\Index.cshtml",
-              "RelativeToolTip": "Portal\\Views\\Media\\Index.cshtml",
-              "ViewState": "AgIAAKYAAAAAAAAAAAAewK8AAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-23T14:08:06.786Z",
+              "WhenOpened": "2026-04-24T02:08:45.094Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Views\\News\\Index.cshtml",
-              "RelativeDocumentMoniker": "Portal\\Views\\News\\Index.cshtml",
-              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Views\\News\\Index.cshtml",
-              "RelativeToolTip": "Portal\\Views\\News\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAALAAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-23T13:46:18.089Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "news.css",
-              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\css\\news.css",
-              "RelativeDocumentMoniker": "Portal\\css\\news.css",
-              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\css\\news.css",
-              "RelativeToolTip": "Portal\\css\\news.css",
-              "ViewState": "AgIAAHoCAAAAAAAAAAAiwJ4CAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-04-23T13:45:52.997Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "site.css",
-              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\css\\site.css",
-              "RelativeDocumentMoniker": "Portal\\css\\site.css",
-              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\css\\site.css",
-              "RelativeToolTip": "Portal\\css\\site.css",
-              "ViewState": "AgIAAKsAAAAAAAAAAAAuwNYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-04-23T13:31:51.855Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "product.css",
-              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\css\\product.css",
-              "RelativeDocumentMoniker": "Portal\\css\\product.css",
-              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\css\\product.css",
-              "RelativeToolTip": "Portal\\css\\product.css",
-              "ViewState": "AgIAAEUDAAAAAAAAAAAiwGkDAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-04-23T11:20:41.983Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Views\\Product\\Index.cshtml",
-              "RelativeDocumentMoniker": "Portal\\Views\\Product\\Index.cshtml",
-              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Views\\Product\\Index.cshtml",
-              "RelativeToolTip": "Portal\\Views\\Product\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAANsAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-23T11:20:10.38Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
               "Title": "HomeController.cs",
               "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "Portal\\Controllers\\HomeController.cs",
               "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Controllers\\HomeController.cs",
               "RelativeToolTip": "Portal\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAEMAAAAAAAAAAAAmwFMAAAA/AAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAABsAAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-23T08:55:09.653Z",
+              "WhenOpened": "2026-04-24T01:40:24.885Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 11,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "Portal\\Controllers\\ProductController.cs",
+              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "Portal\\Controllers\\ProductController.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAADwvyYAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T01:07:16.663Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Views\\Product\\Index.cshtml",
+              "RelativeDocumentMoniker": "Portal\\Views\\Product\\Index.cshtml",
+              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Views\\Product\\Index.cshtml",
+              "RelativeToolTip": "Portal\\Views\\Product\\Index.cshtml",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAACcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-24T01:06:36.235Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Portal\\Views\\Shared\\_Layout.cshtml",
               "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "Portal\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAACwAAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-23T08:33:35.457Z",
+              "WhenOpened": "2026-04-24T00:44:20.222Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 12,
               "Title": "Index.cshtml",
               "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "Portal\\Views\\Home\\Index.cshtml",
               "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "Portal\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAcBAAAAAAAAAAAewCgBAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAUwG4AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-23T08:17:34.576Z",
+              "WhenOpened": "2026-04-24T00:43:59.271Z",
               "EditorCaption": ""
             }
           ]

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Academy.ViewModels.NewsListViewModel
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "最新消息 - 青青餐廳";
 }
@@ -19,7 +20,7 @@
 </section>
 
 <div class="wrap">
-    <!-- 重點公告橫幅 -->
+    <!-- 重點公告橫幅（静态，可按需保留） -->
     <div class="banner rv">
         <div class="bn-ico">📢</div>
         <div>
@@ -31,115 +32,54 @@
     <!-- 標題與篩選 -->
     <div class="sec-hd rv" style="transition-delay:.1s">
         <div><p class="s-lbl">LATEST NEWS</p><h2 class="s-ttl">最新消息</h2></div>
-        <div class="cnt-badge">共 <strong>6</strong> 則消息</div>
+        <div class="cnt-badge">共 <strong>@Model.TotalCount</strong> 則消息</div>
     </div>
 
+    <!-- 分類篩選按鈕（动态生成） -->
     <div class="filters rv" style="transition-delay:.15s">
         <button class="ftab on" onclick="ft(this,'all')">全部</button>
-        <button class="ftab" onclick="ft(this,'年節公告')">年節公告</button>
-        <button class="ftab" onclick="ft(this,'新品上市')">新品上市</button>
-        <button class="ftab" onclick="ft(this,'活動參與')">活動參與</button>
-        <button class="ftab" onclick="ft(this,'媒體報導')">媒體報導</button>
-        <button class="ftab" onclick="ft(this,'冷凍外帶')">冷凍外帶</button>
+        @if (Model.Categories != null)
+        {
+            foreach (var cat in Model.Categories)
+            {
+                <button class="ftab" onclick="ft(this,'@cat.Tag')">@cat.Name</button>
+            }
+        }
     </div>
 
     <!-- 新聞列表 -->
     <div class="nlist" id="nlist">
-        <article class="ncard rv" style="transition-delay:0.00s" data-tag="年節公告">
-            <div class="nd-col">
-                <div class="nd-box">
-                    <span class="nd-mo">01</span>
-                    <span class="nd-dy">20</span>
-                    <span class="nd-yr">2025</span>
-                </div>
-                <div class="nd-line"></div>
+        @if (Model.NewsList != null && Model.NewsList.Any())
+        {
+            int delay = 0;
+            foreach (var news in Model.NewsList)
+            {
+                <article class="ncard rv" style="transition-delay:@(delay.ToString("0.00"))s" data-tag="@news.CategoryName">
+                    <div class="nd-col">
+                        <div class="nd-box">
+                            <span class="nd-mo">@news.PublishDate.ToString("MM")</span>
+                            <span class="nd-dy">@news.PublishDate.ToString("dd")</span>
+                            <span class="nd-yr">@news.PublishDate.Year</span>
+                        </div>
+                        <div class="nd-line"></div>
+                    </div>
+                    <div class="nb-col">
+                        <span class="ntag @news.TagColorClass">@news.CategoryName</span>
+                        <h3 class="ntitle">@news.Title</h3>
+                        <p class="nbody">@news.Summary</p>
+                       
+                    </div>
+                </article>
+                //delay += 6;
+                //if (delay > 30) delay = 30; // 最大延迟0.30秒
+            }
+        }
+        else
+        {
+            <div class="ncard rv" style="text-align:center; padding: 60px 20px;">
+                <p>目前暫無最新消息，請稍後再訪。</p>
             </div>
-            <div class="nb-col">
-                <span class="ntag t-red">年節公告</span>
-                <h3 class="ntitle">📢 2025 年節訂位公告</h3>
-                <p class="nbody">除夕、初二「中午」已客滿，恕不接受訂位，敬請見諒！初一全日公休。年節期間歡迎提早預約春節各日晚餐場次，名額有限，敬請把握。</p>
-            </div>
-        </article>
-
-        <article class="ncard rv" style="transition-delay:0.06s" data-tag="新品上市">
-            <div class="nd-col">
-                <div class="nd-box">
-                    <span class="nd-mo">12</span>
-                    <span class="nd-dy">01</span>
-                    <span class="nd-yr">2024</span>
-                </div>
-                <div class="nd-line"></div>
-            </div>
-            <div class="nb-col">
-                <span class="ntag t-gold">新品上市</span>
-                <h3 class="ntitle">🍲 阿發師 × 廣達香 聯名佛跳牆 新上市</h3>
-                <p class="nbody">台灣廚神阿發師與廣達香強強聯手，推出限量聯名冷凍佛跳牆，優惠嚐鮮價限時供應。排翅、鮑魚、海參、干貝等十全食材，在家輕鬆復熱即享國宴級美味。</p>
-            </div>
-        </article>
-
-        <article class="ncard rv" style="transition-delay:0.12s" data-tag="活動參與">
-            <div class="nd-col">
-                <div class="nd-box">
-                    <span class="nd-mo">10</span>
-                    <span class="nd-dy">06</span>
-                    <span class="nd-yr">2024</span>
-                </div>
-                <div class="nd-line"></div>
-            </div>
-            <div class="nb-col">
-                <span class="ntag t-green">活動參與</span>
-                <h3 class="ntitle">🏺 2024 鶯歌產地開放日 × 阿發師桌宴「傳家味」</h3>
-                <p class="nbody">青青餐廳受邀參與「2024 鶯歌產地開放日」，阿發師攜女兒施捷宜以鶯歌窯廠家族私房食譜為靈感，策劃限定13道菜桌宴「傳家味」，在陶瓷工廠實景中演繹台菜文化與世代傳承，於10/6–10/22限定登場。</p>
-            </div>
-        </article>
-
-        <article class="ncard rv" style="transition-delay:0.18s" data-tag="活動參與">
-            <div class="nd-col">
-                <div class="nd-box">
-                    <span class="nd-mo">09</span>
-                    <span class="nd-dy">15</span>
-                    <span class="nd-yr">2024</span>
-                </div>
-                <div class="nd-line"></div>
-            </div>
-            <div class="nb-col">
-                <span class="ntag t-blue">活動參與</span>
-                <h3 class="ntitle">🎨 新北台灣設計師展 A8-2「老店新生」</h3>
-                <p class="nbody">阿發師 × 青青餐廳進駐新北台灣設計師展 A8-2 展區，以「老店新生」為題，將近半世紀台菜文化轉化為當代體驗，展期10/6–10/22，歡迎蒞臨。</p>
-            </div>
-        </article>
-
-        <article class="ncard rv" style="transition-delay:0.24s" data-tag="冷凍外帶">
-            <div class="nd-col">
-                <div class="nd-box">
-                    <span class="nd-mo">03</span>
-                    <span class="nd-dy">10</span>
-                    <span class="nd-yr">2024</span>
-                </div>
-                <div class="nd-line"></div>
-            </div>
-            <div class="nb-col">
-                <span class="ntag t-gold">冷凍外帶</span>
-                <h3 class="ntitle">📦 阿發師拿手菜冷凍外帶平台 正式上線</h3>
-                <p class="nbody">無法親臨用餐？阿發師拿手菜系列冷凍外帶平台正式上線！精選招牌手路菜冷凍包裝，全台宅配到府，在家也能品嚐廚神好味道。</p>
-            </div>
-        </article>
-
-        <article class="ncard rv" style="transition-delay:0.30s" data-tag="媒體報導">
-            <div class="nd-col">
-                <div class="nd-box">
-                    <span class="nd-mo">11</span>
-                    <span class="nd-dy">01</span>
-                    <span class="nd-yr">2023</span>
-                </div>
-                <div class="nd-line"></div>
-            </div>
-            <div class="nb-col">
-                <span class="ntag t-ink">媒體報導</span>
-                <h3 class="ntitle">🦐 「呷臺菜」品牌進駐新北美術館鶯歌園區</h3>
-                <p class="nbody">青青餐廳第三代接班，以全新副品牌「呷臺菜」進駐新北市美術館鶯歌園區一樓，除傳統手路菜外更推出創意黃金起司蝦堡與玉兔奶酪，平假日皆有營業。</p>
-            </div>
-        </article>
+        }
     </div>
 </div>
 
@@ -150,7 +90,7 @@
     <p class="cta-address">新北市土城區中央路三段6號 ╱ 週一至日 11:00–14:00 ／ 17:00–21:00</p>
     <div class="cta-buttons">
         <a href="tel:0222691127" class="btn-primary">📞 立即訂位</a>
-        <a href="contact.html" class="btn-secondary">線上預約 →</a>
+        <a href="@Url.Action("Contact", "Home")" class="btn-secondary">線上預約 →</a>
     </div>
 </section>
 
@@ -178,12 +118,12 @@
         }, { threshold: .08 });
         document.querySelectorAll('.rv').forEach(el => observer.observe(el));
 
-        // 分類篩選功能
+        // 分類篩選功能（兼容动态生成的标签）
         window.ft = function (btn, tag) {
             document.querySelectorAll('.ftab').forEach(t => t.classList.remove('on'));
             btn.classList.add('on');
             document.querySelectorAll('.ncard').forEach(card => {
-                const cardTag = card.dataset.tag;
+                const cardTag = card.getAttribute('data-tag');
                 const show = tag === 'all' || cardTag === tag;
                 card.style.display = show ? 'flex' : 'none';
                 if (show) setTimeout(() => card.classList.add('in'), 30);

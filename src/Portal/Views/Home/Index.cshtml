@@ -11,7 +11,7 @@
 <section class="hero" id="hero">
     <div class="hero-bg-layer"></div>
     <div class="hero-overlay"></div>
-    <!-- 装饰 SVG -->
+    <!-- 裝飾 SVG（燈籠＋金框） -->
     <svg class="hero-svg-deco" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
         <rect x="40" y="82" width="3" height="736" fill="rgba(180,20,20,0.55)" />
         <rect x="48" y="82" width="1" height="736" fill="rgba(212,168,67,0.40)" />
@@ -23,7 +23,7 @@
         <rect x="1382" y="82" width="18" height="18" fill="rgba(212,168,67,0.7)" />
         <rect x="40" y="800" width="18" height="18" fill="rgba(212,168,67,0.7)" />
         <rect x="1382" y="800" width="18" height="18" fill="rgba(212,168,67,0.7)" />
-        <!-- 左灯笼 -->
+        <!-- 左燈籠（福） -->
         <g transform="translate(90,100)">
             <line x1="36" y1="0" x2="36" y2="16" stroke="#8B1A1A" stroke-width="2.5" />
             <ellipse cx="36" cy="23" rx="22" ry="10" fill="#C8102E" stroke="#8B1A1A" stroke-width="1.5" />
@@ -40,7 +40,7 @@
             <circle cx="36" cy="154" r="3" fill="#D4A843" />
             <circle cx="48" cy="150" r="3" fill="#D4A843" />
         </g>
-        <!-- 右灯笼 -->
+        <!-- 右燈籠（壽） -->
         <g transform="translate(1296,120)">
             <line x1="36" y1="0" x2="36" y2="16" stroke="#8B1A1A" stroke-width="2.5" />
             <ellipse cx="36" cy="23" rx="22" ry="10" fill="#C8102E" stroke="#8B1A1A" stroke-width="1.5" />
@@ -76,7 +76,10 @@
         </div>
         <h1 class="hero-title">青青餐廳</h1>
         <p class="hero-title-en">Chin Chin Restaurant</p>
-        <p class="hero-tagline">台菜廚神 <em>阿發師</em> 坐鎮 ╱ 新北土城在地 <em>46 年</em><br>新台菜料理 · 千坪庭園宴廳 · 婚宴喜慶首選</p>
+        <p class="hero-tagline">
+            台菜廚神 <em>阿發師</em> 坐鎮 ╱ 新北土城在地 <em>46 年</em><br>
+            新台菜料理 · 千坪庭園宴廳 · 婚宴喜慶首選
+        </p>
         <div class="hero-btns">
             <a href="tel:0222691127" class="btn-red">📞 電話訂位</a>
             <a href="#dishes" class="btn-outline-gold">探索菜色</a>
@@ -89,22 +92,15 @@
     </div>
 </section>
 
-<!-- 關於我們 故事區域 -->
+<!-- 關於我們 故事區域（數據綁定） -->
 <section class="section-pad" id="story" style="background:var(--paper);">
     <div class="story-grid">
-        <div class="story-img-frame">
-            <div class="story-img-box">
-                <img src="" alt="阿發師 施建發 主廚" loading="lazy" />
-            </div>
-            <div class="story-badge">
-                <span class="yr">46</span>
-                <span class="sub">YEARS</span>
-            </div>
-        </div>
-        <div>
-            <div class="tag">關於青青</div>
-            <h2 class="h2">名菜有歷史<br>好菜唯有創新</h2>
-            <div class="gold-rule"><span>◆</span></div>
+        @if (Model.AboutInfo != null && !string.IsNullOrEmpty(Model.AboutInfo.Content))
+        {
+            @Html.Raw(Model.AboutInfo.Content)
+        }
+        else
+        {
             <p class="lead">
                 1977年創立於新北土城，青青餐廳已深根在地近半個世紀。主廚施建發（阿發師）出身餐飲世家，曾擔任李安導演《飲食男女》廚藝技術顧問及手部替身，更獲頒多項國際中餐大師殊榮。
             </p>
@@ -112,13 +108,12 @@
             <p class="lead" style="opacity:.65">
                 餐廳坐擁128桌千坪宴席場地，小橋流水、瀑布庭景，氣派典雅。菜色融合傳統台菜與粵菜、川菜精華，每道佳餚皆以上選食材為本，呈現充滿創意的時尚台菜饗宴。
             </p>
-            <br>
-            <a href="#contact" class="btn-red" style="display:inline-block; margin-top:.8rem;">了解更多 →</a>
-        </div>
+        }
+
     </div>
 </section>
 
-<!-- 招牌料理 -->
+<!-- 招牌料理（完全數據綁定，無 LINQ） -->
 <section class="dishes-section section-pad" id="dishes">
     <div class="dishes-header">
         <div>
@@ -128,46 +123,51 @@
         <a href="#contact" class="btn-outline-gold">查看完整菜單</a>
     </div>
     <div class="dishes-grid">
-        <div class="dish-card tall">
-            <div class="dish-bg dc1"><div class="dish-bg-img"></div><span class="dish-icon">🍲</span></div>
-            <div class="dish-overlay">
-                <div class="dish-tag">鎮店之寶</div>
-                <div class="dish-name">阿發師佛跳牆</div>
-                <div class="dish-desc">集山珍海味、文火慢燉數十小時。每甕僅 450g，$128，台灣飲食傳奇。</div>
-            </div>
-        </div>
-        <div class="dish-card">
-            <div class="dish-bg dc2"><div class="dish-bg-img"></div><span class="dish-icon">🦑</span></div>
-            <div class="dish-overlay">
-                <div class="dish-tag">人氣必點</div>
-                <div class="dish-name">蒜蓉花枝</div>
-                <div class="dish-desc">糖醋紅棗醬汁，外皮香酥、肉質鮮Q，甜鹹交錯令人難忘。</div>
-            </div>
-        </div>
-        <div class="dish-card">
-            <div class="dish-bg dc3"><div class="dish-bg-img"></div><span class="dish-icon">🐟</span></div>
-            <div class="dish-overlay">
-                <div class="dish-tag">台菜精髓</div>
-                <div class="dish-name">清蒸海魚</div>
-                <div class="dish-desc">每日進鮮、薑絲蔥絲淋熱油，不腥不膩，鮮甜怡人。</div>
-            </div>
-        </div>
-        <div class="dish-card">
-            <div class="dish-bg dc4"><div class="dish-bg-img"></div><span class="dish-icon">🍖</span></div>
-            <div class="dish-overlay">
-                <div class="dish-tag">家傳料理</div>
-                <div class="dish-name">紅燒獅子頭</div>
-                <div class="dish-desc">黑豬肉手工捏製，文火慢燉入味，肉汁四溢，$188 超值。</div>
-            </div>
-        </div>
-        <div class="dish-card">
-            <div class="dish-bg dc5"><div class="dish-bg-img"></div><span class="dish-icon">🍚</span></div>
-            <div class="dish-overlay">
-                <div class="dish-tag">招牌小食</div>
-                <div class="dish-name">櫻花蝦米糕</div>
-                <div class="dish-desc">油蔥酥與蝦米鑲嵌，口感紮實彈Q，步步高升象徵，$88 超值。</div>
-            </div>
-        </div>
+        @{
+            // 檢查是否有菜品資料
+            bool hasDishes = Model.SignatureDishes != null && Model.SignatureDishes.Count > 0;
+            if (hasDishes)
+            {
+                // 第一個菜品作為大卡片（tall）
+                var firstDish = Model.SignatureDishes[0];
+                <div class="dish-card tall">
+                    <div class="dish-bg">
+                        <div class="dish-bg-img" style="background-image:url('@firstDish.ImageUrl');"></div>
+                        <span class="dish-icon">🍽️</span>
+                    </div>
+                    <div class="dish-overlay">
+                        <div class="dish-tag">@firstDish.Lable</div>
+                        <div class="dish-name">@firstDish.Title</div>
+                        <div class="dish-desc">@firstDish.Summary</div>
+                    </div>
+                </div>
+
+                // 其餘菜品（從索引 1 開始）
+                for (int i = 1; i < Model.SignatureDishes.Count; i++)
+                {
+                    var dish = Model.SignatureDishes[i];
+                    <div class="dish-card">
+                        <div class="dish-bg">
+                            <div class="dish-bg-img" style="background-image:url('@dish.ImageUrl');"></div>
+                            <span class="dish-icon">🍽️</span>
+                        </div>
+                        <div class="dish-overlay">
+                            <div class="dish-tag">@dish.Lable</div>
+                            <div class="dish-name">@dish.Title</div>
+                            <div class="dish-desc">@dish.Summary</div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <!-- 無資料時顯示佔位卡片 -->
+                <div class="dish-card tall">
+                    <div class="dish-bg"><div class="dish-bg-img" style="background-image:url('https://picsum.photos/id/127/400/500');"></div><span class="dish-icon">🍲</span></div>
+                    <div class="dish-overlay"><div class="dish-name">敬請期待</div><div class="dish-desc">即將推出更多主廚推薦</div></div>
+                </div>
+            }
+        }
     </div>
 </section>
 
@@ -184,77 +184,90 @@
     </div>
 </div>
 
-<!-- 最新消息 -->
+<!-- 最新消息（無 LINQ） -->
 <section class="section-pad" id="news" style="background:var(--cream);">
     <div style="max-width:1200px;margin:0 auto;">
         <div class="tag">最新消息</div>
         <h2 class="h2">活動與公告</h2>
         <div class="news-grid">
-            <div class="news-card">
-                <div class="news-date"><span class="news-month">FEB</span><span class="news-day">14</span><span class="news-year">2025</span></div>
-                <div class="news-body">
-                    <div class="news-tag-label">春節優惠</div>
-                    <h3 class="news-title">龍年尾牙春酒菜單正式推出</h3>
-                    <p class="news-excerpt">阿發師精心規劃多款尾牙套餐，10桌以上享早鳥優惠。特別加碼佛跳牆免費升級，席間備有精彩摸彩活動。</p>
-                    <a href="tel:0222691127" class="news-more">立即詢問 →</a>
-                </div>
-            </div>
-            <div class="news-card">
-                <div class="news-date"><span class="news-month">JAN</span><span class="news-day">08</span><span class="news-year">2025</span></div>
-                <div class="news-body">
-                    <div class="news-tag-label">年菜預購</div>
-                    <h3 class="news-title">2025年菜開放預訂｜農曆年前截止</h3>
-                    <p class="news-excerpt">青青佛跳牆、一品佛跳牆、櫻花蝦米糕、黑豬肉燥等年菜禮盒限量預訂中，送禮自用兩相宜。</p>
-                    <a href="tel:0222691127" class="news-more">立即預訂 →</a>
-                </div>
-            </div>
-            <div class="news-card">
-                <div class="news-date"><span class="news-month">DEC</span><span class="news-day">20</span><span class="news-year">2024</span></div>
-                <div class="news-body">
-                    <div class="news-tag-label">媒體報導</div>
-                    <h3 class="news-title">阿發師受邀台灣設計展「老店新生」特展</h3>
-                    <p class="news-excerpt">青青餐廳受邀參加新北台灣設計師展 A8-2「老店新生」單元，以品牌故事與創意台菜展現傳統與創新的融合。</p>
-                    <a href="@Url.Action("Index", "Media")" class="news-more">觀看影片 →</a>
-                </div>
-            </div>
-            <div class="news-card">
-                <div class="news-date"><span class="news-month">NOV</span><span class="news-day">01</span><span class="news-year">2024</span></div>
-                <div class="news-body">
-                    <div class="news-tag-label">喜宴預訂</div>
-                    <h3 class="news-title">2025婚宴場次開放預約</h3>
-                    <p class="news-excerpt">千坪庭園宴席場地最多可容納128桌，附三套光音響放映設備，預約2025春季婚宴享早鳥優惠專案。</p>
-                    <a href="tel:0222691127" class="news-more">詢問婚宴 →</a>
-                </div>
-            </div>
+            @{
+                bool hasNews = Model.NewsList != null && Model.NewsList.Count > 0;
+                if (hasNews)
+                {
+                    for (int i = 0; i < Model.NewsList.Count; i++)
+                    {
+                        var news = Model.NewsList[i];
+                        <div class="news-card">
+                            <div class="news-date">
+                                <span class="news-month">@news.PublishDate.ToString("MMM").ToUpper()</span>
+                                <span class="news-day">@news.PublishDate.Day</span>
+                                <span class="news-year">@news.PublishDate.Year</span>
+                            </div>
+                            <div class="news-body">
+                                <div class="news-tag-label">@(!string.IsNullOrEmpty(news.Category) ? news.Category : "最新消息")</div>
+                                <h3 class="news-title">@news.Title</h3>
+                                <p class="news-excerpt">@news.Summary</p>
+                                <a href="@news.LinkUrl" class="news-more">了解更多 →</a>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="news-card"><div class="news-body"><p class="news-excerpt">暫無最新消息，敬請期待</p></div></div>
+                }
+            }
         </div>
     </div>
 </section>
 
-<!-- 影音專區 -->
+<!-- 影音專區（無 LINQ） -->
 <section class="section-pad" id="youtube" style="background:var(--ink);">
     <div style="max-width:1200px;margin:0 auto;">
         <div class="tag" style="color:var(--gold);">影音專區</div>
         <h2 class="h2" style="color:#fff;margin-bottom:.5rem;">阿發師上菜</h2>
         <p style="color:rgba(255,255,255,.6);font-size:.9rem;margin-bottom:2.5rem;letter-spacing:.05em;">精彩料理示範 · 媒體採訪 · 廚神故事</p>
         <div class="youtube-grid">
-            <div class="yt-card">
-                <div class="yt-thumb"><iframe src="" title="阿發師示範台菜料理" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-                <div class="yt-info"><div class="yt-tag">料理示範</div><h3 class="yt-title">阿發師親授｜招牌佛跳牆製作秘訣</h3><p class="yt-desc">台灣廚神親自示範46年不變的鎮店之寶，揭秘文火慢燉的關鍵工序。</p></div>
-            </div>
-            <div class="yt-card">
-                <div class="yt-thumb"><iframe src="" title="青青餐廳介紹" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-                <div class="yt-info"><div class="yt-tag">媒體採訪</div><h3 class="yt-title">台灣呷透透｜金牌主廚阿發師專訪</h3><p class="yt-desc">電視節目專訪，阿發師談《飲食男女》幕後故事，以及台菜創新的堅持。</p></div>
-            </div>
-            <div class="yt-card">
-                <div class="yt-thumb"><iframe src="" title="青青餐廳廚神故事" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-                <div class="yt-info"><div class="yt-tag">品牌故事</div><h3 class="yt-title">四代廚藝傳承｜青青餐廳的台灣味</h3><p class="yt-desc">從鹿港扁擔小吃到土城千坪宴席，施家四代的廚藝傳承與台灣飲食文化縮影。</p></div>
-            </div>
+            @{
+                bool hasVideos = Model.VideoList != null && Model.VideoList.Count > 0;
+                if (hasVideos)
+                {
+                    for (int i = 0; i < Model.VideoList.Count; i++)
+                    {
+                        var video = Model.VideoList[i];
+                        <div class="yt-card">
+                            <div class="yt-thumb">
+                                @if (!string.IsNullOrEmpty(video.VideoUrl))
+                                {
+                                    <iframe src="@video.VideoUrl" title="@video.Title" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                                }
+                                else if (!string.IsNullOrEmpty(video.ImageUrl))
+                                {
+                                    <div style="position:absolute; inset:0; background-image:url('@video.ImageUrl'); background-size:cover; background-position:center;"></div>
+                                }
+                                else
+                                {
+                                    <div style="position:absolute; inset:0; background:#2a2a2a; display:flex; align-items:center; justify-content:center; color:#888;">預覽圖</div>
+                                }
+                            </div>
+                            <div class="yt-info">
+                                <div class="yt-tag">@(!string.IsNullOrEmpty(video.Category) ? video.Category : "影音分享")</div>
+                                <h3 class="yt-title">@video.Title</h3>
+                                <p class="yt-desc">@video.Summary</p>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="yt-card"><div class="yt-info"><p class="yt-desc">精采影片即將上線</p></div></div>
+                }
+            }
         </div>
-        <p style="text-align:center;margin-top:2rem;color:rgba(255,255,255,.4);font-size:.78rem;letter-spacing:.1em;">※ 實際影片連結請置換為正確網址</p>
     </div>
 </section>
 
-<!-- 服務項目 -->
+<!-- 服務項目（靜態） -->
 <section class="section-pad" id="services" style="background:var(--paper);">
     <div style="max-width:1200px; margin:0 auto;">
         <div class="tag">服務項目</div>
@@ -277,11 +290,11 @@
             <div class="c-item"><div class="c-icon">📍</div><div><div class="c-label">地址</div><div class="c-text">新北市土城區中央路三段6號<br><small style="opacity:.6">板南線永寧站4號出口，步行約350公尺</small></div></div></div>
             <div class="c-item"><div class="c-icon">📞</div><div><div class="c-label">訂位電話</div><div class="c-text"><a href="tel:0222691127">02-2269-1127</a><br><a href="tel:0222696430">02-2269-6430</a></div></div></div>
             <div class="c-item"><div class="c-icon">🕐</div><div><div class="c-label">營業時間</div><div class="c-text">每日 11:00 — 22:00</div></div></div>
-            <div class="c-item"><div class="c-icon">✉️</div><div><div class="c-label">電子信箱</div><div class="c-text"><a href="/cdn-cgi/l/email-protection#aecbd8cbdcc9dccbcbc0979997eec9c3cfc7c280cdc1c3"><span class="__cf_email__" data-cfemail="6a0f1c0f180d180f0f04535d532a0d070b030644090507">[email&#160;protected]</span></a></div></div></div>
+            <div class="c-item"><div class="c-icon">✉️</div><div><div class="c-label">電子信箱</div><div class="c-text"><a href="/cdn-cgi/l/email-protection#2a4f5c4f584d584f4f4407010f6a4d474b434604494547"><span class="__cf_email__" data-cfemail="5a3f2c3f283d283f3f3467606e1a3d373b333674393537">[email&#160;protected]</span></a></div></div></div>
         </div>
     </div>
     <div class="map-box">
-        <iframe src="" style="border:0;width:100%;height:100%;min-height:420px;display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="青青餐廳地圖位置"></iframe>
+        <iframe src="https://maps.google.com/maps?q=新北市土城區中央路三段6號+青青餐廳&t=&z=16&ie=UTF8&iwloc=&output=embed" style="border:0;width:100%;height:100%;min-height:420px;display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="青青餐廳地圖位置"></iframe>
     </div>
 </div>
 
@@ -301,7 +314,7 @@
 
 @section Scripts {
     <script>
-        // 英雄区背景图 fallback（首页特有，可選）
+        // 英雄區背景圖隨機載入
         (function () {
             var bgLayer = document.querySelector('.hero-bg-layer');
             if (!bgLayer) return;
@@ -320,7 +333,7 @@
             tryLoad(urls[idx]);
         })();
 
-        // 首页滚动动画（服务卡片等）
+        // 滾動動畫：服務卡片、故事區塊
         var observer = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
@@ -336,5 +349,25 @@
             el.style.transition = 'opacity .75s ease, transform .75s ease';
             observer.observe(el);
         });
+
+        // 回到頂部功能
+        var topBtn = document.getElementById('backToTop');
+        if (topBtn) {
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 600) {
+                    topBtn.style.opacity = '1';
+                    topBtn.style.pointerEvents = 'auto';
+                } else {
+                    topBtn.style.opacity = '0';
+                    topBtn.style.pointerEvents = 'none';
+                }
+            });
+            topBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            topBtn.style.opacity = '0';
+            topBtn.style.pointerEvents = 'none';
+        }
     </script>
 }

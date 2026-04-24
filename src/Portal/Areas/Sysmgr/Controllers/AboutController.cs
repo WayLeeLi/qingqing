@@ -24,7 +24,7 @@ namespace Academy.Areas.Sysmgr.Controllers
             {
                 DictSet model = new DictSet();
                 model.Code = "AboutInfo";
-                model.Name = "協會簡介";
+                model.Name = "關於青青";
                 model.Value = "";
                 db.DictSets.Add(model);
                 db.SaveChanges();
@@ -60,6 +60,52 @@ namespace Academy.Areas.Sysmgr.Controllers
             }
         }
 
+        /// <summary>
+        /// 餐廳介紹
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult OurStory()
+        {
+            if (!db.DictSets.Any(a => a.Code == "OurStory"))
+            {
+                DictSet model = new DictSet();
+                model.Code = "OurStory";
+                model.Name = "餐廳介紹";
+                model.Value = "";
+                db.DictSets.Add(model);
+                db.SaveChanges();
+            }
+
+            ViewBag.Dict = db.DictSets.ToDictionary(k => k.Code, v => v.Value);
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult OurStory(FormCollection collection)
+        {
+            if (ModelState.IsValid)
+            {
+                var list = db.DictSets;
+                foreach (var item in list)
+                {
+                    string val = collection.Get(item.Code);
+                    if (val != null)
+                    {
+                        item.Value = val;
+                    }
+                }
+                db.SaveChanges();
+
+                return Json(new { success = true });
+            }
+            else
+            {
+                return Json(new { success = false, msg = "保存失敗，請重試！" });
+            }
+        }
+
 
         /// <summary>
         /// 主廚介紹
@@ -71,7 +117,7 @@ namespace Academy.Areas.Sysmgr.Controllers
             {
                 DictSet model = new DictSet();
                 model.Code = "AboutChef";
-                model.Name = "理事長的話";
+                model.Name = "主廚介紹";
                 model.Value = "";
                 db.DictSets.Add(model);
                 db.SaveChanges();
@@ -108,7 +154,7 @@ namespace Academy.Areas.Sysmgr.Controllers
         }
 
         /// <summary>
-        /// 組織成員
+        /// 學歷榮耀
         /// </summary>
         /// <returns></returns>
         public ActionResult AcademicHonors()
@@ -117,7 +163,7 @@ namespace Academy.Areas.Sysmgr.Controllers
             {
                 DictSet model = new DictSet();
                 model.Code = "AboutAcademicHonors";
-                model.Name = "組織成員";
+                model.Name = "學歷榮耀";
                 model.Value = "";
                 db.DictSets.Add(model);
                 db.SaveChanges();

@@ -15,8 +15,8 @@
             $('form').ajaxForm({
                 beforeSubmit: function (formData, form, options) {
                     for (var i = 0; i < formData.length; i++) {
-                        if (formData[i].name == "AboutChairman") {
-                            formData[i].value = CKEDITOR.instances.AboutChairman.getData();
+                        if (formData[i].name == "AboutChef") {
+                            formData[i].value = CKEDITOR.instances.AboutChef.getData();
                         }
                     }
                     layer.load(1, { shade: [0.1, '#fff'] });
@@ -59,7 +59,7 @@
         <section class="detailGroup">
             <h3>請編輯內容</h3>
             <div>
-                <textarea name="AboutChairman" style="width: 100%; height: 400px;">@ViewBag.Dict["AboutChairman"]</textarea>
+                <textarea name="AboutChef" style="width: 100%; height: 400px;">@ViewBag.Dict["AboutChef"]</textarea>
             </div>
         </section>
 
@@ -83,7 +83,7 @@
     if (typeof CKEDITOR == 'undefined') {
         document.write('Download CKEditor false.');
     } else {
-        var editorContent = CKEDITOR.replace('AboutChairman');
+        var editorContent = CKEDITOR.replace('AboutChef');
         editorContent.config.width = '100%';
         editorContent.config.height = 400;
         CKFinder.setupCKEditor(editorContent, '/Scripts/ckfinder/');

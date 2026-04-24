@@ -53,7 +53,7 @@ namespace Academy.Controllers
                               };
             model.SignatureDishes = dishesQuery.Take(10).ToList();
 
-            // 3. 活動與公告 (Menu == 5) 关联 Category
+            // 3. 活動與公告 (Menu == 4) 关联 Category
             // 注意：此处不能直接在 LINQ 中使用 Url.Action，需要先查询到内存再赋值
             var newsQuery = from n in db.Newss
                             join c in db.Categories on n.CataID equals c.Id
@@ -78,7 +78,7 @@ namespace Academy.Controllers
             }
             model.NewsList = newsList;
 
-            // 4. 影音專區 (Menu == 6) 关联 Category
+            // 4. 影音專區 (Menu == 5) 关联 Category
             var videoQuery = from n in db.Newss
                              join c in db.Categories on n.CataID equals c.Id
                              where n.Status == 1 && n.Menu == 5 && c.Status == 1

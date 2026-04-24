@@ -1,148 +1,125 @@
-﻿using System;
+﻿using Academy.Common;
+using Academy.Models;
+using Academy.ViewModels;
+using Newtonsoft.Json;
+using PagedList;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using PagedList;
-using Academy.Models;
-using System.Data;
-using Academy.Common;
-using System.IO;
-using System.Text;
 
 namespace Academy.Controllers
 {
     public class AboutController : WebController
     {
-        /// <summary>
-        /// 公司简介 - 默认显示关于我们
-        /// </summary>
         public ActionResult Index()
         {
-            ViewBag.CategoryList = db.Categories
-                .Where(c => c.Menu == 3 && c.ParentId != null && c.Status == 1)
-                .OrderBy(c => c.SortOrder)
-                .ToList();
+            var model = new AboutViewModel();
 
-            var model = db.DictSets.FirstOrDefault(a => a.Code == "AboutInfo");
-            return View(model);
-        }
-
-        /// <summary>
-        /// 關於智匯創新
-        /// </summary>
-        public ActionResult Info()
-        {
-            ViewBag.CategoryList = db.Categories
-                .Where(c => c.Menu == 3 && c.ParentId == null && c.Status == 1)
-                .OrderBy(c => c.SortOrder)
-                .ToList();
-            var model = db.DictSets.FirstOrDefault(a => a.Code == "AboutInfo");
-            return View(model);
-        }
-
-        /// <summary>
-        /// 公司使命
-        /// </summary>
-        public ActionResult Chairman()
-        {
-            ViewBag.CategoryList = db.Categories
-                .Where(c => c.Menu == 3 && c.ParentId != null && c.Status == 1)
-                .OrderBy(c => c.SortOrder)
-                .ToList();
-            var model = db.DictSets.FirstOrDefault(a => a.Code == "AboutChairman");
-            return View(model);
-        }
-
-        /// <summary>
-        /// 核心價值
-        /// </summary>
-        public ActionResult Member()
-        {
-            ViewBag.CategoryList = db.Categories
-                .Where(c => c.Menu == 3 && c.ParentId != null && c.Status == 1)
-                .OrderBy(c => c.SortOrder)
-                .ToList();
-            var model = db.DictSets.FirstOrDefault(a => a.Code == "AboutMember");
-            return View(model);
-        }
-
-        /// <summary>
-        /// 協會章程
-        /// </summary>
-        public ActionResult Constitution()
-        {
-            var model = db.DictSets.FirstOrDefault(a => a.Code == "AboutConstitution");
-            return View(model);
-        }
-
-        /// <summary>
-        /// 年度行事曆
-        /// </summary>
-        public ActionResult Calendar()
-        {
-            var model = db.DictSets.FirstOrDefault(a => a.Code == "AboutCalendar");
-            return View(model);
-        }
-
-        /// <summary>
-        /// 相關連結
-        /// </summary>
-        public ActionResult Link()
-        {
-            var model = db.DictSets.FirstOrDefault(a => a.Code == "SettingLink");
-            return View(model);
-        }
-
-        /// <summary>
-        /// 聯絡我們
-        /// </summary>
-        public ActionResult Contact()
-        {
-            var model = db.DictSets.FirstOrDefault(a => a.Code == "SettingContact");
-            return View(model);
-        }
-
-        /// <summary>
-        /// 檔案下載
-        /// </summary>
-        public ActionResult Download()
-        {
-            var model = db.DictSets.FirstOrDefault(a => a.Code == "SettingDownload");
-            return View(model);
-        }
-        [HttpPost]
-        public JsonResult PostMsg(FormCollection form)
-        {
-            try
+            // 1. 餐廳介紹
+            var aboutIntro = db.DictSets.FirstOrDefault(d => d.Code == "OurStory");
+            if (aboutIntro != null)
             {
-                string userName = form["UserName"];
-                string companyName = form["CompanyName"];
-                string tel = form["Tel"];
-                string mail = form["Mail"];
-                string category = form["CategoryName"];
-                string content = form["Content"];
-
-                // 必填项验证
-                if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(tel) ||
-                    string.IsNullOrWhiteSpace(mail) || string.IsNullOrWhiteSpace(content))
+                model.AboutIntro = new ContentItem
                 {
-                    return Json(new { success = false, msg = "請填寫所有必填欄位！" });
-                }
-
-                // 邮箱格式验证
-                if (!System.Text.RegularExpressions.Regex.IsMatch(mail, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"))
-                {
-                    return Json(new { success = false, msg = "請輸入有效的電子信箱！" });
-                }
-
-                // TODO: 保存数据或发送邮件
-
-                return Json(new { success = true, msg = "發送成功！" });
+                    Title = aboutIntro.Name,
+                    Content = aboutIntro.Value
+                };
             }
-            catch (Exception ex)
+
+            // 2. 主廚介紹
+            var chefIntro = db.DictSets.FirstOrDefault(d => d.Code == "AboutChef");
+            if (chefIntro != null)
             {
-                return Json(new { success = false, msg = "系統錯誤：" + ex.Message });
+                model.ChefIntro = new ContentItem
+                {
+                    Title = chefIntro.Name,
+                    Content = chefIntro.Value
+                };
+            }
+
+            // 3. 學經歷榮耀
+            var credentials = db.DictSets.FirstOrDefault(d => d.Code == "AboutAcademicHonors");
+            if (credentials != null)
+            {
+                model.ChefCredentials = new ContentItem
+                {
+                    Title = credentials.Name,
+                    Content = credentials.Value
+                };
+            }
+
+            // 4. 廚藝哲學
+            var philosophy = db.DictSets.FirstOrDefault(d => d.Code == "AboutPhilosophyCooking");
+            if (philosophy != null)
+            {
+                model.ChefPhilosophy = new ContentItem
+                {
+                    Title = philosophy.Name,
+                    Content = philosophy.Value
+                };
+            }
+
+            // 5. 台菜三寶
+            var trinity = db.DictSets.FirstOrDefault(d => d.Code == "AboutTaiwaneseTrio");
+            if (trinity != null)
+            {
+                model.Trinity = new ContentItem
+                {
+                    Title = trinity.Name,
+                    Content = trinity.Value
+                };
+            }
+
+            // 6. 三代傳承
+            var heritage = db.DictSets.FirstOrDefault(d => d.Code == "AboutTriLegacy");
+            if (heritage != null)
+            {
+                model.FamilyHeritage = new ContentItem
+                {
+                    Title = heritage.Name,
+                    Content = heritage.Value
+                };
+            }
+
+            // 7. 統計數據（可選，儲存為 JSON 字串）
+            var statsData = db.DictSets.FirstOrDefault(d => d.Code == "AboutStats");
+            if (statsData != null && !string.IsNullOrEmpty(statsData.Value))
+            {
+                try
+                {
+                    model.Stats = JsonConvert.DeserializeObject<List<StatItem>>(statsData.Value);
+                }
+                catch { /* 忽略解析錯誤 */ }
+            }
+            return View(model);
+        }
+        private string GenerateDomId(string catName)
+        {
+            if (string.IsNullOrEmpty(catName))
+                return "";
+
+            // 传统 switch 语句（兼容 C# 7.3 及更早）
+            switch (catName)
+            {
+                case "餐廳介紹":
+                    return "sec-intro";
+                case "主廚介紹":
+                    return "sec-chef";
+                case "學歷榮耀":
+                    return "sec-cred";
+                case "廚藝哲學":
+                    return "sec-philo";
+                case "台菜三寶":
+                    return "sec-trinity";
+                case "三代傳承":
+                    return "sec-gen";
+                default:
+                    return "sec-" + catName.Replace(" ", "").ToLower();
             }
         }
     }
