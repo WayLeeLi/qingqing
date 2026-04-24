@@ -3,7 +3,7 @@
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>F:\mine\qingqing</_PublishTargetUrl>
-    <History>True|2026-04-24T06:26:37.2674868Z||;True|2026-04-24T11:33:49.1968994+08:00||;</History>
+    <History>True|2026-04-24T12:41:13.0018028Z||;True|2026-04-24T14:26:37.2674868+08:00||;True|2026-04-24T11:33:49.1968994+08:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -62,16 +62,16 @@
       <publishTime>04/09/2026 09:56:46</publishTime>
     </File>
     <File Include="Areas/Sysmgr/Views/Category/Create.cshtml">
-      <publishTime>04/09/2026 09:56:46</publishTime>
+      <publishTime>04/24/2026 20:10:10</publishTime>
     </File>
     <File Include="Areas/Sysmgr/Views/Category/Edit.cshtml">
-      <publishTime>04/09/2026 09:56:46</publishTime>
+      <publishTime>04/24/2026 20:10:47</publishTime>
     </File>
     <File Include="Areas/Sysmgr/Views/Category/Index.cshtml">
       <publishTime>04/09/2026 09:56:46</publishTime>
     </File>
     <File Include="Areas/Sysmgr/Views/ContactConfig/Edit.cshtml">
-      <publishTime>04/24/2026 13:49:09</publishTime>
+      <publishTime>04/24/2026 20:32:08</publishTime>
     </File>
     <File Include="Areas/Sysmgr/Views/Main/Index.cshtml">
       <publishTime>04/09/2026 09:56:46</publishTime>
@@ -167,10 +167,10 @@
       <publishTime>04/09/2026 09:56:46</publishTime>
     </File>
     <File Include="bin/Academy.dll">
-      <publishTime>04/24/2026 14:26:32</publishTime>
+      <publishTime>04/24/2026 20:41:04</publishTime>
     </File>
     <File Include="bin/Academy.pdb">
-      <publishTime>04/24/2026 14:26:32</publishTime>
+      <publishTime>04/24/2026 20:41:04</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>04/09/2026 09:56:51</publishTime>
@@ -3803,13 +3803,13 @@
       <publishTime>04/22/2026 23:04:20</publishTime>
     </File>
     <File Include="Views/Contact/Index.cshtml">
-      <publishTime>04/24/2026 14:16:46</publishTime>
+      <publishTime>04/24/2026 20:37:21</publishTime>
     </File>
     <File Include="Views/Home/Index-bk.cshtml">
       <publishTime>04/22/2026 23:04:20</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>04/24/2026 09:05:26</publishTime>
+      <publishTime>04/24/2026 20:35:37</publishTime>
     </File>
     <File Include="Views/Home/Result.cshtml">
       <publishTime>04/09/2026 09:56:49</publishTime>

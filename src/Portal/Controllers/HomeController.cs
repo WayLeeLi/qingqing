@@ -96,6 +96,12 @@ namespace Academy.Controllers
                              };
             model.VideoList = videoQuery.Take(6).ToList();
 
+            ViewBag.Address = GetDictValue("Contact_Address");
+            ViewBag.Phone = GetDictValue("Contact_Phone");
+            ViewBag.Email = GetDictValue("Contact_Email");
+            ViewBag.BusinessHours = GetDictValue("Contact_BusinessHours");
+            ViewBag.MapUrl = GetDictValue("Contact_MapUrl");
+
             return View(model);
         }
 
@@ -242,6 +248,12 @@ namespace Academy.Controllers
             {
                 return Json(new { success = true, msg = "提交失敗，請稍後再試！" });
             }
+        }
+
+        private string GetDictValue(string code)
+        {
+            var dict = db.DictSets.FirstOrDefault(d => d.Code == code);
+            return dict?.Value ?? "";
         }
     }
 }

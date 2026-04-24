@@ -98,14 +98,42 @@ namespace Academy.Areas.Sysmgr.Controllers
         // POST: Category/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CategoryViewModel viewModel, string menu = "")
+        public ActionResult Create(CategoryViewModel viewModel, string menu = "", HttpPostedFileBase iconFile = null)
         {
             if (ModelState.IsValid)
             {
                 var category = viewModel.Category;
                 category.CreateTime = DateTime.Now;
                 category.Menu = string.IsNullOrEmpty(menu) ? 0 : int.Parse(menu);
-                // 设置层级和路径
+
+                // ========= 新增：处理图标上传 =========
+                if (iconFile != null && iconFile.ContentLength > 0)
+                {
+                    string extension = System.IO.Path.GetExtension(iconFile.FileName).ToLower();
+                    if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".gif")
+                    {
+                        string uploadDir = Server.MapPath("~/Uploads/CategoryIcons/");
+                        if (!System.IO.Directory.Exists(uploadDir))
+                            System.IO.Directory.CreateDirectory(uploadDir);
+
+                        string fileName = Guid.NewGuid().ToString() + extension;
+                        string filePath = System.IO.Path.Combine(uploadDir, fileName);
+                        iconFile.SaveAs(filePath);
+                        category.Icon = "/Uploads/CategoryIcons/" + fileName;
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "僅支援 JPG、PNG、GIF 格式的圖片");
+                        // 重新加载下拉列表后返回视图
+                        var categories = db.Categories.Where(c => c.Menu == category.Menu).OrderBy(c => c.Path).ToList();
+                        viewModel.ParentCategories = GetParentCategoryList(categories, viewModel.Category.ParentId);
+                        ViewBag.Menu = menu;
+                        return View(viewModel);
+                    }
+                }
+                // ==================================
+
+                // 设置层级和路径（原有逻辑）
                 if (!category.ParentId.HasValue)
                 {
                     category.Level = 0;
@@ -130,27 +158,19 @@ namespace Academy.Areas.Sysmgr.Controllers
 
                 TempData["Success"] = "類別新增成功！";
 
-                // 重定向到列表頁，並帶上 menu 參數（如果存在）
                 if (!string.IsNullOrEmpty(menu))
-                {
                     return RedirectToAction("Index", new { sub = 2, menu = menu });
-                }
                 else
-                {
                     return RedirectToAction("Index", new { parentId = category.ParentId });
-                }
             }
 
-            // 如果验证失败，重新加载父级类别列表
-            var categories = db.Categories
+            // 验证失败时重新加载父级类别列表
+            var allCategories = db.Categories
+                .Where(c => c.Menu == (string.IsNullOrEmpty(menu) ? 0 : int.Parse(menu)))
                 .OrderBy(c => c.Path)
                 .ToList();
-
-            viewModel.ParentCategories = GetParentCategoryList(categories, viewModel.Category.ParentId);
-
-            // 保持 menu 参数以便再次提交
+            viewModel.ParentCategories = GetParentCategoryList(allCategories, viewModel.Category.ParentId);
             ViewBag.Menu = menu;
-
             return View(viewModel);
         }
 
@@ -182,93 +202,129 @@ namespace Academy.Areas.Sysmgr.Controllers
             return View(viewModel);
         }
 
-        // GET: Category/Edit/5
+        // POST: Category/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(CategoryViewModel viewModel, string menu = "")
+        public ActionResult Edit(CategoryViewModel viewModel, string menu = "", HttpPostedFileBase iconFile = null, bool? deleteIcon = false)
         {
             if (ModelState.IsValid)
             {
                 var category = viewModel.Category;
                 category.Menu = string.IsNullOrEmpty(menu) ? 0 : int.Parse(menu);
+
                 // 检查是否形成循环引用
                 if (IsCircularReference(category.Id, category.ParentId))
                 {
                     ModelState.AddModelError("Category.ParentId", "不能選擇自己的子類別作為父級");
-
-                    var categories = db.Categories
-                        .Where(c => c.Id != category.Id)
-                        .OrderBy(c => c.Path)
-                        .ToList();
-
+                    var categories = db.Categories.Where(c => c.Id != category.Id).OrderBy(c => c.Path).ToList();
                     viewModel.ParentCategories = GetParentCategoryList(categories, category.ParentId);
-
-                    // 保持 menu 参数以便再次提交
                     ViewBag.Menu = menu;
                     return View(viewModel);
                 }
 
-                // 获取原始类别信息
-                var originalCategory = db.Categories.AsNoTracking()
-                    .FirstOrDefault(c => c.Id == category.Id);
-
-                if (originalCategory != null)
+                // 获取原始类别信息（用于路径更新和图标处理）
+                var originalCategory = db.Categories.AsNoTracking().FirstOrDefault(c => c.Id == category.Id);
+                if (originalCategory == null)
                 {
-                    // 如果父级改变了，需要更新路径
-                    if (originalCategory.ParentId != category.ParentId)
+                    return HttpNotFound();
+                }
+
+                // ========= 处理图标（修正版） =========
+                // 1. 优先处理上传新图片
+                if (iconFile != null && iconFile.ContentLength > 0)
+                {
+                    string ext = System.IO.Path.GetExtension(iconFile.FileName).ToLower();
+                    if (ext == ".jpg" || ext == ".jpeg" || ext == ".png" || ext == ".gif")
                     {
-                        if (!category.ParentId.HasValue)
+                        // 删除旧图标文件（若存在）
+                        if (!string.IsNullOrEmpty(originalCategory.Icon))
                         {
-                            category.Level = 0;
-                            category.Path = category.Id.ToString();
-                        }
-                        else
-                        {
-                            var parent = db.Categories.Find(category.ParentId.Value);
-                            if (parent != null)
-                            {
-                                category.Level = parent.Level + 1;
-                                category.Path = parent.Path + "/" + category.Id;
-                            }
+                            string oldPath = Server.MapPath(originalCategory.Icon);
+                            if (System.IO.File.Exists(oldPath))
+                                System.IO.File.Delete(oldPath);
                         }
 
-                        db.Entry(category).State = EntityState.Modified;
-
-                        db.SaveChanges();
-
-                        // 更新所有子类别的路径
-                        UpdateChildrenPaths(category.Id);
+                        // 保存新文件
+                        string uploadDir = Server.MapPath("~/Uploads/CategoryIcons/");
+                        if (!System.IO.Directory.Exists(uploadDir))
+                            System.IO.Directory.CreateDirectory(uploadDir);
+                        string fileName = Guid.NewGuid().ToString() + ext;
+                        string filePath = System.IO.Path.Combine(uploadDir, fileName);
+                        iconFile.SaveAs(filePath);
+                        category.Icon = "/Uploads/CategoryIcons/" + fileName;
                     }
                     else
                     {
-                        db.Entry(category).State = EntityState.Modified;
-                        db.SaveChanges();
+                        ModelState.AddModelError("", "僅支援 JPG、PNG、GIF 格式的圖片");
+                        // 重新加载下拉列表后返回视图
+                        var cats = db.Categories.Where(c => c.Id != category.Id && c.Menu == category.Menu).OrderBy(c => c.Path).ToList();
+                        viewModel.ParentCategories = GetParentCategoryList(cats, category.ParentId);
+                        ViewBag.Menu = menu;
+                        return View(viewModel);
                     }
+                }
+                // 2. 没有上传新图片，但勾选了删除
+                else if (deleteIcon == true)
+                {
+                    if (!string.IsNullOrEmpty(originalCategory.Icon))
+                    {
+                        string oldPath = Server.MapPath(originalCategory.Icon);
+                        if (System.IO.File.Exists(oldPath))
+                            System.IO.File.Delete(oldPath);
+                    }
+                    category.Icon = null;
+                }
+                // 3. 无任何操作，保留原图标
+                else
+                {
+                    category.Icon = originalCategory.Icon;
+                }
+                // ====================================
+                // ====================================
+
+                // 更新路径和层级（如果父级改变）
+                if (originalCategory.ParentId != category.ParentId)
+                {
+                    if (!category.ParentId.HasValue)
+                    {
+                        category.Level = 0;
+                        category.Path = category.Id.ToString();
+                    }
+                    else
+                    {
+                        var parent = db.Categories.Find(category.ParentId.Value);
+                        if (parent != null)
+                        {
+                            category.Level = parent.Level + 1;
+                            category.Path = parent.Path + "/" + category.Id;
+                        }
+                    }
+
+                    db.Entry(category).State = EntityState.Modified;
+                    db.SaveChanges();
+                    UpdateChildrenPaths(category.Id);
+                }
+                else
+                {
+                    db.Entry(category).State = EntityState.Modified;
+                    db.SaveChanges();
                 }
 
                 TempData["Success"] = "類別更新成功！";
 
-                // 重定向到列表页，带上 menu 参数（如果存在）
                 if (!string.IsNullOrEmpty(menu))
-                {
                     return RedirectToAction("Index", new { sub = 2, menu = menu });
-                }
                 else
-                {
                     return RedirectToAction("Index", new { parentId = category.ParentId });
-                }
             }
 
+            // 验证失败时重新加载父级类别列表
             var allCategories = db.Categories
-                .Where(c => c.Id != viewModel.Category.Id)
+                .Where(c => c.Id != viewModel.Category.Id && c.Menu == (string.IsNullOrEmpty(menu) ? 0 : int.Parse(menu)))
                 .OrderBy(c => c.Path)
                 .ToList();
-
             viewModel.ParentCategories = GetParentCategoryList(allCategories, viewModel.Category.ParentId);
-
-            // 保持 menu 参数以便再次提交
             ViewBag.Menu = menu;
-
             return View(viewModel);
         }
 

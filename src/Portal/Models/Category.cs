@@ -19,6 +19,8 @@ namespace Academy.Models
         [Display(Name = "类别名称")]
         [StringLength(100)]
         public string Name { get; set; }
+        [Display(Name = "图标")]
+        public string Icon { get; set; }
 
         [Display(Name = "父级类别")]
         public int? ParentId { get; set; }

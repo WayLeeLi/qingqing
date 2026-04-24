@@ -23,8 +23,7 @@ namespace Academy.Areas.Sysmgr.Controllers
             model.Phone = GetDictValue("Contact_Phone");
             model.Email = GetDictValue("Contact_Email");
             model.Fax = GetDictValue("Contact_Fax");
-            model.MapLongitude = GetDictValue("Contact_MapLongitude");
-            model.MapLatitude = GetDictValue("Contact_MapLatitude");
+            model.MapUrl = GetDictValue("Contact_MapUrl");       // 改為讀取 MapUrl
             model.OnlineBookingText = GetDictValue("Contact_OnlineBookingText");
             model.BookingInquiry = GetDictValue("Contact_BookingInquiry");
             model.BusinessHours = GetDictValue("Contact_BusinessHours");
@@ -46,8 +45,7 @@ namespace Academy.Areas.Sysmgr.Controllers
             SetDictValue("Contact_Phone", model.Phone);
             SetDictValue("Contact_Email", model.Email);
             SetDictValue("Contact_Fax", model.Fax);
-            SetDictValue("Contact_MapLongitude", model.MapLongitude);
-            SetDictValue("Contact_MapLatitude", model.MapLatitude);
+            SetDictValue("Contact_MapUrl", model.MapUrl);       // 儲存 MapUrl
             SetDictValue("Contact_OnlineBookingText", model.OnlineBookingText);
             SetDictValue("Contact_BookingInquiry", model.BookingInquiry);
             SetDictValue("Contact_BusinessHours", model.BusinessHours);

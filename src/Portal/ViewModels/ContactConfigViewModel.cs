@@ -15,17 +15,15 @@ namespace Academy.ViewModels
         public string Phone { get; set; }
 
         [Display(Name = "電子信箱")]
-        [EmailAddress]
         public string Email { get; set; }
 
         [Display(Name = "傳真")]
         public string Fax { get; set; }
 
-        [Display(Name = "地圖座標-經度")]
-        public string MapLongitude { get; set; }
-
-        [Display(Name = "地圖座標-緯度")]
-        public string MapLatitude { get; set; }
+        // 移除經度、緯度，改為地圖URL
+        [Display(Name = "地圖嵌入網址")]
+        [DataType(DataType.Url)]
+        public string MapUrl { get; set; }
 
         [Display(Name = "線上預約說明")]
         public string OnlineBookingText { get; set; }

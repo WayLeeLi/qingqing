@@ -27,10 +27,7 @@ namespace Academy.Controllers
             ViewBag.BookingInquiry = GetDictValue("Contact_BookingInquiry");
             ViewBag.BusinessHours = GetDictValue("Contact_BusinessHours");
             ViewBag.TrafficGuide = GetDictValue("Contact_TrafficGuide");
-
-            // 若沒有設定經緯度，使用預設值
-            if (string.IsNullOrEmpty(ViewBag.MapLongitude)) ViewBag.MapLongitude = "121.449";
-            if (string.IsNullOrEmpty(ViewBag.MapLatitude)) ViewBag.MapLatitude = "25.034";
+            ViewBag.MapUrl = GetDictValue("Contact_MapUrl");
 
             return View();
         }

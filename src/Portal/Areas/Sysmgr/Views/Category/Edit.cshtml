@@ -79,7 +79,7 @@
 
 <!--主要內容-->
 <article class="contentArea" id="content">
-    @using (Html.BeginForm("Edit", "Category", FormMethod.Post, new { id = "formcontent" }))
+    @using (Html.BeginForm("Edit", "Category", FormMethod.Post, new { id = "formcontent", enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
@@ -125,6 +125,23 @@
                     })
                     <mark class="mark">(最多請輸入 50 中英文字元)</mark>
                     @Html.ValidationMessageFor(model => model.Category.Name, "", new { @class = "text-danger" })
+                </li>
+
+                <li>
+                    <p class="title">類別圖標 :</p>
+                    <div>
+                        @if (!string.IsNullOrEmpty(Model.Category.Icon))
+                        {
+                            <div style="margin-bottom:8px;">
+                                <img src="@Model.Category.Icon" style="max-width:80px; max-height:80px; border:1px solid #ddd; padding:4px;" />
+                                <label style="margin-left:10px;">
+                                    <input type="checkbox" name="deleteIcon" value="true" /> 刪除圖標
+                                </label>
+                            </div>
+                        }
+                        <input type="file" name="iconFile" accept="image/jpeg,image/png,image/gif" />
+                        <mark class="mark">(若上傳新圖片，將取代原有圖標；建議尺寸 64x64，透明背景 PNG)</mark>
+                    </div>
                 </li>
 
                 <li>

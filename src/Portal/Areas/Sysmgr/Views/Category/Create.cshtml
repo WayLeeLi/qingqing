@@ -84,23 +84,32 @@
 @section Scripts {
     <script>
         $(function () {
-            // binds form submission and fields to the validation engine
             $.validationEngine.defaults.scroll = false;
             $("#formcontent").validationEngine();
 
-            // 回上一頁
             $(".btnBack").click(function () {
                 window.history.back();
             });
 
-            // 注意：這裡沒有下拉框 change 事件，不會干擾輸入框
+            // 可选：图片预览（新增页面可不加，但可加）
+            $("#iconFile").change(function () {
+                if (this.files && this.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $("#iconPreview").attr("src", e.target.result).show();
+                    };
+                    reader.readAsDataURL(this.files[0]);
+                } else {
+                    $("#iconPreview").hide();
+                }
+            });
         });
     </script>
 }
 
 <!--主要內容-->
 <article class="contentArea" id="content">
-    @using (Html.BeginForm("Create", "Category", FormMethod.Post, new { id = "formcontent" }))
+    @using (Html.BeginForm("Create", "Category", FormMethod.Post, new { id = "formcontent", enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
@@ -143,6 +152,16 @@
                     })
                     <mark class="mark">(最多請輸入 50 中英文字元)</mark>
                     @Html.ValidationMessageFor(model => model.Category.Name, "", new { @class = "text-danger" })
+                </li>
+
+                <li>
+                    <p class="title">類別圖標 :</p>
+                    <input type="file" name="iconFile" id="iconFile" accept="image/jpeg,image/png,image/gif" />
+                    <mark class="mark">(建議尺寸 64x64，透明背景 PNG 為佳)</mark>
+                    <br />
+                    <div style="margin-top:8px;">
+                        <img id="iconPreview" style="max-width:100px; max-height:100px; display:none; border:1px solid #ddd; padding:4px;" />
+                    </div>
                 </li>
 
                 <li>

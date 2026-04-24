@@ -64,14 +64,9 @@
                     @Html.TextBoxFor(m => m.Fax, new { @class = "text-input medium", maxlength = "100" })
                 </li>
                 <li>
-                    <p class="title">地圖座標 - 經度 :</p>
-                    @Html.TextBoxFor(m => m.MapLongitude, new { @class = "text-input short", maxlength = "50" })
-                    <mark class="mark">(例如：121.449)</mark>
-                </li>
-                <li>
-                    <p class="title">地圖座標 - 緯度 :</p>
-                    @Html.TextBoxFor(m => m.MapLatitude, new { @class = "text-input short", maxlength = "50" })
-                    <mark class="mark">(例如：25.034)</mark>
+                    <p class="title">地圖嵌入網址 :</p>
+                    @Html.TextBoxFor(m => m.MapUrl, new { @class = "text-input long", maxlength = "1000", placeholder = "https://www.google.com/maps/embed?..." })
+                    <mark class="mark">(請貼上 Google Maps 的「嵌入地圖」完整網址，例如 https://maps.google.com/...&output=embed)</mark>
                 </li>
                 <li>
                     <p class="title">線上預約說明 :</p>

@@ -94,8 +94,8 @@
             <!-- 右：地圖 -->
             <div class="map-col rv" style="transition-delay:.12s">
                 <div class="map-wrap">
-                    <iframe src="https://maps.google.com/maps?q=@ViewBag.MapLatitude,@ViewBag.MapLongitude&z=16&output=embed"
-                            allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="@ViewBag.MapUrl" style="border:0;width:100%;height:100%;min-height:420px;display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="青青餐廳地圖位置"></iframe>
+
                     <a class="map-btn" href="https://maps.google.com/maps?q=@ViewBag.MapLatitude,@ViewBag.MapLongitude" target="_blank">
                         <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" /></svg>
                         Google Maps 開啟
