@@ -3,60 +3,12 @@
   "WorkspaceRootPath": "F:\\project\\qingqing\\src\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\views\\product\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\views\\product\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\controllers\\contactcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\controllers\\contactcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\views\\contact\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\views\\contact\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\areas\\sysmgr\\controllers\\contactconfigcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\areas\\sysmgr\\controllers\\contactconfigcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\areas\\sysmgr\\views\\contactconfig\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\areas\\sysmgr\\views\\contactconfig\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\viewmodels\\contactconfigviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\viewmodels\\contactconfigviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\areas\\sysmgr\\views\\category\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\areas\\sysmgr\\views\\category\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\areas\\sysmgr\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\areas\\sysmgr\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\areas\\sysmgr\\views\\category\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\areas\\sysmgr\\views\\category\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\areas\\sysmgr\\views\\news\\add.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\areas\\sysmgr\\views\\news\\add.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\areas\\sysmgr\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\areas\\sysmgr\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\models\\news.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\models\\news.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|f:\\project\\qingqing\\src\\portal\\css\\product.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{16A2A3F2-DACC-4DCB-B7FB-DD30C9A9C8C6}|Portal\\Portal.csproj|solutionrelative:portal\\css\\product.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -66,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -74,184 +26,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ContactController.cs",
-              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Controllers\\ContactController.cs",
-              "RelativeDocumentMoniker": "Portal\\Controllers\\ContactController.cs",
-              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Controllers\\ContactController.cs",
-              "RelativeToolTip": "Portal\\Controllers\\ContactController.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAADwvw8AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T12:37:41.828Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Views\\Contact\\Index.cshtml",
-              "RelativeDocumentMoniker": "Portal\\Views\\Contact\\Index.cshtml",
-              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Views\\Contact\\Index.cshtml",
-              "RelativeToolTip": "Portal\\Views\\Contact\\Index.cshtml",
-              "ViewState": "AgIAAE4AAAAAAAAAAADwv2oAAABNAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-24T12:35:58.639Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ContactConfigController.cs",
-              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Areas\\Sysmgr\\Controllers\\ContactConfigController.cs",
-              "RelativeDocumentMoniker": "Portal\\Areas\\Sysmgr\\Controllers\\ContactConfigController.cs",
-              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Areas\\Sysmgr\\Controllers\\ContactConfigController.cs",
-              "RelativeToolTip": "Portal\\Areas\\Sysmgr\\Controllers\\ContactConfigController.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAIwCsAAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T12:32:47.568Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ContactConfigViewModel.cs",
-              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\ViewModels\\ContactConfigViewModel.cs",
-              "RelativeDocumentMoniker": "Portal\\ViewModels\\ContactConfigViewModel.cs",
-              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\ViewModels\\ContactConfigViewModel.cs",
-              "RelativeToolTip": "Portal\\ViewModels\\ContactConfigViewModel.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAwCYAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T12:31:29.244Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Edit.cshtml",
-              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Areas\\Sysmgr\\Views\\ContactConfig\\Edit.cshtml",
-              "RelativeDocumentMoniker": "Portal\\Areas\\Sysmgr\\Views\\ContactConfig\\Edit.cshtml",
-              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Areas\\Sysmgr\\Views\\ContactConfig\\Edit.cshtml",
-              "RelativeToolTip": "Portal\\Areas\\Sysmgr\\Views\\ContactConfig\\Edit.cshtml",
-              "ViewState": "AgIAADcAAAAAAAAAAAAkwEwAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-24T12:30:11.218Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "Portal\\Controllers\\HomeController.cs",
-              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "Portal\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAFgAAAAAAAAAAAAIwGYAAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T12:25:55.985Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "Portal\\Views\\Home\\Index.cshtml",
-              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "Portal\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAEkBAAAAAAAAAAAkwGQBAAAZAAAAAAAAAA==",
+              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Views\\Product\\Index.cshtml",
+              "RelativeDocumentMoniker": "Portal\\Views\\Product\\Index.cshtml",
+              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Views\\Product\\Index.cshtml",
+              "RelativeToolTip": "Portal\\Views\\Product\\Index.cshtml",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAlwHkAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-24T12:21:35.889Z",
+              "WhenOpened": "2026-04-27T13:44:44.646Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Edit.cshtml",
-              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Areas\\Sysmgr\\Views\\Category\\Edit.cshtml",
-              "RelativeDocumentMoniker": "Portal\\Areas\\Sysmgr\\Views\\Category\\Edit.cshtml",
-              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Areas\\Sysmgr\\Views\\Category\\Edit.cshtml",
-              "RelativeToolTip": "Portal\\Areas\\Sysmgr\\Views\\Category\\Edit.cshtml",
-              "ViewState": "AgIAAEwAAAAAAAAAAAAkwFwAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-24T12:00:30.762Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Add.cshtml",
-              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Areas\\Sysmgr\\Views\\News\\Add.cshtml",
-              "RelativeDocumentMoniker": "Portal\\Areas\\Sysmgr\\Views\\News\\Add.cshtml",
-              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Areas\\Sysmgr\\Views\\News\\Add.cshtml",
-              "RelativeToolTip": "Portal\\Areas\\Sysmgr\\Views\\News\\Add.cshtml",
-              "ViewState": "AgIAAEAAAAAAAAAAAAAYwIEAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-24T11:50:49.75Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "NewsController.cs",
-              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Areas\\Sysmgr\\Controllers\\NewsController.cs",
-              "RelativeDocumentMoniker": "Portal\\Areas\\Sysmgr\\Controllers\\NewsController.cs",
-              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Areas\\Sysmgr\\Controllers\\NewsController.cs",
-              "RelativeToolTip": "Portal\\Areas\\Sysmgr\\Controllers\\NewsController.cs",
-              "ViewState": "AgIAAFcBAAAAAAAAAAAUwGsBAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T11:50:12.434Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "News.cs",
-              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Models\\News.cs",
-              "RelativeDocumentMoniker": "Portal\\Models\\News.cs",
-              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Models\\News.cs",
-              "RelativeToolTip": "Portal\\Models\\News.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAzwCAAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T11:49:02.182Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Category.cs",
-              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Models\\Category.cs",
-              "RelativeDocumentMoniker": "Portal\\Models\\Category.cs",
-              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Models\\Category.cs",
-              "RelativeToolTip": "Portal\\Models\\Category.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABYAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T11:48:14.465Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "CategoryController.cs",
-              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Areas\\Sysmgr\\Controllers\\CategoryController.cs",
-              "RelativeDocumentMoniker": "Portal\\Areas\\Sysmgr\\Controllers\\CategoryController.cs",
-              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Areas\\Sysmgr\\Controllers\\CategoryController.cs",
-              "RelativeToolTip": "Portal\\Areas\\Sysmgr\\Controllers\\CategoryController.cs",
-              "ViewState": "AgIAANMAAAAAAAAAAAAcwOMAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T11:48:06.573Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\Areas\\Sysmgr\\Views\\Category\\Create.cshtml",
-              "RelativeDocumentMoniker": "Portal\\Areas\\Sysmgr\\Views\\Category\\Create.cshtml",
-              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\Areas\\Sysmgr\\Views\\Category\\Create.cshtml",
-              "RelativeToolTip": "Portal\\Areas\\Sysmgr\\Views\\Category\\Create.cshtml",
-              "ViewState": "AgIAAFgAAAAAAAAAAAAUwGkAAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-24T11:38:58.094Z",
+              "DocumentIndex": 1,
+              "Title": "product.css",
+              "DocumentMoniker": "F:\\project\\qingqing\\src\\Portal\\css\\product.css",
+              "RelativeDocumentMoniker": "Portal\\css\\product.css",
+              "ToolTip": "F:\\project\\qingqing\\src\\Portal\\css\\product.css",
+              "RelativeToolTip": "Portal\\css\\product.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-04-27T13:44:39.23Z",
               "EditorCaption": ""
             }
           ]

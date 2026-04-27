@@ -64,6 +64,13 @@
                     <span class="icon-off" for="StatusNo" title="否"></span>
                 </li>
                 <li>
+                    <p class="title">顯示於首頁<span class="mark"> *</span> : </p>
+                    @Html.RadioButtonFor(model => model.IsShowIndex, 1, new { @id = "IsShowIndexYes", @class = "validate[required] radio" })
+                    <span class="icon-on" for="IsShowIndexYes" title="是"></span>
+                    @Html.RadioButtonFor(model => model.IsShowIndex, 0, new { @id = "IsShowIndexNo", @class = "validate[required] radio", @checked = "checked" })
+                    <span class="icon-off" for="IsShowIndexNo" title="否"></span>
+                </li>
+                <li>
                     <p class="title">發佈時間<span class="mark"> *</span> :</p>
                     @Html.TextBoxFor(model => model.PubDate, "{0:yyyy-MM-dd HH:mm:ss}", new { @id = "pubdate", @class = "validate[required] text-input", maxlength = "51" })
                 </li>

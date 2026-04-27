@@ -77,7 +77,7 @@
         <h1 class="hero-title">青青餐廳</h1>
         <p class="hero-title-en">Chin Chin Restaurant</p>
         <p class="hero-tagline">
-            台菜廚神 <em>阿發師</em> 坐鎮 ╱ 新北土城在地 <em>46 年</em><br>
+            台菜廚神 <em>阿發師</em> 坐鎮 ╱ 新北土城在地 <em>Since 1977</em><br>
             新台菜料理 · 千坪庭園宴廳 · 婚宴喜慶首選
         </p>
         <div class="hero-btns">
@@ -120,7 +120,7 @@
             <div class="tag" style="color:var(--gold); --red:var(--gold);">招牌料理</div>
             <h2 class="h2" style="color:#fff;">每一道菜<br>都是廚神之作</h2>
         </div>
-        <a href="#contact" class="btn-outline-gold">查看完整菜單</a>
+        <a href="@Url.Action("Index", "Product")" class="btn-outline-gold">查看完整菜單</a>
     </div>
     <div class="dishes-grid">
         @{
@@ -274,10 +274,22 @@
         <h2 class="h2">每個重要時刻<br>交給青青</h2>
     </div>
     <div class="services-grid">
-        <div class="service-card"><div class="svc-icon">💍</div><div class="svc-title">婚宴喜慶</div><p class="svc-desc">千坪宴席場地128桌，搭配婚禮企劃服務、三套光音響放映設備，讓您最重要的一天完美呈現。</p></div>
-        <div class="service-card"><div class="svc-icon">🎊</div><div class="svc-title">尾牙春酒</div><p class="svc-desc">企業尾牙、春酒聚餐專屬方案，多種桌菜組合任您選擇，服務貼心周到。</p></div>
-        <div class="service-card"><div class="svc-icon">🏮</div><div class="svc-title">節慶年菜</div><p class="svc-desc">年菜預訂、節慶合菜，嚴選上等食材，讓家人齊聚共享溫暖美好時光。</p></div>
-        <div class="service-card"><div class="svc-icon">🍱</div><div class="svc-title">客製化宴席</div><p class="svc-desc">依主廚建議或顧客需求客製菜色，打造獨一無二的專屬宴席體驗。</p></div>
+        @{
+            bool hasServices = Model.VideoList != null && Model.VideoList.Count > 0;
+            if (hasServices)
+            {
+                for (int i = 0; i < Model.VideoList.Count; i++)
+                {
+                    var service = Model.VideoList[i];
+                    <div class="service-card"><div class="svc-icon">@service.ImageUrl</div><div class="svc-title">@service.Title</div><p class="svc-desc">@service.Summary</p></div>
+
+                }
+            }
+            else
+            {
+                <div class="yt-card"><div class="yt-info"><p class="yt-desc">精采影片即將上線</p></div></div>
+            }
+        }
     </div>
 </section>
 
@@ -393,9 +405,7 @@
             var bgLayer = document.querySelector('.hero-bg-layer');
             if (!bgLayer) return;
             var urls = [
-                'https://images.unsplash.com/photo-1563245372-f21724e3856d?w=1800&q=90',
-                'https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=1800&q=90',
-                'https://images.unsplash.com/photo-1547592180-85f173990554?w=1800&q=90'
+                '/images/web/index_bg.png',
             ];
             var idx = 0;
             function tryLoad(url) {

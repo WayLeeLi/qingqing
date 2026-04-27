@@ -12,6 +12,7 @@ namespace Academy.ViewModels
         public string Title { get; set; }
         public string Lable { get; set; }
         public string ImageUrl { get; set; }
+        public string IconUrl { get; set; }       // 图标链接（可选）   
         public string Content { get; set; }      // 详细内容（HTML）
         public string Summary { get; set; }      // 简介
         public DateTime PublishDate { get; set; }

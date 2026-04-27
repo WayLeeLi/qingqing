@@ -38,7 +38,7 @@ namespace Academy.Controllers
             // 2. 招牌菜 (Menu == 3) 关联 Category 获取分类名称
             var dishesQuery = from n in db.Newss
                               join c in db.Categories on n.CataID equals c.Id
-                              where n.Status == 1 && n.Menu == 3 && c.Status == 1
+                              where n.Status == 1 && n.Menu == 3 && c.Status == 1 && n.IsShowIndex == 1
                               orderby n.CDate descending
                               select new ContentItem
                               {
@@ -51,13 +51,13 @@ namespace Academy.Controllers
                                   PublishDate = n.CDate.Value,
                                   Category = c.Name
                               };
-            model.SignatureDishes = dishesQuery.Take(10).ToList();
+            model.SignatureDishes = dishesQuery.Take(5).ToList();
 
             // 3. 活動與公告 (Menu == 4) 关联 Category
             // 注意：此处不能直接在 LINQ 中使用 Url.Action，需要先查询到内存再赋值
             var newsQuery = from n in db.Newss
                             join c in db.Categories on n.CataID equals c.Id
-                            where n.Status == 1 && n.Menu == 4 && c.Status == 1
+                            where n.Status == 1 && n.Menu == 4 && c.Status == 1 && n.IsShowIndex == 1
                             orderby n.CDate descending
                             select new ContentItem
                             {
@@ -70,7 +70,7 @@ namespace Academy.Controllers
                                 Category = c.Name
                                 // LinkUrl 不在此处赋值
                             };
-            var newsList = newsQuery.Take(6).ToList();
+            var newsList = newsQuery.Take(4).ToList();
             // 在内存中循环设置 LinkUrl
             foreach (var item in newsList)
             {
@@ -81,7 +81,7 @@ namespace Academy.Controllers
             // 4. 影音專區 (Menu == 5) 关联 Category
             var videoQuery = from n in db.Newss
                              join c in db.Categories on n.CataID equals c.Id
-                             where n.Status == 1 && n.Menu == 5 && c.Status == 1
+                             where n.Status == 1 && n.Menu == 5 && c.Status == 1 && n.IsShowIndex == 1
                              orderby n.CDate descending
                              select new ContentItem
                              {
@@ -94,7 +94,29 @@ namespace Academy.Controllers
                                  Category = c.Name,
                                  VideoUrl = n.VideoPath
                              };
-            model.VideoList = videoQuery.Take(6).ToList();
+            model.VideoList = videoQuery.Take(3).ToList();
+
+            // 4. 影音專區 (Menu == 5) 关联 Category
+            var serviceQuery = from n in db.Newss
+                             join c in db.Categories on n.CataID equals c.Id
+                             where n.Status == 1 && n.Menu == 6 && c.Status == 1 && n.IsShowIndex == 1
+                             orderby n.CDate descending
+                             select new ContentItem
+                             {
+                                 Id = n.ID,
+                                 Title = n.Title,
+                                 ImageUrl = n.ImagePath,
+                                 IconUrl = c.Icon,
+                                 Summary = n.Note,
+                                 Content = n.Content,
+                                 PublishDate = n.CDate.Value,
+                                 Category = c.Name,
+                                 VideoUrl = n.VideoPath
+                             };
+            model.ServiceList = serviceQuery.Take(5).ToList();
+
+            ViewBag.Address = GetDictValue("Contact_Address");
+            ViewBag.Phone = GetDictValue("Contact_Phone");
 
             ViewBag.Address = GetDictValue("Contact_Address");
             ViewBag.Phone = GetDictValue("Contact_Phone");

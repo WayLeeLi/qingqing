@@ -202,7 +202,7 @@
                     <td class="minWidth" style="width:20%;">所屬類別</td>
                     <td class="minWidth">點閱數</td>
                     <td class="minWidth">上線狀態</td>
-                    @*<td class="minWidth">首頁顯示</td>*@
+                    <td class="minWidth">首頁顯示</td>
                     <td class="time minWidth">
                         @if (Request["ordery"] == "pubtimeasc")
                         {
@@ -254,7 +254,7 @@
                                 <span class="icon-on" title="上線中"></span>
                             }
                         </td>
-                        @*<td>
+                        <td>
                                 @if (item.IsShowIndex == 1)
                                 {
                                     <span class="icon-on" title="顯示"></span>
@@ -263,7 +263,7 @@
                                 {
                                     <span class="icon-off" title="不顯示"></span>
                                 }
-                            </td>*@
+                            </td>
                         @if (item.PubDate != null)
                         {
                             <td class="num">@item.PubDate.Value.ToString("yyyy-MM-dd HH:mm:ss")</td>
