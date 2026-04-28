@@ -61,6 +61,7 @@ namespace Academy.Controllers
                     Name = cat.Name,
                     NameEn = "",  // 若 Category 表没有英文名，可留空或从其他字段映射
                     DomId = GenerateDomId(cat.Name),
+                    IconBlockHtml = GetCategoryIconBlock(cat.Name),
                     SortOrder = cat.SortOrder,
                     Dishes = catDishes
                 });
@@ -89,7 +90,68 @@ namespace Academy.Controllers
                 default: return catName.Replace(" ", "").ToLower();
             }
         }
+        /// <summary>
+        /// 获取分类图标完整区块（带渐变背景的 div + SVG）
+        /// </summary>
+        /// <param name="categoryName">分类名称（中文）</param>
+        /// <returns>完整的 HTML 字符串，用于分类头部展示</returns>
+        private string GetCategoryIconBlock(string categoryName)
+        {
+            string gradient = GetCategoryBgGradient(categoryName);
+            string svg = GetIconSvgByCategory(categoryName);
 
+            return $@"<div class='cat-icon' style='background:{gradient};'>{svg}</div>";
+        }
+
+        /// <summary>
+        /// 获取分类渐变背景（与原样式一致）
+        /// </summary>
+        private string GetCategoryBgGradient(string categoryName)
+        {
+            switch (categoryName)
+            {
+                case "三杯類": return "linear-gradient(135deg,#7A0E20,#C8102E)";
+                case "炒類": return "linear-gradient(135deg,#5A2800,#8B4A00)";
+                case "炸類": return "linear-gradient(135deg,#6B3800,#B86010)";
+                case "烤類": return "linear-gradient(135deg,#6B1A00,#A83000)";
+                case "蒸類": return "linear-gradient(135deg,#004A5A,#006B80)";
+                case "鐵板類": return "linear-gradient(135deg,#1A1A2E,#2E2E50)";
+                case "桌菜": return "linear-gradient(135deg,#5A0612,#C8102E)";
+                case "港式點心": return "linear-gradient(135deg,#3D0060,#6B0090)";
+                case "湯類": return "linear-gradient(135deg,#002A5A,#004080)";
+                default: return "linear-gradient(135deg,#333,#666)";
+            }
+        }
+
+        /// <summary>
+        /// 获取分类内嵌 SVG 图标（纯 SVG 代码，不带外层 div）
+        /// </summary>
+        private string GetIconSvgByCategory(string categoryName)
+        {
+            switch (categoryName)
+            {
+                case "三杯類":
+                    return @"<svg viewBox='0 0 40 40' fill='none'><path d='M8 30 Q10 18 20 16 Q30 18 32 30Z' fill='rgba(255,255,255,.9)'/><ellipse cx='20' cy='30' rx='12' ry='2.5' fill='rgba(255,255,255,.5)'/><circle cx='14' cy='22' r='2.5' fill='#F0CC78'/><circle cx='20' cy='20' r='2.5' fill='#F0CC78'/><circle cx='26' cy='22' r='2.5' fill='#F0CC78'/><rect x='18' y='8' width='4' height='8' rx='2' fill='rgba(255,255,255,.8)'/></svg>";
+                case "炒類":
+                    return @"<svg viewBox='0 0 40 40' fill='none'><path d='M6 26 Q8 14 20 12 Q32 14 34 26L32 28 Q20 32 8 28Z' fill='rgba(255,255,255,.85)'/><path d='M8 14 Q12 8 18 10' stroke='#F0CC78' stroke-width='2' stroke-linecap='round'/><path d='M16 12 Q20 6 26 9' stroke='#F0CC78' stroke-width='2' stroke-linecap='round'/><rect x='17' y='30' width='6' height='5' rx='1' fill='rgba(255,255,255,.7)'/></svg>";
+                case "炸類":
+                    return @"<svg viewBox='0 0 40 40' fill='none'><rect x='6' y='18' width='28' height='14' rx='4' fill='rgba(255,255,255,.85)'/><circle cx='14' cy='24' r='4' fill='#F0CC78'/><circle cx='26' cy='24' r='4' fill='#F0CC78'/><path d='M4 18L36 18' stroke='rgba(255,255,255,.5)' stroke-width='2'/><path d='M12 8 Q14 4 16 8 Q18 12 20 8 Q22 4 24 8' stroke='#F0CC78' stroke-width='1.5' stroke-linecap='round' fill='none'/></svg>";
+                case "烤類":
+                    return @"<svg viewBox='0 0 40 40' fill='none'><path d='M8 28L32 28L30 34L10 34Z' fill='rgba(255,255,255,.6)'/><rect x='6' y='22' width='28' height='6' rx='2' fill='rgba(255,255,255,.85)'/><path d='M12 22L12 14M20 22L20 12M28 22L28 14' stroke='#F0CC78' stroke-width='2'/><ellipse cx='12' cy='17' rx='3' ry='3.5' fill='rgba(255,255,255,.8)'/><ellipse cx='28' cy='17' rx='3' ry='3.5' fill='rgba(255,255,255,.8)'/></svg>";
+                case "蒸類":
+                    return @"<svg viewBox='0 0 40 40' fill='none'><rect x='6' y='20' width='28' height='14' rx='3' fill='rgba(255,255,255,.85)'/><path d='M6 20L10 12L30 12L34 20' fill='rgba(255,255,255,.35)'/><path d='M14 8 Q15 5 14 3M20 7 Q21 4 20 2M26 8 Q27 5 26 3' stroke='#F0CC78' stroke-width='1.8' stroke-linecap='round' fill='none'/></svg>";
+                case "鐵板類":
+                    return @"<svg viewBox='0 0 40 40' fill='none'><rect x='4' y='22' width='32' height='12' rx='2' fill='rgba(255,255,255,.85)'/><ellipse cx='20' cy='22' rx='16' ry='4' fill='rgba(255,255,255,.55)'/><path d='M14 22 Q16 14 20 12 Q24 14 26 22' fill='rgba(255,200,100,.7)'/><path d='M17 22 Q18 17 20 16 Q22 17 23 22' fill='#F0CC78'/></svg>";
+                case "桌菜":
+                    return @"<svg viewBox='0 0 40 40' fill='none'><circle cx='20' cy='20' r='13' stroke='rgba(255,255,255,.85)' stroke-width='2' fill='rgba(255,255,255,.12)'/><circle cx='20' cy='14' r='2.5' fill='#F0CC78'/><circle cx='26' cy='18' r='2.5' fill='#F0CC78'/><circle cx='24' cy='25' r='2.5' fill='#F0CC78'/><circle cx='16' cy='25' r='2.5' fill='#F0CC78'/><circle cx='14' cy='18' r='2.5' fill='#F0CC78'/></svg>";
+                case "港式點心":
+                    return @"<svg viewBox='0 0 40 40' fill='none'><rect x='10' y='16' width='20' height='14' rx='2' fill='rgba(255,255,255,.85)'/><path d='M6 14 Q20 10 34 14' stroke='rgba(255,255,255,.65)' stroke-width='2' stroke-linecap='round'/><path d='M14 24 Q17 20 20 24 Q23 28 26 24' stroke='#F0CC78' stroke-width='1.5' fill='none' stroke-linecap='round'/></svg>";
+                case "湯類":
+                    return @"<svg viewBox='0 0 40 40' fill='none'><path d='M8 24 Q10 34 20 35 Q30 34 32 24Z' fill='rgba(255,255,255,.85)'/><ellipse cx='20' cy='24' rx='12' ry='3.5' fill='rgba(255,255,255,.55)'/><path d='M14 12 Q13 8 15 6M20 10 Q19 6 21 4M26 12 Q25 8 27 6' stroke='#F0CC78' stroke-width='1.8' stroke-linecap='round' fill='none'/></svg>";
+                default:
+                    return @"<svg viewBox='0 0 40 40' fill='none'><circle cx='20' cy='20' r='14' fill='rgba(255,255,255,.8)'/><path d='M12 20 L28 20 M20 12 L20 28' stroke='#C8102E' stroke-width='2'/><circle cx='20' cy='20' r='5' fill='#F0CC78'/></svg>";
+            }
+        }
 
         [HttpPost]
         public JsonResult GetPortfolioList(int categoryId = 0)

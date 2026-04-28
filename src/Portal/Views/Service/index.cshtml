@@ -75,61 +75,6 @@
     }
 </div>
 
-<!-- 優勢特色區（從 Model 動態） -->
-<section class="feature-section">
-    <div style="max-width:1200px; margin:0 auto;">
-        <div class="tag" style="color:var(--gold); --red:var(--gold);">青青優勢</div>
-        <h2 class="h2" style="color:#fff;">為何選擇青青餐廳</h2>
-    </div>
-    <div class="feature-grid">
-        @foreach (var feature in Model.Features)
-        {
-            <div class="feature-item anim">
-                <div class="feature-icon">@feature.Icon</div>
-                <div class="feature-title">@feature.Title</div>
-                <p class="feature-desc">@feature.Description</p>
-            </div>
-        }
-    </div>
-</section>
-
-<!-- 價格方案表（從 Model 動態） -->
-<section class="price-section">
-    <div style="max-width:1200px; margin:0 auto;">
-        <div class="tag">參考方案</div>
-        <h2 class="h2">宴席套案一覽</h2>
-        <div class="gold-rule"><span>◆</span></div>
-        <p style="opacity:.6; font-size:.88rem; line-height:1.9; max-width:560px;">
-            以下為參考方案，實際報價依菜色選擇、桌數、場地配置而定。歡迎電話或親臨洽談，由專人為您量身規劃最適合的宴席方案。
-        </p>
-    </div>
-    <div class="price-table-wrap anim">
-        <table class="price-table">
-            <thead>
-                <tr>
-                    <th>服務類型</th>
-                    <th>適合人數</th>
-                    <th>參考價位</th>
-                    <th>包含內容</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var plan in Model.PricePlans)
-                {
-                    <tr>
-                        <td>
-                            <strong>@plan.TypeName</strong>
-                            <div class="price-note">@plan.TypeEn</div>
-                        </td>
-                        <td>@plan.Audience</td>
-                        <td><span class="price-badge">@plan.PriceRange</span></td>
-                        <td>@plan.Inclusions</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-</section>
 
 <!-- 加值服務卡片群（從 Model 動態） -->
 <section class="section-pad" style="background:var(--paper); padding-top:2rem;">

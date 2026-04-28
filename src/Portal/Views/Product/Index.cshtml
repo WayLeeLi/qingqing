@@ -52,10 +52,7 @@
         {
             <section class="cat-sec" id="@category.DomId">
                 <div class="cat-hd">
-                    <div class="cat-icon" style="background:linear-gradient(135deg,#7A0E20,#C8102E);">
-                        <!-- 分类图标 可复用顶部 SVG 或自定义 -->
-                        <svg viewBox="0 0 40 40" fill="none"><path d="M8 30 Q10 18 20 16 Q30 18 32 30Z" fill="rgba(255,255,255,.9)" /><ellipse cx="20" cy="30" rx="12" ry="2.5" fill="rgba(255,255,255,.5)" /><circle cx="14" cy="22" r="2.5" fill="#F0CC78" /><circle cx="20" cy="20" r="2.5" fill="#F0CC78" /><circle cx="26" cy="22" r="2.5" fill="#F0CC78" /><rect x="18" y="8" width="4" height="8" rx="2" fill="rgba(255,255,255,.8)" /></svg>
-                    </div>
+                    @Html.Raw(category.IconBlockHtml)
                     <div>
                         <div class="cat-nm">@category.Name</div>
                         <div class="cat-en">@category.NameEn</div>
@@ -79,7 +76,7 @@
                                             <div class="fb-ln"></div>
                                             <div class="fb-nm">@dish.Name</div>
                                         </div>
-                                      
+
                                         <div class="zoom-hint">
                                             <svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" /></svg>
                                         </div>
