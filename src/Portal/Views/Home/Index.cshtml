@@ -275,13 +275,13 @@
     </div>
     <div class="services-grid">
         @{
-            bool hasServices = Model.VideoList != null && Model.VideoList.Count > 0;
+            bool hasServices = Model.ServiceList != null && Model.ServiceList.Count > 0;
             if (hasServices)
             {
-                for (int i = 0; i < Model.VideoList.Count; i++)
+                for (int i = 0; i < Model.ServiceList.Count; i++)
                 {
-                    var service = Model.VideoList[i];
-                    <div class="service-card"><div class="svc-icon">@service.ImageUrl</div><div class="svc-title">@service.Title</div><p class="svc-desc">@service.Summary</p></div>
+                    var service = Model.ServiceList[i];
+                <div class="service-card">@Html.Raw(service.Content)</div>
 
                 }
             }

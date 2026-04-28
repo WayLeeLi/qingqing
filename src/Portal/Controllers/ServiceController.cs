@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Academy.Models;
+using Academy.ViewModels;
+using PagedList;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using PagedList;
-using Academy.Models;
-using System.Data;
 
 namespace Academy.Controllers
 {
@@ -19,16 +20,46 @@ namespace Academy.Controllers
         public ActionResult Index(int page = 1)
         {
             DateTime dtNow = DateTime.Now;
+            var model = new HomeViewModel();
+            var serviceQuery = from n in db.Newss
+                               join c in db.Categories on n.CataID equals c.Id
+                               where n.Status == 1 && n.Menu == 6 && c.Status == 1 && n.IsShowIndex == 0 && n.IsShowMore == 0
+                               orderby n.CDate descending
+                               select new ContentItem
+                               {
+                                   Id = n.ID,
+                                   Title = n.Title,
+                                   ImageUrl = n.ImagePath,
+                                   IconUrl = c.Icon,
+                                   Summary = n.Note,
+                                   Content = n.Content,
+                                   PublishDate = n.CDate.Value,
+                                   Category = c.Name,
+                                   VideoUrl = n.VideoPath
+                               };
+            model.ServiceList = serviceQuery.ToList();
 
-            var data = db.Newss
-                .Where(a => a.Status == 1 && a.Menu == 3)
-                .OrderByDescending(a => a.PubDate);
-
-            var pagedData = data.ToPagedList(pageNumber: page, pageSize: 5);
+            var serviceMoreQuery = from n in db.Newss
+                               join c in db.Categories on n.CataID equals c.Id
+                               where n.Status == 1 && n.Menu == 6 && c.Status == 1 && n.IsShowMore == 1
+                               orderby n.CDate descending
+                               select new ContentItem
+                               {
+                                   Id = n.ID,
+                                   Title = n.Title,
+                                   ImageUrl = n.ImagePath,
+                                   IconUrl = c.Icon,
+                                   Summary = n.Note,
+                                   Content = n.Content,
+                                   PublishDate = n.CDate.Value,
+                                   Category = c.Name,
+                                   VideoUrl = n.VideoPath
+                               };
+            model.ServiceMoreList = serviceMoreQuery.ToList();
 
             var categories = db.Categories.Where(s => s.Menu == 3 && s.Status == 1).OrderBy(c => c.Path).ToList();
             ViewBag.CategoryList = categories;
-            return View(pagedData);
+            return View(model);
         }
         /// <summary>
         /// 跳转显示

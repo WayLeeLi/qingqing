@@ -87,6 +87,16 @@
                     @Html.RadioButtonFor(model => model.IsShowIndex, 0, new { @id = "IsShowIndexNo", @class = "validate[required] radio" })
                     <span class="icon-off" for="IsShowIndexNo" title="否"></span>
                 </li>
+                @if (menu == "6")
+                {
+                    <li>
+                        <p class="title">顯示更多<span class="mark"> *</span> : </p>
+                        @Html.RadioButtonFor(model => model.IsShowMore, 1, new { @id = "IsShowMoreYes", @class = "validate[required] radio" })
+                        <span class="icon-on" for="IsShowMoreYes" title="是"></span>
+                        @Html.RadioButtonFor(model => model.IsShowMore, 0, new { @id = "IsShowMoreNo", @class = "validate[required] radio" })
+                        <span class="icon-off" for="IsShowMoreNo" title="否"></span>
+                    </li>
+                }
                 <li>
                     <p class="title">發佈時間<span class="mark"> *</span> :</p>
                     <!--預設代入當下時間-->
@@ -122,16 +132,6 @@
                     <mark class="mark">(寬300 * 高180px)</mark>
                 </li>
                 <li>
-                    <p class="title">摘要 : <mark class="mark">(最多1000個中英文字元)</mark></p>
-                    <br>
-                    @Html.TextAreaFor(model => model.Note, new { @class = "validate[maxSize[1000]] text-input", @cols = "80", @rows = "10" })
-                </li>
-                <li>
-                    <p class="title">摘要2 : <mark class="mark">(最多1000個中英文字元)</mark></p>
-                    <br>
-                    @Html.TextAreaFor(model => model.Note2, new { @class = "validate[maxSize[1000]] text-input", @cols = "80", @rows = "10" })
-                </li>
-                <li>
                     <p class="title">
                         內容<span class="mark"> *</span> :<br>
                     </p>
@@ -143,6 +143,16 @@
                     </span>
                     <br>
                     @Html.TextAreaFor(model => model.Content, new { @cols = "10", @rows = "10" })
+                </li>
+                <li>
+                    <p class="title">摘要 : <mark class="mark">(最多1000個中英文字元)</mark></p>
+                    <br>
+                    @Html.TextAreaFor(model => model.Note, new { @class = "validate[maxSize[1000]] text-input", @cols = "80", @rows = "10" })
+                </li>
+                <li>
+                    <p class="title">摘要2 : <mark class="mark">(最多1000個中英文字元)</mark></p>
+                    <br>
+                    @Html.TextAreaFor(model => model.Note2, new { @class = "validate[maxSize[1000]] text-input", @cols = "80", @rows = "10" })
                 </li>
             </ul>
         </section>

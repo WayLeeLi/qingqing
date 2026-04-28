@@ -96,7 +96,7 @@ namespace Academy.Controllers
                              };
             model.VideoList = videoQuery.Take(3).ToList();
 
-            // 4. 影音專區 (Menu == 5) 关联 Category
+            // 4. 服务项目 (Menu == 6) 关联 Category
             var serviceQuery = from n in db.Newss
                              join c in db.Categories on n.CataID equals c.Id
                              where n.Status == 1 && n.Menu == 6 && c.Status == 1 && n.IsShowIndex == 1

@@ -1,5 +1,4 @@
-﻿@model Academy.ViewModels.ServiceViewModel
-@{
+﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";   // 使用统一的布局页（包含导航、页脚、浮动按钮）
     ViewBag.Title = "服務項目 | 青青餐廳 SINCE 1977";
 }
@@ -19,7 +18,7 @@
         /* 其他原有样式均需保留，但因篇幅略作归纳，实际使用时复制完整样式到独立 CSS 文件 */
         /* 为避免遗漏，建议将原 <style> 中除全局重置外的内容移至 /Content/service.css */
     </style>
-        <link rel="stylesheet" href="~/css/service.css" />
+    <link rel="stylesheet" href="~/css/service.css" />
 }
 
 <!-- ══ PAGE HERO（子页横幅）══ -->
@@ -57,24 +56,64 @@
 </section>
 
 <div class="svc-big-grid">
-    @foreach (var service in Model.Services)
-    {
-        <div class="svc-big-card anim">
-            <div class="card-bg" style="background-image:url('@service.ImageUrl');"></div>
-            <div class="card-grad"></div>
-            <div class="card-body">
-                <div class="card-number">@service.SerialNumber</div>
-                <span class="card-icon">@service.Icon</span>
-                <div class="card-title">@service.Title</div>
-                <div class="card-en">@service.SubtitleEn</div>
-                <div class="card-divider"></div>
-                <p class="card-desc">@service.Description</p>
-                <a href="@service.ContactLink" class="card-cta">@service.CtaText →</a>
-            </div>
-        </div>
+    @{
+        bool hasServices = Model.ServiceList != null && Model.ServiceList.Count > 0;
+        if (hasServices)
+        {
+            foreach (var service in Model.ServiceList)
+            {
+                <div class="svc-big-card anim">
+                    @Html.Raw(service.Content)
+                </div>
+            }
+        }
+        else
+        {
+            < div style = "grid-column:1/-1; text-align:center; padding:40px;" > 暫無服務項目 </ div >
+
+
+        }
     }
 </div>
-
+<!-- ══ FEATURE POINTS ══ -->
+<section class="feature-section">
+    <div style="max-width:1200px; margin:0 auto;">
+        <div class="tag" style="color:var(--gold); --red:var(--gold);">青青優勢</div>
+        <h2 class="h2" style="color:#fff;">為何選擇青青餐廳</h2>
+    </div>
+    <div class="feature-grid">
+        <div class="feature-item anim">
+            <div class="feature-icon">🏆</div>
+            <div class="feature-title">台灣廚神坐鎮</div>
+            <p class="feature-desc">主廚阿發師施建發，《飲食男女》廚藝顧問，多項國際中餐大師殊榮，四十年淬鍊的台菜功夫。</p>
+        </div>
+        <div class="feature-item anim">
+            <div class="feature-icon">🏟️</div>
+            <div class="feature-title">千坪宴席場地</div>
+            <p class="feature-desc">最多可容納 128 桌，小橋流水庭景，三套光音響設備，大型停車場，交通便利永寧站步行可達。</p>
+        </div>
+        <div class="feature-item anim">
+            <div class="feature-icon">⚡</div>
+            <div class="feature-title">大量出菜不失水準</div>
+            <p class="feature-desc">深耕宴席40年，總舖師功力在於大量快速出菜同時確保溫度與美味，讓每一桌都是精彩表現。</p>
+        </div>
+        <div class="feature-item anim">
+            <div class="feature-icon">🥩</div>
+            <div class="feature-title">頂級食材嚴選</div>
+            <p class="feature-desc">石碇黑毛豬、每日現進鮮魚、野生海鮮，菜色變化多樣，可依顧客需求彈性調整烹調方式。</p>
+        </div>
+        <div class="feature-item anim">
+            <div class="feature-icon">🚗</div>
+            <div class="feature-title">接送專車服務</div>
+            <p class="feature-desc">備有專車接送服務，讓賓客無需擔心交通問題，從捷運站到餐廳全程舒適接待。</p>
+        </div>
+        <div class="feature-item anim">
+            <div class="feature-icon">📺</div>
+            <div class="feature-title">媒體口碑保證</div>
+            <p class="feature-desc">非凡大探索、各大美食節目爭相報導，47年口碑積累，在地最具代表性的台菜宴席餐廳。</p>
+        </div>
+    </div>
+</section>
 
 <!-- 加值服務卡片群（從 Model 動態） -->
 <section class="section-pad" style="background:var(--paper); padding-top:2rem;">
@@ -83,13 +122,21 @@
         <h2 class="h2">更多貼心選項</h2>
     </div>
     <div class="services-grid">
-        @foreach (var extra in Model.ExtraServices)
-        {
-            <div class="service-card anim">
-                <div class="svc-icon">@extra.Icon</div>
-                <div class="svc-title">@extra.Title</div>
-                <p class="svc-desc">@extra.Description</p>
-            </div>
+        @{
+            bool hasMoreServices = Model.ServiceMoreList != null && Model.ServiceMoreList.Count > 0;
+            if (hasMoreServices)
+            {
+                foreach (var service in Model.ServiceMoreList)
+                {
+                    <div class="service-card anim">
+                        @Html.Raw(service.Content)
+                    </div>
+                }
+            }
+            else
+            {
+                <div style="grid-column:1/-1; text-align:center; padding:40px;"> 暫無服務項目 </div>
+            }
         }
     </div>
 </section>

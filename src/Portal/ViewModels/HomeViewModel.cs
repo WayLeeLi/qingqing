@@ -24,6 +24,9 @@ namespace Academy.ViewModels
         public List<ContentItem> VideoList { get; set; }
 
         // 服務列表
-        public List<ContentItem> ServiceList { get; set; }  
+        public List<ContentItem> ServiceList { get; set; }
+
+        // 服務列表
+        public List<ContentItem> ServiceMoreList { get; set; }
     }
 }

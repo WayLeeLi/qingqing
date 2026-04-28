@@ -27,6 +27,8 @@ namespace Academy.Models
         public string Dept2 { get; set; }
         [Display(Name = "顯示於首頁")]
         public Nullable<int> IsShowIndex { get; set; }
+        [Display(Name = "顯示於更多")]
+        public Nullable<int> IsShowMore { get; set; }
         [Display(Name = "發佈時間")]
         public Nullable<System.DateTime> PubDate { get; set; }
         [DisplayName("影片嵌入")]
