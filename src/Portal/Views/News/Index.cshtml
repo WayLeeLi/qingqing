@@ -65,7 +65,7 @@
                     </div>
                     <div class="nb-col">
                         <span class="ntag @news.TagColorClass">@news.CategoryName</span>
-                        <h3 class="ntitle">@news.Title</h3>
+                        <h3 class="ntitle"><a href="@Url.Action("Detail", "News", new { id = news.Id })">@news.Title</a></h3>
                         <p class="nbody">@news.Summary</p>
                        
                     </div>
