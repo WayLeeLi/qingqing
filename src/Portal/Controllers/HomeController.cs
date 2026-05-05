@@ -11,8 +11,10 @@ using System.Data;
 using System.Dynamic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
+using static System.Net.WebRequestMethods;
 
 namespace Academy.Controllers
 {
@@ -94,7 +96,9 @@ namespace Academy.Controllers
                                  Category = c.Name,
                                  VideoUrl = n.VideoPath
                              };
-            model.VideoList = videoQuery.Take(3).ToList();
+            var tempList = videoQuery.Take(3).ToList();
+            tempList.ForEach(v => v.VideoUrl = "https://www.youtube.com/embed/" + ExtractYouTubeId(v.VideoUrl) + "?autoplay=1&rel=0");  
+            model.VideoList = tempList;
 
             // 4. 服务项目 (Menu == 6) 关联 Category
             var serviceQuery = from n in db.Newss
@@ -126,7 +130,15 @@ namespace Academy.Controllers
 
             return View(model);
         }
-
+        private string ExtractYouTubeId(string videoPath)
+        {
+            if (string.IsNullOrEmpty(videoPath)) return "";
+            // 支援多種格式：完整網址、短網址、純 ID
+            var match = Regex.Match(videoPath, @"(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})");
+            if (match.Success) return match.Groups[1].Value;
+            if (Regex.IsMatch(videoPath, @"^[a-zA-Z0-9_-]{11}$")) return videoPath;
+            return "";
+        }
         /// <summary>
         /// 搜索列表
         /// </summary>
