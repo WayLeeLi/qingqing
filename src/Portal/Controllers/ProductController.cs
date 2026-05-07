@@ -47,7 +47,7 @@ namespace Academy.Controllers
                         Id = d.ID,
                         Name = d.Title ?? "無題",
                         ImageUrl = d.ImagePath ?? "",
-                        ThumbUrl = d.ImagePath ?? "",
+                        ThumbUrl = d.ThumbnailPath ?? "",
                         Summary = d.Note ?? "",
                         Description = d.Content ?? "",
                         SortOrder = d.Sort ?? 0

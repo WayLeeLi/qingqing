@@ -21,12 +21,17 @@
 (function () {
     const btt = document.getElementById('btt');
     if (btt) {
-        window.addEventListener('scroll', function () {
+        debugger
+        function updateBtt() {
             btt.classList.toggle('vis', window.scrollY > 200);
-        });
-        btt.addEventListener('click', function () {
+        }
+        window.addEventListener('scroll', updateBtt);
+        btt.addEventListener('click', function (e) {
+            debugger
+            e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+        updateBtt(); // 初始调用一次
     }
 })();
 

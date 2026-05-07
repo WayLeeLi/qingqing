@@ -3,7 +3,7 @@
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>F:\mine\qingqing</_PublishTargetUrl>
-    <History>True|2026-05-05T03:13:00.9335780Z||;True|2026-04-28T15:53:54.1279103+08:00||;True|2026-04-27T21:30:17.9727398+08:00||;True|2026-04-27T21:29:54.5408107+08:00||;True|2026-04-27T21:29:14.7572153+08:00||;True|2026-04-24T20:41:13.0018028+08:00||;True|2026-04-24T14:26:37.2674868+08:00||;True|2026-04-24T11:33:49.1968994+08:00||;</History>
+    <History>True|2026-05-06T14:44:10.1046324Z||;True|2026-05-06T22:02:31.9691166+08:00||;True|2026-05-05T11:13:00.9335780+08:00||;True|2026-04-28T15:53:54.1279103+08:00||;True|2026-04-27T21:30:17.9727398+08:00||;True|2026-04-27T21:29:54.5408107+08:00||;True|2026-04-27T21:29:14.7572153+08:00||;True|2026-04-24T20:41:13.0018028+08:00||;True|2026-04-24T14:26:37.2674868+08:00||;True|2026-04-24T11:33:49.1968994+08:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -101,7 +101,7 @@
       <publishTime>04/28/2026 12:07:41</publishTime>
     </File>
     <File Include="Areas/Sysmgr/Views/News/Edit.cshtml">
-      <publishTime>04/28/2026 12:08:01</publishTime>
+      <publishTime>05/06/2026 21:56:22</publishTime>
     </File>
     <File Include="Areas/Sysmgr/Views/News/Index.cshtml">
       <publishTime>04/27/2026 21:00:18</publishTime>
@@ -167,10 +167,10 @@
       <publishTime>04/09/2026 09:56:46</publishTime>
     </File>
     <File Include="bin/Academy.dll">
-      <publishTime>05/05/2026 11:12:41</publishTime>
+      <publishTime>05/06/2026 22:47:01</publishTime>
     </File>
     <File Include="bin/Academy.pdb">
-      <publishTime>05/05/2026 11:12:41</publishTime>
+      <publishTime>05/06/2026 22:47:01</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>04/09/2026 09:56:51</publishTime>
@@ -3860,7 +3860,7 @@
       <publishTime>04/09/2026 09:56:49</publishTime>
     </File>
     <File Include="Views/Product/Index.cshtml">
-      <publishTime>04/28/2026 10:37:52</publishTime>
+      <publishTime>05/06/2026 21:17:54</publishTime>
     </File>
     <File Include="Views/Quote/Index.cshtml">
       <publishTime>04/14/2026 10:18:39</publishTime>
@@ -3884,7 +3884,7 @@
       <publishTime>04/09/2026 09:56:49</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/24/2026 11:33:36</publishTime>
+      <publishTime>05/06/2026 22:02:29</publishTime>
     </File>
   </ItemGroup>
 </Project>

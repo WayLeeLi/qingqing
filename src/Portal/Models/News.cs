@@ -37,6 +37,9 @@ namespace Academy.Models
         public string LinkPath { get; set; }
         [DisplayName("代表圖")]
         public string ImagePath { get; set; }
+        [DisplayName("缩略图")]
+        public string ThumbnailPath { get; set; }
+
         [DisplayName("摘要")]
         public string Note { get; set; }
         [DisplayName("摘要2")]

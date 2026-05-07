@@ -6,6 +6,7 @@ using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -16,31 +17,14 @@ namespace Academy.Areas.Sysmgr.Controllers
 {
     public class NewsController : BaseController
     {
-        //
-        // GET: /Sysmgr/News/
-
+        // GET: /Sysmgr/News/Index
         public ActionResult Index(int page = 1, int cata = 0, string status = "", string ordery = "", string menu = "")
         {
-            var resunt = string.IsNullOrEmpty(menu) ? 0 : int.Parse(menu);
-            if (!string.IsNullOrEmpty(menu))
-            {
-                switch (menu)
-                {
-                    case "3":
-                        ViewBag.MenuName = "招牌菜色";
-                        break;
-                    case "4":
-                        ViewBag.MenuName = "最新消息";
-                        break;
-                    case "5":
-                        ViewBag.MenuName = "影音專區";
-                        break;
-                    default:
-                        ViewBag.MenuName = "服務項目";
-                        break;
-                }
-            }
-            var categories = db.Categories.Where(s => s.Menu == resunt && s.Status == 1).OrderBy(c => c.Path).ToList();
+            int menuValue = string.IsNullOrEmpty(menu) ? 0 : int.Parse(menu);
+            ViewBag.Menu = menuValue;
+            ViewBag.MenuName = GetMenuName(menuValue);
+
+            var categories = db.Categories.Where(s => s.Menu == menuValue && s.Status == 1).OrderBy(c => c.Path).ToList();
             var categoryFilterList = new List<SelectListItem>();
             categoryFilterList.Add(new SelectListItem { Value = "", Text = "請選擇" });
 
@@ -49,15 +33,9 @@ namespace Academy.Areas.Sysmgr.Controllers
                 string prefix = "";
                 if (cat.Level > 0)
                 {
-                    // 根据层级添加缩进（每级两个空格）
-                    for (int i = 0; i < cat.Level; i++)
-                    {
-                        prefix += "  ";
-                    }
-                    // 添加层级符号
+                    for (int i = 0; i < cat.Level; i++) prefix += "  ";
                     prefix += "└─ ";
                 }
-
                 categoryFilterList.Add(new SelectListItem
                 {
                     Value = cat.Id.ToString(),
@@ -67,54 +45,36 @@ namespace Academy.Areas.Sysmgr.Controllers
             }
             ViewBag.CategoryFilterList = categoryFilterList;
 
-            var data = from a in db.Newss where a.Menu == resunt select a;
+            var data = db.Newss.Where(a => a.Menu == menuValue).AsQueryable();
 
             if (cata != 0)
-            {
                 data = data.Where(a => a.CataID == cata);
-            }
-            if (status != "")
+
+            if (!string.IsNullOrEmpty(status))
             {
                 int nstatus = int.Parse(status);
                 DateTime dtNow = DateTime.Now;
                 if (nstatus == 1)
                 {
-                    data = data.Where(a => a.Status == 1 || a.Status == 2 && (a.OnDate != null && a.OnDate < dtNow || a.OnDate == null) && (a.OffDate != null && a.OffDate > dtNow || a.OffDate == null));
+                    data = data.Where(a => a.Status == 1 || (a.Status == 2 && (a.OnDate == null || a.OnDate < dtNow) && (a.OffDate == null || a.OffDate > dtNow)));
                 }
                 if (nstatus == 0)
                 {
-                    data = data.Where(a => a.Status == 0 || a.Status == 2 && (a.OnDate != null && a.OnDate > dtNow || a.OffDate != null && a.OffDate < dtNow));
+                    data = data.Where(a => a.Status == 0 || (a.Status == 2 && (a.OnDate != null && a.OnDate > dtNow || a.OffDate != null && a.OffDate < dtNow)));
                 }
             }
+
             switch (ordery)
             {
-                case "pubtimeasc":
-                    data = data.OrderBy(a => a.PubDate);
-                    break;
-                case "pubtimedesc":
-                    data = data.OrderByDescending(a => a.PubDate);
-                    break;
-                case "timeasc":
-                    data = data.OrderBy(a => a.CDate);
-                    break;
-                case "timedesc":
-                    data = data.OrderByDescending(a => a.CDate);
-                    break;
-                case "idasc":
-                    data = data.OrderBy(a => a.ID);
-                    break;
-                case "iddesc":
-                    data = data.OrderByDescending(a => a.ID);
-                    break;
-                case "sortasc":
-                    data = data.OrderBy(a => a.Sort);
-                    break;
-                case "sortdesc":
-                    data = data.OrderByDescending(a => a.Sort);
-                    break;
-                default:
-                    data = data.OrderByDescending(a => a.PubDate);
-                    break;
+                case "pubtimeasc": data = data.OrderBy(a => a.PubDate); break;
+                case "pubtimedesc": data = data.OrderByDescending(a => a.PubDate); break;
+                case "timeasc": data = data.OrderBy(a => a.CDate); break;
+                case "timedesc": data = data.OrderByDescending(a => a.CDate); break;
+                case "idasc": data = data.OrderBy(a => a.ID); break;
+                case "iddesc": data = data.OrderByDescending(a => a.ID); break;
+                case "sortasc": data = data.OrderBy(a => a.Sort); break;
+                case "sortdesc": data = data.OrderByDescending(a => a.Sort); break;
+                default: data = data.OrderByDescending(a => a.PubDate); break;
             }
 
             var pagedData = data.ToPagedList(pageNumber: page, pageSize: 12);
@@ -126,230 +86,165 @@ namespace Academy.Areas.Sysmgr.Controllers
         {
             ViewBag.Users = db.Users;
             ViewBag.CataList = db.NewsCatas.OrderBy(a => a.Sort).ThenByDescending(a => a.CDate);
-
             return View();
         }
 
         [HttpGet]
         public ActionResult SearchList(int page = 1, string status = "", string ordery = "")
         {
-            DateTime StartDate = DateTime.Parse("2000-01-01");
-            DateTime EndDate = DateTime.Now;
-            DateTime PubStartDate = DateTime.Parse("2000-01-01");
-            DateTime PubEndDate = DateTime.Now;
-            int CataID = 0;
-            string KeyWord = "";
-            int Status = -1;
-            int CreateUser = 0;
+            DateTime startDate = DateTime.Parse("2000-01-01");
+            DateTime endDate = DateTime.Now;
+            DateTime pubStartDate = DateTime.Parse("2000-01-01");
+            DateTime pubEndDate = DateTime.Now;
+            int cataId = 0;
+            string keyword = "";
+            int statusVal = -1;
+            int createUser = 0;
 
             if (!string.IsNullOrEmpty(Request["StartDate"]))
             {
-                StartDate = DateTime.Parse(Request["StartDate"]);
-                ViewBag.StartDate = StartDate.ToString("yyyy-MM-dd");
+                startDate = DateTime.Parse(Request["StartDate"]);
+                ViewBag.StartDate = startDate.ToString("yyyy-MM-dd");
             }
-            else
-            {
-                ViewBag.StartDate = "開始";
-            }
+            else ViewBag.StartDate = "開始";
+
             if (!string.IsNullOrEmpty(Request["EndDate"]))
             {
-                EndDate = DateTime.Parse(Request["EndDate"]).AddDays(1);
-                ViewBag.EndDate = EndDate.ToString("yyyy-MM-dd");
+                endDate = DateTime.Parse(Request["EndDate"]).AddDays(1);
+                ViewBag.EndDate = endDate.ToString("yyyy-MM-dd");
             }
-            else
-            {
-                ViewBag.EndDate = "至今";
-            }
-            //
+            else ViewBag.EndDate = "至今";
+
             if (!string.IsNullOrEmpty(Request["PubStartDate"]))
             {
-                PubStartDate = DateTime.Parse(Request["PubStartDate"]);
-                ViewBag.PubStartDate = StartDate.ToString("yyyy-MM-dd");
+                pubStartDate = DateTime.Parse(Request["PubStartDate"]);
+                ViewBag.PubStartDate = pubStartDate.ToString("yyyy-MM-dd");
             }
-            else
-            {
-                ViewBag.PubStartDate = "開始";
-            }
+            else ViewBag.PubStartDate = "開始";
+
             if (!string.IsNullOrEmpty(Request["PubEndDate"]))
             {
-                PubEndDate = DateTime.Parse(Request["PubEndDate"]).AddDays(1);
-                ViewBag.PubEndDate = EndDate.ToString("yyyy-MM-dd");
+                pubEndDate = DateTime.Parse(Request["PubEndDate"]).AddDays(1);
+                ViewBag.PubEndDate = pubEndDate.ToString("yyyy-MM-dd");
             }
-            else
-            {
-                ViewBag.PubEndDate = "至今";
-            }
+            else ViewBag.PubEndDate = "至今";
 
             if (!string.IsNullOrEmpty(Request["CataID"]))
             {
-                CataID = int.Parse(Request["CataID"]);
-                ViewBag.CataName = Common.GetData.GetNewsCataName(CataID);
+                cataId = int.Parse(Request["CataID"]);
+                ViewBag.CataName = Common.GetData.GetNewsCataName(cataId);
             }
-            else
-            {
-                ViewBag.Type = "未選";
-            }
+            else ViewBag.Type = "未選";
 
             if (!string.IsNullOrEmpty(Request["KeyWord"]))
             {
-                KeyWord = Request["KeyWord"];
-                ViewBag.KeyWord = KeyWord;
+                keyword = Request["KeyWord"];
+                ViewBag.KeyWord = keyword;
             }
-            else
-            {
-                ViewBag.KeyWord = "未輸入";
-            }
+            else ViewBag.KeyWord = "未輸入";
+
             if (!string.IsNullOrEmpty(Request["Status"]))
             {
                 switch (Request["Status"])
                 {
-                    case "0":
-                        Status = 0;
-                        ViewBag.Status = "下線中";
-                        break;
-                    case "1":
-                        Status = 1;
-                        ViewBag.Status = "上線中";
-                        break;
-                    default:
-                        ViewBag.Status = "全部";
-                        break;
+                    case "0": statusVal = 0; ViewBag.Status = "下線中"; break;
+                    case "1": statusVal = 1; ViewBag.Status = "上線中"; break;
+                    default: ViewBag.Status = "全部"; break;
                 }
             }
-            else
-            {
-                ViewBag.Status = "未選擇";
-            }
+            else ViewBag.Status = "未選擇";
+
             if (!string.IsNullOrEmpty(Request["CreateUser"]))
             {
-                CreateUser = int.Parse(Request["CreateUser"]);
-                ViewBag.CreateUser = Common.GetData.GetUserNameByID(CreateUser);
+                createUser = int.Parse(Request["CreateUser"]);
+                ViewBag.CreateUser = Common.GetData.GetUserNameByID(createUser);
             }
-            else
-            {
-                ViewBag.CreateUser = "未選擇";
-            }
-            //搜索
-            var data = from a in db.Newss
-                       where a.CDate >= StartDate && a.CDate <= EndDate && a.PubDate >= PubStartDate && a.PubDate <= PubEndDate
-                       select a;
+            else ViewBag.CreateUser = "未選擇";
 
-            if (CataID != 0)
-            {
-                data = data.Where(a => a.CataID == CataID);
-            }
+            var data = db.Newss.Where(a => a.CDate >= startDate && a.CDate <= endDate && a.PubDate >= pubStartDate && a.PubDate <= pubEndDate).AsQueryable();
 
-            if (KeyWord != "")
+            if (cataId != 0) data = data.Where(a => a.CataID == cataId);
+            if (!string.IsNullOrEmpty(keyword))
             {
-                KeyWord = KeyWord.Trim();
-                data = data.Where(a => a.Title.Contains(KeyWord) || a.Dept1.Contains(KeyWord) || a.Dept2.Contains(KeyWord) || a.Note.Contains(KeyWord) || a.Content.Contains(KeyWord));
+                keyword = keyword.Trim();
+                data = data.Where(a => a.Title.Contains(keyword) || a.Dept1.Contains(keyword) || a.Dept2.Contains(keyword) || a.Note.Contains(keyword) || a.Content.Contains(keyword));
             }
-
-            if (Status != -1)
+            if (statusVal != -1)
             {
-                int nstatus = Status;
                 DateTime dtNow = DateTime.Now;
-                if (nstatus == 1)
-                {
-                    data = data.Where(a => a.Status == 1 || a.Status == 2 && (a.OnDate != null && a.OnDate < dtNow || a.OnDate == null) && (a.OffDate != null && a.OffDate > dtNow || a.OffDate == null));
-                }
-                if (nstatus == 0)
-                {
-                    data = data.Where(a => a.Status == 0 || a.Status == 2 && (a.OnDate != null && a.OnDate > dtNow || a.OffDate != null && a.OffDate < dtNow));
-                }
+                if (statusVal == 1)
+                    data = data.Where(a => a.Status == 1 || (a.Status == 2 && (a.OnDate == null || a.OnDate < dtNow) && (a.OffDate == null || a.OffDate > dtNow)));
+                if (statusVal == 0)
+                    data = data.Where(a => a.Status == 0 || (a.Status == 2 && (a.OnDate != null && a.OnDate > dtNow || a.OffDate != null && a.OffDate < dtNow)));
             }
-
-            if (CreateUser != 0)
-            {
-                data = data.Where(a => a.CUser == CreateUser);
-            }
+            if (createUser != 0) data = data.Where(a => a.CUser == createUser);
 
             switch (ordery)
             {
-                case "pubtimeasc":
-                    data = data.OrderBy(a => a.PubDate);
-                    break;
-                case "pubtimedesc":
-                    data = data.OrderByDescending(a => a.PubDate);
-                    break;
-                case "timeasc":
-                    data = data.OrderBy(a => a.CDate);
-                    break;
-                case "timedesc":
-                    data = data.OrderByDescending(a => a.CDate);
-                    break;
-                case "idasc":
-                    data = data.OrderBy(a => a.ID);
-                    break;
-                case "iddesc":
-                    data = data.OrderByDescending(a => a.ID);
-                    break;
-                case "sortasc":
-                    data = data.OrderBy(a => a.Sort);
-                    break;
-                case "sortdesc":
-                    data = data.OrderByDescending(a => a.Sort);
-                    break;
-                default:
-                    data = data.OrderByDescending(a => a.Sort).ThenByDescending(a => a.CDate);
-                    break;
+                case "pubtimeasc": data = data.OrderBy(a => a.PubDate); break;
+                case "pubtimedesc": data = data.OrderByDescending(a => a.PubDate); break;
+                case "timeasc": data = data.OrderBy(a => a.CDate); break;
+                case "timedesc": data = data.OrderByDescending(a => a.CDate); break;
+                case "idasc": data = data.OrderBy(a => a.ID); break;
+                case "iddesc": data = data.OrderByDescending(a => a.ID); break;
+                case "sortasc": data = data.OrderBy(a => a.Sort); break;
+                case "sortdesc": data = data.OrderByDescending(a => a.Sort); break;
+                default: data = data.OrderByDescending(a => a.Sort).ThenByDescending(a => a.CDate); break;
             }
 
             var pagedData = data.ToPagedList(pageNumber: page, pageSize: 12);
-
             return View(pagedData);
         }
 
-        public ActionResult Add(string menu = "")
+        // ==================== 辅助方法 ====================
+        private string GetMenuName(int? menu)
         {
-            if (!string.IsNullOrEmpty(menu))
+            switch (menu)
             {
-                switch (menu)
-                {
-                    case "3":
-                        ViewBag.MenuName = "招牌菜色";
-                        break;
-                    case "4":
-                        ViewBag.MenuName = "最新消息";
-                        break;
-                    case "5":
-                        ViewBag.MenuName = "影音專區";
-                        break;
-                    default:
-                        ViewBag.MenuName = "服務項目";
-                        break;
-                }
+                case 3: return "招牌菜色";
+                case 4: return "最新消息";
+                case 5: return "影音專區";
+                default: return "服務項目";
             }
-            var resunt = string.IsNullOrEmpty(menu) ? 0 : int.Parse(menu);
-            var categories = db.Categories.Where(s => s.Menu == resunt && s.Status == 1).OrderBy(c => c.Path).ToList();
+        }
 
-            // 构建下拉列表项（带层级缩进）
-            var categoryList = new List<SelectListItem>();
-            categoryList.Add(new SelectListItem { Value = "", Text = "請選擇" });
+        private void LoadCategorySelectList(int? selectedId = null, int? menu = null)
+        {
+            int menuValue = menu ?? (Request["menu"] != null ? int.Parse(Request["menu"]) : 0);
+            var categories = db.Categories.Where(c => c.Menu == menuValue && c.Status == 1).OrderBy(c => c.Path).ToList();
 
+            var selectList = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "", Text = "請選擇" }
+            };
             foreach (var cat in categories)
             {
                 string prefix = "";
                 if (cat.Level > 0)
                 {
-                    // 根据层级添加缩进（每级两个空格）
-                    for (int i = 0; i < cat.Level; i++)
-                    {
-                        prefix += "  ";
-                    }
-                    // 添加层级符号
+                    for (int i = 0; i < cat.Level; i++) prefix += "  ";
                     prefix += "└─ ";
                 }
-
-                categoryList.Add(new SelectListItem
+                selectList.Add(new SelectListItem
                 {
                     Value = cat.Id.ToString(),
-                    Text = prefix + cat.Name
+                    Text = prefix + cat.Name,
+                    Selected = (selectedId.HasValue && cat.Id == selectedId.Value)
                 });
             }
-            ViewBag.CategorySelectList = categoryList;
+            ViewBag.CategorySelectList = selectList;
+        }
+
+        // ==================== Add ====================
+        public ActionResult Add(string menu = "")
+        {
+            int menuValue = string.IsNullOrEmpty(menu) ? 0 : int.Parse(menu);
+            ViewBag.Menu = menuValue;
+            ViewBag.MenuName = GetMenuName(menuValue);
+            LoadCategorySelectList(null, menuValue);
+
             News model = new News();
-            model.Menu = resunt;
+            model.Menu = menuValue;
             model.Status = 1;
             model.PubDate = DateTime.Now;
             return View(model);
@@ -364,15 +259,61 @@ namespace Academy.Areas.Sysmgr.Controllers
                 string ext = file.FileName.Substring(file.FileName.LastIndexOf(".") + 1).ToLower();
                 if (ext != "jpg" && ext != "jpeg" && ext != "png" && ext != "gif" && ext != "bmp")
                 {
-                    ModelState.AddModelError("", "請請選擇縮略圖(僅支持jpg|jpeg|png|gif|bmp格式)!");
+                    ModelState.AddModelError("", "請選擇圖片(僅支持jpg|jpeg|png|gif|bmp格式)!");
                 }
                 else
                 {
-                    var filePath = "/Upload/News/" + DateTime.Now.ToString("yyyyMMddHHmmss") + file.FileName;
-                    file.SaveAs(Request.MapPath("~") + filePath);
-                    model.ImagePath = filePath;
+                    try
+                    {
+                        string timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
+                        string guid = Guid.NewGuid().ToString();
+                        string fileName = $"{timestamp}_{guid}.{ext}";
+                        string virtualPath = $"/Upload/News/{fileName}";
+                        string physicalPath = Server.MapPath("~" + virtualPath);
+
+                        string dir = Path.GetDirectoryName(physicalPath);
+                        if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
+
+                        file.SaveAs(physicalPath);
+                        model.ImagePath = virtualPath;
+
+                        // 生成缩略图
+                        using (var original = System.Drawing.Image.FromFile(physicalPath))
+                        {
+                            int thumbWidth = 300;
+                            int thumbHeight = (int)((double)original.Height / original.Width * thumbWidth);
+                            using (var thumb = new System.Drawing.Bitmap(thumbWidth, thumbHeight))
+                            using (var g = System.Drawing.Graphics.FromImage(thumb))
+                            {
+                                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                                g.DrawImage(original, 0, 0, thumbWidth, thumbHeight);
+
+                                string thumbFileName = $"thumb_{timestamp}_{guid}.jpg";
+                                string thumbVirtualPath = $"/Upload/News/{thumbFileName}";
+                                string thumbPhysicalPath = Server.MapPath("~" + thumbVirtualPath);
+                                thumb.Save(thumbPhysicalPath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                                model.ThumbnailPath = thumbVirtualPath;
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ModelState.AddModelError("", "圖片處理失敗：" + ex.Message);
+                        if (!string.IsNullOrEmpty(model.ImagePath) && System.IO.File.Exists(Server.MapPath(model.ImagePath)))
+                            System.IO.File.Delete(Server.MapPath(model.ImagePath));
+                        model.ImagePath = null;
+                        model.ThumbnailPath = null;
+                        LoadCategorySelectList(model.CataID, model.Menu);
+                        ViewBag.MenuName = GetMenuName(model.Menu);
+                        return View(model);
+                    }
                 }
             }
+            else
+            {
+                ModelState.AddModelError("", "請選擇圖片!");
+            }
+
             if (ModelState.IsValid)
             {
                 try
@@ -387,132 +328,149 @@ namespace Academy.Areas.Sysmgr.Controllers
                     model.CDate = DateTime.Now;
                     db.Newss.Add(model);
                     db.SaveChanges();
-
                     return RedirectToAction("Index", "News", new { menu = model.Menu, success = true });
                 }
                 catch
                 {
                     ModelState.AddModelError("", "操作異常，請重試!");
+                    LoadCategorySelectList(model.CataID, model.Menu);
+                    ViewBag.MenuName = GetMenuName(model.Menu);
                     return View(model);
                 }
             }
             else
             {
-                ViewBag.CataList = db.NewsCatas.OrderByDescending(a => a.Sort).ThenByDescending(a => a.CDate);
+                LoadCategorySelectList(model.CataID, model.Menu);
+                ViewBag.MenuName = GetMenuName(model.Menu);
                 return View(model);
             }
         }
 
+        // ==================== Edit ====================
         public ActionResult Edit(int id, string menu = "")
         {
-            if (!string.IsNullOrEmpty(menu))
-            {
-                switch (menu)
-                {
-                    case "3":
-                        ViewBag.MenuName = "招牌菜色";
-                        break;
-                    case "4":
-                        ViewBag.MenuName = "最新消息";
-                        break;
-                    case "5":
-                        ViewBag.MenuName = "影音專區";
-                        break;
-                    default:
-                        ViewBag.MenuName = "服務項目";
-                        break;
-                }
-            }
-            News model = db.Newss.Where(p => p.ID == id).FirstOrDefault();
-            if (model != null)
-            {
-                var resunt = string.IsNullOrEmpty(menu) ? 0 : int.Parse(menu);
-                var categories = db.Categories.Where(s => s.Menu == resunt && s.Status == 1).OrderBy(c => c.Path).ToList();
+            News model = db.Newss.FirstOrDefault(p => p.ID == id);
+            if (model == null) return RedirectToAction("Index", "News");
 
-                // 构建下拉列表项（带层级缩进）
-                var categoryList = new List<SelectListItem>();
-                categoryList.Add(new SelectListItem { Value = "", Text = "請選擇" });
-
-                foreach (var cat in categories)
-                {
-                    string prefix = "";
-                    if (cat.Level > 0)
-                    {
-                        // 根据层级添加缩进（每级两个空格）
-                        for (int i = 0; i < cat.Level; i++)
-                        {
-                            prefix += "  ";
-                        }
-                        // 添加层级符号
-                        prefix += "└─ ";
-                    }
-
-                    categoryList.Add(new SelectListItem
-                    {
-                        Value = cat.Id.ToString(),
-                        Text = prefix + cat.Name
-                    });
-                }
-                ViewBag.CategorySelectList = categoryList;
-                return View(model);
-            }
-            else
-            {
-                return RedirectToAction("Index", "News");
-            }
+            int menuValue = string.IsNullOrEmpty(menu) ? 0 : int.Parse(menu);
+            ViewBag.Menu = menuValue;
+            ViewBag.MenuName = GetMenuName(menuValue);
+            LoadCategorySelectList(model.CataID, menuValue);
+            return View(model);
         }
 
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult Edit(News model, HttpPostedFileBase file)
         {
-            bool hasFile = false;
-            if (file != null && file.FileName != null && file.FileName.LastIndexOf(".") > 0)
+            var oldEntity = db.Newss.AsNoTracking().FirstOrDefault(n => n.ID == model.ID);
+            if (oldEntity == null) return HttpNotFound();
+
+            bool hasNewFile = false;
+            string newImagePath = null;
+            string newThumbPath = null;
+
+            // 处理新文件上传
+            if (file != null && file.ContentLength > 0)
             {
-                string ext = file.FileName.Substring(file.FileName.LastIndexOf(".") + 1).ToLower();
-                if (ext != "jpg" && ext != "jpeg" && ext != "png" && ext != "gif" && ext != "bmp")
+                string ext = Path.GetExtension(file.FileName).ToLower().TrimStart('.');
+                if (!new[] { "jpg", "jpeg", "png", "gif", "bmp" }.Contains(ext))
                 {
-                    ModelState.AddModelError("", "請請選擇縮略圖(僅支持jpg|jpeg|png|gif|bmp格式)!");
+                    ModelState.AddModelError("", "圖片格式不支援，僅允許 jpg/jpeg/png/gif/bmp");
                 }
                 else
                 {
-                    if (System.IO.File.Exists(model.ImagePath))
+                    try
                     {
-                        System.IO.File.Delete(model.ImagePath);
+                        string timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
+                        string guid = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 8);
+                        string fileName = $"{timestamp}_{guid}.{ext}";
+                        string virtualPath = $"/Upload/News/{fileName}";
+                        string physicalPath = Server.MapPath("~" + virtualPath);
+                        string dir = Path.GetDirectoryName(physicalPath);
+                        if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
+
+                        file.SaveAs(physicalPath);
+                        newImagePath = virtualPath;
+
+                        using (var original = System.Drawing.Image.FromFile(physicalPath))
+                        {
+                            int thumbWidth = 300;
+                            int thumbHeight = (int)((double)original.Height / original.Width * thumbWidth);
+                            using (var thumb = new System.Drawing.Bitmap(thumbWidth, thumbHeight))
+                            using (var g = System.Drawing.Graphics.FromImage(thumb))
+                            {
+                                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                                g.DrawImage(original, 0, 0, thumbWidth, thumbHeight);
+                                string thumbFileName = $"thumb_{timestamp}_{guid}.jpg";
+                                string thumbVirtualPath = $"/Upload/News/{thumbFileName}";
+                                string thumbPhysicalPath = Server.MapPath("~" + thumbVirtualPath);
+                                thumb.Save(thumbPhysicalPath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                                newThumbPath = thumbVirtualPath;
+                            }
+                        }
+                        hasNewFile = true;
                     }
-                    var filePath = "/Upload/News/" + DateTime.Now.ToString("yyyyMMddHHmmss") + file.FileName;
-                    file.SaveAs(Request.MapPath("~") + filePath);
-                    model.ImagePath = filePath;
-                    hasFile = true;
+                    catch (Exception ex)
+                    {
+                        ModelState.AddModelError("", "圖片處理失敗：" + ex.Message);
+                        if (newImagePath != null && System.IO.File.Exists(Server.MapPath(newImagePath)))
+                            System.IO.File.Delete(Server.MapPath(newImagePath));
+                        newImagePath = null;
+                        newThumbPath = null;
+                        LoadCategorySelectList(model.CataID, model.Menu);
+                        ViewBag.MenuName = GetMenuName(model.Menu);
+                        return View(model);
+                    }
                 }
             }
+
+            bool deleteRequested = !hasNewFile && Request["delimg"] == "1";
+
+            if (hasNewFile)
+            {
+                if (!string.IsNullOrEmpty(oldEntity.ImagePath))
+                {
+                    string oldPhysical = Server.MapPath(oldEntity.ImagePath);
+                    if (System.IO.File.Exists(oldPhysical)) System.IO.File.Delete(oldPhysical);
+                }
+                if (!string.IsNullOrEmpty(oldEntity.ThumbnailPath))
+                {
+                    string oldThumbPhysical = Server.MapPath(oldEntity.ThumbnailPath);
+                    if (System.IO.File.Exists(oldThumbPhysical)) System.IO.File.Delete(oldThumbPhysical);
+                }
+                model.ImagePath = newImagePath;
+                model.ThumbnailPath = newThumbPath;
+            }
+            else if (deleteRequested)
+            {
+                if (!string.IsNullOrEmpty(oldEntity.ImagePath))
+                {
+                    string oldPhysical = Server.MapPath(oldEntity.ImagePath);
+                    if (System.IO.File.Exists(oldPhysical)) System.IO.File.Delete(oldPhysical);
+                }
+                if (!string.IsNullOrEmpty(oldEntity.ThumbnailPath))
+                {
+                    string oldThumbPhysical = Server.MapPath(oldEntity.ThumbnailPath);
+                    if (System.IO.File.Exists(oldThumbPhysical)) System.IO.File.Delete(oldThumbPhysical);
+                }
+                model.ImagePath = null;
+                model.ThumbnailPath = null;
+            }
+            else
+            {
+                model.ImagePath = oldEntity.ImagePath;
+                model.ThumbnailPath = oldEntity.ThumbnailPath;
+            }
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var modelOld = db.Newss.Where(a => a.ID == model.ID).FirstOrDefault();
-                    if (modelOld != null)
-                    {
-                        db.Entry(modelOld).State = System.Data.EntityState.Detached;
-                        model.ReadCount = modelOld.ReadCount;
-                        model.Sort = modelOld.Sort;
-                        model.CUser = modelOld.CUser;
-                        model.CDate = modelOld.CDate;
-                        if (!hasFile)
-                        {
-                            if (Request["delimg"] == "1")
-                            {
-                                model.ImagePath = modelOld.ImagePath;
-                            }
-                            else
-                            {
-                                if (System.IO.File.Exists(modelOld.ImagePath))
-                                {
-                                    System.IO.File.Delete(modelOld.ImagePath);
-                                }
-                            }
-                        }
-                    }
+                    model.ReadCount = oldEntity.ReadCount;
+                    model.Sort = oldEntity.Sort;
+                    model.CUser = oldEntity.CUser;
+                    model.CDate = oldEntity.CDate;
 
                     if (model.Status != 2)
                     {
@@ -535,16 +493,80 @@ namespace Academy.Areas.Sysmgr.Controllers
                 catch
                 {
                     ModelState.AddModelError("", "操作異常，請重試!");
+                    LoadCategorySelectList(model.CataID, model.Menu);
+                    ViewBag.MenuName = GetMenuName(model.Menu);
                     return View(model);
                 }
             }
             else
             {
-                ViewBag.CataList = db.NewsCatas.OrderByDescending(a => a.Sort).ThenByDescending(a => a.CDate);
+                LoadCategorySelectList(model.CataID, model.Menu);
+                ViewBag.MenuName = GetMenuName(model.Menu);
                 return View(model);
             }
         }
 
+        // ==================== 批量生成缩略图（一次性） ====================
+        public ActionResult GenerateThumbnails()
+        {
+            int successCount = 0, failCount = 0, skipCount = 0;
+            var sb = new System.Text.StringBuilder();
+
+            var newsList = db.Newss.Where(n => n.Menu == 3 && !string.IsNullOrEmpty(n.ImagePath)).ToList();
+            foreach (var news in newsList)
+            {
+                if (!string.IsNullOrEmpty(news.ThumbnailPath) && System.IO.File.Exists(Server.MapPath(news.ThumbnailPath)))
+                {
+                    skipCount++;
+                    continue;
+                }
+
+                string originalPath = Server.MapPath(news.ImagePath);
+                if (!System.IO.File.Exists(originalPath))
+                {
+                    sb.AppendLine($"⚠️ 文件不存在：{news.ImagePath} (ID:{news.ID})");
+                    failCount++;
+                    continue;
+                }
+
+                try
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(originalPath);
+                    string thumbFileName = $"thumb_{fileName}.jpg";
+                    string thumbVirtualPath = $"/Upload/News/{thumbFileName}";
+                    string thumbPhysicalPath = Server.MapPath("~" + thumbVirtualPath);
+
+                    using (var original = System.Drawing.Image.FromFile(originalPath))
+                    {
+                        int thumbWidth = 300;
+                        int thumbHeight = (int)((double)original.Height / original.Width * thumbWidth);
+                        using (var thumb = new System.Drawing.Bitmap(thumbWidth, thumbHeight))
+                        using (var g = System.Drawing.Graphics.FromImage(thumb))
+                        {
+                            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                            g.DrawImage(original, 0, 0, thumbWidth, thumbHeight);
+                            thumb.Save(thumbPhysicalPath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        }
+                    }
+
+                    news.ThumbnailPath = thumbVirtualPath;
+                    db.Entry(news).State = EntityState.Modified;
+                    db.SaveChanges();
+                    successCount++;
+                    sb.AppendLine($"✅ ID:{news.ID} - {news.Title} 成功");
+                }
+                catch (Exception ex)
+                {
+                    sb.AppendLine($"❌ ID:{news.ID} - {news.Title} 失败：{ex.Message}");
+                    failCount++;
+                }
+            }
+
+            string result = $"处理完成：成功 {successCount} 条，失败 {failCount} 条，跳过 {skipCount} 条。\n{sb.ToString()}";
+            return Content(result, "text/plain; charset=utf-8");
+        }
+
+        // ==================== 排序、删除等 ====================
         [HttpPost]
         public ActionResult Sort(string data)
         {
@@ -553,24 +575,19 @@ namespace Academy.Areas.Sysmgr.Controllers
             {
                 int id = Convert.ToInt32(item["ID"].ToString());
                 int sort = Convert.ToInt32(item["Sort"].ToString());
-
-                var model = db.Newss.Where(a => a.ID == id).FirstOrDefault();
-                model.Sort = sort;
-
-                db.SaveChanges();
+                var model = db.Newss.FirstOrDefault(a => a.ID == id);
+                if (model != null) model.Sort = sort;
             }
-
+            db.SaveChanges();
             return Json(true);
         }
 
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            var model = db.Newss.Where(a => a.ID == id).FirstOrDefault();
-
-            db.Newss.Remove(model);
+            var model = db.Newss.FirstOrDefault(a => a.ID == id);
+            if (model != null) db.Newss.Remove(model);
             db.SaveChanges();
-
             return Json(true);
         }
 
@@ -581,15 +598,11 @@ namespace Academy.Areas.Sysmgr.Controllers
             foreach (JObject item in dataItems)
             {
                 int id = Convert.ToInt32(item["ID"].ToString());
-
-                var model = db.Newss.Where(a => a.ID == id).FirstOrDefault();
-
-                db.Newss.Remove(model);
-                db.SaveChanges();
+                var model = db.Newss.FirstOrDefault(a => a.ID == id);
+                if (model != null) db.Newss.Remove(model);
             }
-
+            db.SaveChanges();
             return Json(true);
         }
-
     }
 }

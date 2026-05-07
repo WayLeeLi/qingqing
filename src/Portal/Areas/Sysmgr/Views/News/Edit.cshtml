@@ -123,8 +123,7 @@
                         <div id="hasImg">
                             目前圖片 :<br>
                             <img src="@Model.ImagePath" width="400"><br>
-                            <a href="javascript:$('#hasImg').remove()">刪除目前圖片</a>
-                            <input type="hidden" value="1" name="delimg" />
+                            <a href="javascript:void(0);" onclick="$('#hasImg').remove(); $('<input>').attr({type:'hidden', name:'delimg', value:'1'}).appendTo('#formcontent');">刪除目前圖片</a>
                         </div>
                     }
                     <p class="title">重新上傳 :</p>
