@@ -101,11 +101,6 @@
             document.getElementById('navLinks')?.classList.toggle('open');
         });
 
-        // 回到頂部按鈕
-        const btt = document.getElementById('btt');
-        window.addEventListener('scroll', () => {
-            btt?.classList.toggle('vis', window.scrollY > 200);
-        });
 
         // 滾動淡入動畫
         const observer = new IntersectionObserver((entries) => {

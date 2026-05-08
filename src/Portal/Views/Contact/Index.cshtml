@@ -179,9 +179,6 @@
     </div>
 </section>
 
-<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-    <svg viewBox="0 0 24 24"><path d="M12 4L4 12h5v8h6v-8h5z" /></svg>
-</button>
 
 <div id="toast">
     <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" /></svg>
@@ -190,11 +187,6 @@
 
 @section Scripts {
     <script>
-        // 回到頂部按鈕
-        const btt = document.getElementById('btt');
-        window.addEventListener('scroll', function () {
-            btt.classList.toggle('vis', window.scrollY > 200);
-        });
 
         // 滾動淡入動畫
         const observer = new IntersectionObserver(function (entries) {

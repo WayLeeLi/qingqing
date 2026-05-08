@@ -177,7 +177,7 @@ footer {
     }
 
 /* ===== 返回顶部按钮（全局） ===== */
-#btt {
+#backTop {
     position: fixed;
     bottom: 26px;
     right: 22px;
@@ -197,17 +197,17 @@ footer {
     z-index: 500;
 }
 
-    #btt.vis {
+    #backTop.vis {
         opacity: 1;
         transform: translateY(0);
     }
 
-    #btt:hover {
+    #backTop:hover {
         background: #04b84d;
         transform: translateY(-2px) !important;
     }
 
-    #btt svg {
+    #backTop svg {
         width: 18px;
         height: 18px;
         fill: #fff;

@@ -570,42 +570,6 @@ footer {
         text-decoration: none;
     }
 
-/* ----- 回到頂部按鈕 ----- */
-#btt {
-    position: fixed;
-    bottom: 26px;
-    right: 22px;
-    width: 46px;
-    height: 46px;
-    background: #06C755;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border: none;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, .24);
-    opacity: 0;
-    transform: translateY(12px);
-    transition: opacity .3s, transform .3s;
-    z-index: 500;
-}
-
-    #btt.vis {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    #btt:hover {
-        background: #04b84d;
-        transform: translateY(-2px) !important;
-    }
-
-    #btt svg {
-        width: 18px;
-        height: 18px;
-        fill: #fff;
-    }
 
 /* ----- 影片 Modal ----- */
 .modal-wrap {

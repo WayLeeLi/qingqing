@@ -133,17 +133,9 @@
     <p class="booking-address">新北市土城區中央路三段6號 ╱ 捷運板南線永寧站4號出口</p>
 </section>
 
-<button id="btt" class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-    <svg viewBox="0 0 24 24"><path d="M12 4L4 12h5v8h6v-8h5z" /></svg>
-</button>
 
 @section Scripts {
     <script>
-        // 回到頂部按鈕顯示/隱藏
-        const btt = document.getElementById('btt');
-        window.addEventListener('scroll', () => {
-            btt.classList.toggle('vis', window.scrollY > 200);
-        });
 
         // Tab 高亮 + 滾動聯動
         const tabs = document.querySelectorAll('.tab-btn');

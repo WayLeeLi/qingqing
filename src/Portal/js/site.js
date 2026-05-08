@@ -17,23 +17,7 @@
     }
 })();
 
-// 2. 返回顶部按钮（全局）
-(function () {
-    const btt = document.getElementById('btt');
-    if (btt) {
-        debugger
-        function updateBtt() {
-            btt.classList.toggle('vis', window.scrollY > 200);
-        }
-        window.addEventListener('scroll', updateBtt);
-        btt.addEventListener('click', function (e) {
-            debugger
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-        updateBtt(); // 初始调用一次
-    }
-})();
+
 
 // 3. 平滑滚动（针对所有以 # 开头的内部锚点）
 (function () {

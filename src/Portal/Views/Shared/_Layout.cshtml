@@ -52,14 +52,16 @@
     <main>
         @RenderBody()
     </main>
-    <!-- 浮動按鈕：LINE + 回頂部 -->
+
+    <!-- 浮動按鈕：僅回頂部 -->
     <div class="float-btns">
-        <button class="float-btn float-btn-top" id="btt" data-tip="回到頂部" aria-label="回到頂部">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="18 15 12 9 6 15" />
+        <div class="float-btn float-top" id="backTop" title="回到頂部">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+                <path d="M18 15l-6-6-6 6" />
             </svg>
-        </button>
+        </div>
     </div>
+
     <!-- ══ FOOTER ══ -->
     <footer>
         <svg width="120" height="20" viewBox="0 0 120 20" style="display:block;margin:0 auto .8rem;" xmlns="http://www.w3.org/2000/svg">
@@ -73,6 +75,32 @@
     </footer>
 
     <script src="~/js/site.js"></script>
+
+    <!-- 返回顶部按钮脚本（内嵌） -->
+    <script>
+        var btn = document.getElementById('backTop');
+        if (btn) {
+            // 初始状态
+            btn.style.opacity = '0';
+            btn.style.pointerEvents = 'none';
+
+            window.addEventListener('scroll', function () {
+                var st = window.pageYOffset || document.documentElement.scrollTop;
+                if (st > 300) {
+                    btn.style.opacity = '1';
+                    btn.style.pointerEvents = 'auto';
+                } else {
+                    btn.style.opacity = '0';
+                    btn.style.pointerEvents = 'none';
+                }
+            });
+
+            btn.addEventListener('click', function () {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>
