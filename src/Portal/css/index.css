@@ -255,10 +255,18 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4.5rem;
-    align-items: center;
+    align-items: start; /* 改为 start，让内容顶部对齐（原先是 center） */
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
 }
+
+    /* 了解更多按钮独立定位 */
+    .story-grid .btn-more {
+        grid-column: 2; /* 放在第二列（右侧文字区域） */
+        justify-self: start; /* 左对齐 */
+        margin-top: 2rem;
+    }
 
 .story-img-frame {
     position: relative;
@@ -805,9 +813,12 @@
 /* 响应式 */
 @media (max-width: 960px) {
     .story-grid {
-        grid-template-columns: 1fr;
-        gap: 3rem;
+        grid-template-columns: 1fr; /* 移动端改为单列 */
     }
+
+        .story-grid .btn-more {
+            grid-column: 1; /* 移动端放在第一列 */
+        }
 
     .story-badge {
         right: 0.5rem;

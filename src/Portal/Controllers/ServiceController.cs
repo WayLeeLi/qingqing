@@ -59,8 +59,25 @@ namespace Academy.Controllers
 
             var categories = db.Categories.Where(s => s.Menu == 3 && s.Status == 1).OrderBy(c => c.Path).ToList();
             ViewBag.CategoryList = categories;
+
+            ViewBag.Address = GetDictValue("Contact_Address");
+            ViewBag.Phone = GetDictValue("Contact_Phone");
+
+            ViewBag.Address = GetDictValue("Contact_Address");
+            ViewBag.Phone = GetDictValue("Contact_Phone");
+            ViewBag.Email = GetDictValue("Contact_Email");
+            ViewBag.BusinessHours = GetDictValue("Contact_BusinessHours");
+            ViewBag.MapUrl = GetDictValue("Contact_MapUrl");
+
             return View(model);
         }
+
+        private string GetDictValue(string code)
+        {
+            var dict = db.DictSets.FirstOrDefault(d => d.Code == code);
+            return dict?.Value ?? "";
+        }
+
         /// <summary>
         /// 跳转显示
         /// </summary>

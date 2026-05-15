@@ -81,8 +81,7 @@
             新台菜料理 · 千坪庭園宴廳 · 婚宴喜慶首選
         </p>
         <div class="hero-btns">
-            <a href="tel:0222691127" class="btn-red">📞 電話訂位</a>
-            <a href="#dishes" class="btn-outline-gold">探索菜色</a>
+            <a href="@Url.Action("Index", "Product")" class="btn-outline-gold">探索菜色</a>
         </div>
     </div>
 
@@ -95,21 +94,32 @@
 <!-- 關於我們 故事區域（數據綁定） -->
 <section class="section-pad" id="story" style="background:var(--paper);">
     <div class="story-grid">
-        @if (Model.AboutInfo != null && !string.IsNullOrEmpty(Model.AboutInfo.Content))
-        {
-            @Html.Raw(Model.AboutInfo.Content)
-        }
-        else
-        {
-            <p class="lead">
-                1977年創立於新北土城，青青餐廳已深根在地近半個世紀。主廚施建發（阿發師）出身餐飲世家，曾擔任李安導演《飲食男女》廚藝技術顧問及手部替身，更獲頒多項國際中餐大師殊榮。
-            </p>
-            <br>
-            <p class="lead" style="opacity:.65">
-                餐廳坐擁128桌千坪宴席場地，小橋流水、瀑布庭景，氣派典雅。菜色融合傳統台菜與粵菜、川菜精華，每道佳餚皆以上選食材為本，呈現充滿創意的時尚台菜饗宴。
-            </p>
-        }
+     
+            @if (Model.AboutInfo != null && !string.IsNullOrEmpty(Model.AboutInfo.Content))
+            {
+                @Html.Raw(Model.AboutInfo.Content)
+            }
+            else
+            {
+                <div class="tag">關於青青</div>
+                <h2 class="h2">名菜有歷史<br>好菜唯有創新</h2>
+                <div class="gold-rule"><span>◆</span></div>
+                <p class="lead">
+                    1977年創立於新北土城，青青餐廳已深根在地近半個世紀。主廚施建發（阿發師）出身餐飲世家，曾擔任李安導演《飲食男女》廚藝技術顧問及手部替身，更獲頒多項國際中餐大師殊榮。
+                </p>
+                <br>
+                <p class="lead" style="opacity:.65">
+                    餐廳坐擁128桌千坪宴席場地，小橋流水、瀑布庭景，氣派典雅。菜色融合傳統台菜與粵菜、川菜精華，每道佳餚皆以上選食材為本，呈現充滿創意的時尚台菜饗宴。
+                </p>
+            }
+        </div>
 
+    <!-- 了解更多按钮 - 与上方 story-grid 保持相同布局 -->
+    <div style="max-width:1200px; margin: 2rem auto 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4.5rem;">
+        <div></div>
+        <div style="text-align: left;">
+            <a href="@Url.Action("Index", "About")" class="btn-red" style="display:inline-block;">了解更多 →</a>
+        </div>
     </div>
 </section>
 
@@ -180,7 +190,7 @@
     <div class="red-banner-inner">
         <p class="red-banner-quote">"名菜有歷史，好菜唯有創新"</p>
         <p class="red-banner-sub">── 台灣廚神 阿發師 施建發 ╱ 《飲食男女》幕後操刀手</p>
-        <a href="tel:0222691127" class="btn-outline-gold">📞 立即訂位 0222-691-127</a>
+        @*<a href="tel:0222691127" class="btn-outline-gold">📞 立即訂位 0222-691-127</a>*@
     </div>
 </div>
 
@@ -393,7 +403,7 @@
             var bgLayer = document.querySelector('.hero-bg-layer');
             if (!bgLayer) return;
             var urls = [
-                '/images/web/index_bg.png',
+                '/images/web/index_bg.jpg',
             ];
             var idx = 0;
             function tryLoad(url) {
