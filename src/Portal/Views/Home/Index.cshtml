@@ -239,7 +239,7 @@
                             <div class="yt-thumb">
                                 @if (!string.IsNullOrEmpty(video.VideoUrl))
                                 {
-                                    <iframe src="@video.VideoUrl" title="@video.Title" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                                    <iframe src="@video.VideoUrl" title="@video.Title" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
                                 }
                                 else if (!string.IsNullOrEmpty(video.ImageUrl))
                                 {

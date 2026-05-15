@@ -1,24 +1,95 @@
 ﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";   // 使用统一的布局页（包含导航、页脚、浮动按钮）
+    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "服務項目 | 青青餐廳 SINCE 1977";
 }
 
 @section Styles {
+    <link rel="stylesheet" href="~/css/service.css" />
     <style>
-        /* 此处放置本页面特有的 CSS，原有全局样式已移至布局页的样式文件中 */
-        /* 但为确保风格一致，可以将所有 CSS 整合到 /Content/site.css 或 Bundle 中 */
-        /* 以下仅保留页面专属的细微调整 */
-        .svc-big-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3px;
+        /* 環境介紹區域樣式 */
+        .environment-section {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 60px 48px;
+            background: var(--paper);
         }
-        /* 其他原有样式均需保留，但因篇幅略作归纳，实际使用时复制完整样式到独立 CSS 文件 */
-        /* 为避免遗漏，建议将原 <style> 中除全局重置外的内容移至 /Content/service.css */
+        .environment-header {
+            margin-bottom: 40px;
+        }
+        .environment-header .tag {
+            display: inline-block;
+            color: var(--gold);
+            font-size: 14px;
+            letter-spacing: 0.2em;
+            margin-bottom: 16px;
+        }
+        .environment-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+        .environment-desc {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.8;
+            margin-top: 8px;
+        }
+        .environment-desc strong {
+            color: var(--red);
+            font-size: 1.05rem;
+        }
+        .environment-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+        .environment-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            aspect-ratio: 16/9;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .environment-item:hover {
+            transform: scale(1.02);
+        }
+        .environment-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .environment-item:hover img {
+            transform: scale(1.05);
+        }
+        .environment-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            padding: 20px;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        @@media (max-width: 768px) {
+            .environment-section {
+                padding: 40px 20px;
+            }
+            .environment-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .environment-header h2 {
+                font-size: 1.8rem;
+            }
+        }
     </style>
-    <link rel="stylesheet" href="~/css/service.css" />
 }
 
 <!-- ══ PAGE HERO（子页横幅）══ -->
@@ -69,12 +140,54 @@
         }
         else
         {
-            < div style = "grid-column:1/-1; text-align:center; padding:40px;" > 暫無服務項目 </ div >
-
-
+            <div style="grid-column:1/-1; text-align:center; padding:40px;">暫無服務項目</div>
         }
     }
 </div>
+
+<!-- ══ 環境介紹（新增，標題靠左）══ -->
+<section class="environment-section">
+    <div class="environment-header">
+        <div class="tag">ENVIRONMENT</div>
+        <h2>環境介紹</h2>
+        <div class="environment-desc">
+            <strong>千坪宴席場地 · 128桌容量</strong><br>
+            小橋流水庭園造景，氣派典雅，適合婚宴喜慶、企業尾牙、家庭聚餐
+        </div>
+    </div>
+    <div class="environment-grid">
+        <!-- 第1行第1列 -->
+        <div class="environment-item">
+            <img src="/images/web/hjjs_1_131.jpg"  onerror="this.src='https://picsum.photos/id/106/800/450'">
+            
+        </div>
+        <!-- 第1行第2列 -->
+        <div class="environment-item">
+            <img src="/images/web/hjjs_2_96_131.jpg"  onerror="this.src='https://picsum.photos/id/96/800/450'">
+            
+        </div>
+        <!-- 第2行第1列 -->
+        <div class="environment-item">
+            <img src="/images/web/hjjs_6_95_131.jpg"  onerror="this.src='https://picsum.photos/id/107/800/450'">
+            
+        </div>
+        <!-- 第2行第2列 -->
+        <div class="environment-item">
+            <img src="/images/web/hjjs_4_98_131.jpg"  onerror="this.src='https://picsum.photos/id/116/800/450'">
+            
+        </div>
+        <!-- 第3行第1列 -->
+        <div class="environment-item">
+            <img src="/images/web/hjjs_5_99_131.jpg"  onerror="this.src='https://picsum.photos/id/95/800/450'">
+            
+        </div>
+        <!-- 第3行第2列 -->
+        <div class="environment-item">
+            <img src="/images/web/hjjs_3_97_131.jpg"  onerror="this.src='https://picsum.photos/id/104/800/450'">
+        </div>
+    </div>
+</section>
+
 <!-- ══ FEATURE POINTS ══ -->
 <section class="feature-section">
     <div style="max-width:1200px; margin:0 auto;">
@@ -135,13 +248,13 @@
             }
             else
             {
-                <div style="grid-column:1/-1; text-align:center; padding:40px;"> 暫無服務項目 </div>
+                <div style="grid-column:1/-1; text-align:center; padding:40px;">暫無服務項目</div>
             }
         }
     </div>
 </section>
 
-<!-- CTA 區塊（可保留靜態，亦可從 Model 獲取電話等） -->
+<!-- CTA 區塊 -->
 <div class="cta-strip">
     <div class="cta-strip-inner">
         <h2>準備好為您服務</h2>
@@ -153,7 +266,7 @@
     </div>
 </div>
 
-<!-- 聯絡資訊區（與布局中的聯繫方式可能重複，但此處保留完整內容，可根據需求隱藏布局中的區塊） -->
+<!-- 聯絡資訊區 -->
 <div class="contact-wrap" id="contact">
     <div class="contact-info">
         <div class="tag">聯絡我們</div>
@@ -210,7 +323,6 @@
 @section Scripts {
     <script>
         // 保留原頁面的交互腳本：導航漢堡選單、返回頂部、滾動動畫等
-        // 注意：導航按鈕已移至佈局頁，此處只補齊本頁特有功能
         const backTopBtn = document.getElementById('backToTop');
         if (backTopBtn) {
             window.addEventListener('scroll', () => {
