@@ -204,6 +204,9 @@ namespace Academy.Areas.Sysmgr.Controllers
                 case 3: return "招牌菜色";
                 case 4: return "最新消息";
                 case 5: return "影音專區";
+                case 8: return "其他訊息";
+                case 7: return "聯絡我們";
+                case 9: return "公告管理";
                 default: return "服務項目";
             }
         }
@@ -254,7 +257,8 @@ namespace Academy.Areas.Sysmgr.Controllers
         [ValidateInput(false)]
         public ActionResult Add(News model, HttpPostedFileBase file)
         {
-            if (file != null && file.FileName != null && file.FileName.LastIndexOf(".") > 0)
+            // 图片处理：有就处理，没有就不处理
+            if (file != null && file.ContentLength > 0 && file.FileName.LastIndexOf(".") > 0)
             {
                 string ext = file.FileName.Substring(file.FileName.LastIndexOf(".") + 1).ToLower();
                 if (ext != "jpg" && ext != "jpeg" && ext != "png" && ext != "gif" && ext != "bmp")
@@ -299,19 +303,13 @@ namespace Academy.Areas.Sysmgr.Controllers
                     catch (Exception ex)
                     {
                         ModelState.AddModelError("", "圖片處理失敗：" + ex.Message);
+                        // 清理已上传的文件
                         if (!string.IsNullOrEmpty(model.ImagePath) && System.IO.File.Exists(Server.MapPath(model.ImagePath)))
                             System.IO.File.Delete(Server.MapPath(model.ImagePath));
                         model.ImagePath = null;
                         model.ThumbnailPath = null;
-                        LoadCategorySelectList(model.CataID, model.Menu);
-                        ViewBag.MenuName = GetMenuName(model.Menu);
-                        return View(model);
                     }
                 }
-            }
-            else
-            {
-                ModelState.AddModelError("", "請選擇圖片!");
             }
 
             if (ModelState.IsValid)

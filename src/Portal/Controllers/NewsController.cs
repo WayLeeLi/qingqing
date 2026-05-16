@@ -20,17 +20,31 @@ namespace Academy.Controllers
                 .OrderBy(c => c.SortOrder)
                 .ToList();
 
-            // 2. 获取所有新闻（Menu=4，Status=1，按 PubDate 倒序）
+            // 2. 获取重点公告（Menu=9，Status=1，取最新一条或排序第一条）
+            var announcement = db.Newss
+                .Where(n => n.Menu == 9 && n.Status == 1)
+                .OrderByDescending(n => n.PubDate)  // 按发布时间倒序，取最新
+                                                    // 或者按 Sort 排序 .OrderBy(n => n.Sort)
+                .FirstOrDefault();
+
+            // 3. 构建公告信息
+            var announcementInfo = new AnnouncementInfo();
+            if (announcement != null)
+            {
+                announcementInfo.Title = announcement.Title ?? "重點公告";
+                announcementInfo.Content = announcement.Content ?? (announcement.Note2 ?? "");
+            }
+
+            // 4. 获取所有新闻（Menu=4，Status=1，按 PubDate 倒序）
             var newsQuery = db.Newss
                 .Where(n => n.Menu == 4 && n.Status == 1)
                 .OrderByDescending(n => n.PubDate)
                 .ToList();
 
-            // 3. 构建新闻列表
+            // 5. 构建新闻列表
             var newsList = new List<NewsItemViewModel>();
             foreach (var news in newsQuery)
             {
-                // 找出对应的分类名称
                 string categoryName = "";
                 var matchedCat = newsCategories.FirstOrDefault(c => c.Id == news.CataID);
                 if (matchedCat != null)
@@ -39,7 +53,6 @@ namespace Academy.Controllers
                 }
                 else
                 {
-                    // 如果没有匹配分类，尝试使用 News.Lable 字段（备用）
                     if (!string.IsNullOrEmpty(news.Lable))
                         categoryName = news.Lable;
                     else
@@ -58,7 +71,7 @@ namespace Academy.Controllers
                 });
             }
 
-            // 4. 获取所有不同的分类名称（用于筛选按钮）
+            // 6. 获取所有不同的分类名称（用于筛选按钮）
             var distinctCategories = newsList
                 .Select(n => n.CategoryName)
                 .Distinct()
@@ -69,7 +82,8 @@ namespace Academy.Controllers
             {
                 NewsList = newsList,
                 Categories = distinctCategories,
-                TotalCount = newsList.Count
+                TotalCount = newsList.Count,
+                Announcement = announcementInfo
             };
 
             return View(viewModel);

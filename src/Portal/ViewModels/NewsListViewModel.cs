@@ -10,5 +10,6 @@ namespace Academy.ViewModels
         public List<NewsItemViewModel> NewsList { get; set; }
         public List<CategoryFilter> Categories { get; set; }  // 用于生成筛选按钮
         public int TotalCount { get; set; }
+        public AnnouncementInfo Announcement { get; set; }  // 公告实体
     }
 }

@@ -24,8 +24,26 @@
     <div class="banner rv">
         <div class="bn-ico">📢</div>
         <div>
-            <div class="bn-ttl">2025 年節訂位公告</div>
-            <div class="bn-txt">除夕、初二「中午」已客滿，恕不接受訂位，敬請見諒！<strong>初一全日公休。</strong><br>年節晚餐場次名額有限，歡迎提早致電：<strong>(02) 2269-1127 ／ (02) 2269-6430</strong></div>
+            <div class="bn-ttl">
+                @if (Model.Announcement != null && !string.IsNullOrEmpty(Model.Announcement.Title))
+                {
+                    @Model.Announcement.Title
+                }
+                else
+                {
+                    @:重點公告
+                }
+            </div>
+            <div class="bn-txt">
+                @if (Model.Announcement != null && !string.IsNullOrEmpty(Model.Announcement.Content))
+                {
+                    @Html.Raw(Model.Announcement.Content)
+                }
+                else
+                {
+                    @:暫無公告內容
+                }
+            </div>
         </div>
     </div>
 

@@ -3,7 +3,7 @@
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>E:\mine\qingqing</_PublishTargetUrl>
-    <History>True|2026-05-08T01:50:43.8118256Z||;True|2026-05-06T22:44:10.1046324+08:00||;True|2026-05-06T22:02:31.9691166+08:00||;True|2026-05-05T11:13:00.9335780+08:00||;True|2026-04-28T15:53:54.1279103+08:00||;True|2026-04-27T21:30:17.9727398+08:00||;True|2026-04-27T21:29:54.5408107+08:00||;True|2026-04-27T21:29:14.7572153+08:00||;True|2026-04-24T20:41:13.0018028+08:00||;True|2026-04-24T14:26:37.2674868+08:00||;True|2026-04-24T11:33:49.1968994+08:00||;</History>
+    <History>True|2026-05-16T07:18:03.4895829Z||;True|2026-05-16T15:17:48.0423740+08:00||;True|2026-05-08T09:50:43.8118256+08:00||;True|2026-05-06T22:44:10.1046324+08:00||;True|2026-05-06T22:02:31.9691166+08:00||;True|2026-05-05T11:13:00.9335780+08:00||;True|2026-04-28T15:53:54.1279103+08:00||;True|2026-04-27T21:30:17.9727398+08:00||;True|2026-04-27T21:29:54.5408107+08:00||;True|2026-04-27T21:29:14.7572153+08:00||;True|2026-04-24T20:41:13.0018028+08:00||;True|2026-04-24T14:26:37.2674868+08:00||;True|2026-04-24T11:33:49.1968994+08:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -29,10 +29,10 @@
       <publishTime>05/08/2026 08:28:22</publishTime>
     </File>
     <File Include="Areas/Sysmgr/Views/Account/Add.cshtml">
-      <publishTime>05/08/2026 08:28:22</publishTime>
+      <publishTime>05/16/2026 15:04:34</publishTime>
     </File>
     <File Include="Areas/Sysmgr/Views/Account/Edit.cshtml">
-      <publishTime>05/08/2026 08:28:22</publishTime>
+      <publishTime>05/16/2026 15:05:39</publishTime>
     </File>
     <File Include="Areas/Sysmgr/Views/Account/Index.cshtml">
       <publishTime>05/08/2026 08:28:22</publishTime>
@@ -161,16 +161,16 @@
       <publishTime>05/08/2026 08:28:22</publishTime>
     </File>
     <File Include="Areas/Sysmgr/Views/Shared/_Layout.cshtml">
-      <publishTime>05/08/2026 08:28:22</publishTime>
+      <publishTime>05/16/2026 15:04:34</publishTime>
     </File>
     <File Include="Areas/Sysmgr/Views/Web.config">
       <publishTime>05/08/2026 08:28:22</publishTime>
     </File>
     <File Include="bin/Academy.dll">
-      <publishTime>05/15/2026 14:30:46</publishTime>
+      <publishTime>05/16/2026 15:18:02</publishTime>
     </File>
     <File Include="bin/Academy.pdb">
-      <publishTime>05/15/2026 14:30:46</publishTime>
+      <publishTime>05/16/2026 15:18:02</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>05/08/2026 08:28:24</publishTime>
@@ -353,7 +353,7 @@
       <publishTime>05/08/2026 09:48:55</publishTime>
     </File>
     <File Include="css/index.css">
-      <publishTime>05/08/2026 08:28:23</publishTime>
+      <publishTime>05/15/2026 16:06:37</publishTime>
     </File>
     <File Include="css/media.css">
       <publishTime>05/08/2026 09:49:12</publishTime>
@@ -3803,13 +3803,13 @@
       <publishTime>05/08/2026 08:28:23</publishTime>
     </File>
     <File Include="Views/Contact/Index.cshtml">
-      <publishTime>05/08/2026 09:47:08</publishTime>
+      <publishTime>05/15/2026 14:36:06</publishTime>
     </File>
     <File Include="Views/Home/Index-bk.cshtml">
       <publishTime>05/08/2026 08:28:23</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>05/15/2026 14:21:29</publishTime>
+      <publishTime>05/15/2026 16:14:44</publishTime>
     </File>
     <File Include="Views/Home/Result.cshtml">
       <publishTime>05/08/2026 08:28:23</publishTime>
@@ -3839,10 +3839,10 @@
       <publishTime>05/08/2026 08:28:23</publishTime>
     </File>
     <File Include="Views/News/Detail.cshtml">
-      <publishTime>05/08/2026 08:28:23</publishTime>
+      <publishTime>05/15/2026 14:57:09</publishTime>
     </File>
     <File Include="Views/News/Index.cshtml">
-      <publishTime>05/15/2026 14:25:04</publishTime>
+      <publishTime>05/16/2026 14:48:56</publishTime>
     </File>
     <File Include="Views/News/IndexActive.cshtml">
       <publishTime>05/08/2026 08:28:23</publishTime>
@@ -3866,7 +3866,7 @@
       <publishTime>05/08/2026 08:28:23</publishTime>
     </File>
     <File Include="Views/Service/index.cshtml">
-      <publishTime>05/15/2026 14:29:17</publishTime>
+      <publishTime>05/15/2026 14:32:51</publishTime>
     </File>
     <File Include="Views/Service/Info.cshtml">
       <publishTime>05/08/2026 08:28:23</publishTime>
@@ -3875,7 +3875,7 @@
       <publishTime>05/08/2026 08:28:23</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>05/15/2026 14:21:02</publishTime>
+      <publishTime>05/15/2026 16:39:11</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>05/08/2026 08:28:23</publishTime>
